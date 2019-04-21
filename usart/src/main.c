@@ -38,7 +38,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <string.h>
+#include <stdarg.h>
+
 #include "main.h"
+#include "log.h"
 
 /** @addtogroup STM32F4xx_HAL_Examples
  * @{
@@ -72,6 +75,17 @@ static uint16_t Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferL
 
 /* Private functions ---------------------------------------------------------*/
 
+static void lock(void * data, int lock)
+{
+    if (lock)
+    {
+        UartReady = RESET;
+    }
+    else
+    {
+        while (UartReady != SET);
+    }
+}
 static void write(char * text)
 {
     uint32_t len = strlen(text);
@@ -99,6 +113,9 @@ int main(void)
        - Low Level Initialization: global MSP (MCU Support Package) initialization
     */
     HAL_Init();
+
+    log_init(write);
+    log_set_lock(lock);
 
     /* Configure the system clock to 180 MHz */
     SystemClock_Config();
@@ -157,8 +174,8 @@ int main(void)
 
     while (1)
     {
-        write("Nice!\n\r");
-        HAL_Delay(500);
+        log_trace("float: %f", 123.33);
+        HAL_Delay(1000);
     }
 
 
