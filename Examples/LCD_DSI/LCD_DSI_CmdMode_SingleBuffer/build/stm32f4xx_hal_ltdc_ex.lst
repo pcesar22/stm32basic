@@ -1,0 +1,368 @@
+ARM GAS  /tmp/ccvdi28D.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_ltdc_ex.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.HAL_LTDCEx_StructInitFromVideoConfig,"ax",%progbits
+  18              		.align	1
+  19              		.global	HAL_LTDCEx_StructInitFromVideoConfig
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	HAL_LTDCEx_StructInitFromVideoConfig:
+  27              	.LVL0:
+  28              	.LFB126:
+  29              		.file 1 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx
+   1:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /**
+   2:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   ******************************************************************************
+   3:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @file    stm32f4xx_hal_ltdc_ex.c
+   4:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @author  MCD Application Team
+   5:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @brief   LTDC Extension HAL module driver.
+   6:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   ******************************************************************************
+   7:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @attention
+   8:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *
+   9:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  10:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *
+  11:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  12:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * are permitted provided that the following conditions are met:
+  13:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  14:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *      this list of conditions and the following disclaimer.
+  15:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  16:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *      this list of conditions and the following disclaimer in the documentation
+  17:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *      and/or other materials provided with the distribution.
+  18:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  19:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *      may be used to endorse or promote products derived from this software
+  20:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *      without specific prior written permission.
+  21:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *
+  22:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  23:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  24:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  25:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  26:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  27:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  28:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  29:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ARM GAS  /tmp/ccvdi28D.s 			page 2
+
+
+  30:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  31:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  32:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *
+  33:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   ******************************************************************************
+  34:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   */ 
+  35:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+  36:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /* Includes ------------------------------------------------------------------*/
+  37:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** #include "stm32f4xx_hal.h"
+  38:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+  39:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /** @addtogroup STM32F4xx_HAL_Driver
+  40:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @{
+  41:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   */
+  42:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /** @defgroup LTDCEx LTDCEx
+  43:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @brief LTDC HAL module driver
+  44:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @{
+  45:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   */
+  46:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+  47:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** #ifdef HAL_LTDC_MODULE_ENABLED
+  48:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+  49:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /* Private typedef -----------------------------------------------------------*/
+  50:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /* Private define ------------------------------------------------------------*/
+  51:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /* Private macro -------------------------------------------------------------*/
+  52:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /* Private variables ---------------------------------------------------------*/
+  53:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /* Private function prototypes -----------------------------------------------*/
+  54:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /* Exported functions --------------------------------------------------------*/
+  55:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+  56:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /** @defgroup LTDCEx_Exported_Functions LTDC Extended Exported Functions
+  57:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @{
+  58:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   */
+  59:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+  60:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /** @defgroup LTDCEx_Exported_Functions_Group1 Initialization and Configuration functions
+  61:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****  *  @brief   Initialization and Configuration functions
+  62:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****  *
+  63:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** @verbatim   
+  64:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****  ===============================================================================
+  65:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****                 ##### Initialization and Configuration functions #####
+  66:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****  ===============================================================================  
+  67:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****     [..]  This section provides functions allowing to:
+  68:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****       (+) Initialize and configure the LTDC
+  69:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+  70:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** @endverbatim
+  71:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @{
+  72:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   */
+  73:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** #if defined(STM32F469xx) || defined(STM32F479xx)
+  74:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /**
+  75:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @brief  Retrieve common parameters from DSI Video mode configuration structure
+  76:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @param  hltdc   pointer to a LTDC_HandleTypeDef structure that contains
+  77:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *                 the configuration information for the LTDC.
+  78:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @param  VidCfg  pointer to a DSI_VidCfgTypeDef structure that contains
+  79:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *                 the DSI video mode configuration parameters
+  80:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @note   The implementation of this function is taking into account the LTDC
+  81:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *         polarities inversion as described in the current LTDC specification
+  82:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @retval HAL status
+  83:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   */
+  84:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** HAL_StatusTypeDef HAL_LTDCEx_StructInitFromVideoConfig(LTDC_HandleTypeDef* hltdc, DSI_VidCfgTypeDef
+  85:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** {
+  30              		.loc 1 85 1 view -0
+ARM GAS  /tmp/ccvdi28D.s 			page 3
+
+
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  86:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* Retrieve signal polarities from DSI */
+  87:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   
+  88:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* The following polarity is inverted:
+  89:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****                      LTDC_DEPOLARITY_AL <-> LTDC_DEPOLARITY_AH */
+  90:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   
+  91:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* Note 1 : Code in line w/ Current LTDC specification */
+  92:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.DEPolarity = (VidCfg->DEPolarity == DSI_DATA_ENABLE_ACTIVE_HIGH) ? LTDC_DEPOLARITY_AL
+  35              		.loc 1 92 3 view .LVU1
+  36              		.loc 1 92 35 is_stmt 0 view .LVU2
+  37 0000 4B6A     		ldr	r3, [r1, #36]
+  38              		.loc 1 92 101 view .LVU3
+  39 0002 0BB1     		cbz	r3, .L2
+  40 0004 4FF00053 		mov	r3, #536870912
+  41              	.L2:
+  42              		.loc 1 92 26 discriminator 4 view .LVU4
+  43 0008 C360     		str	r3, [r0, #12]
+  93:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.VSPolarity = (VidCfg->VSPolarity == DSI_VSYNC_ACTIVE_HIGH) ? LTDC_VSPOLARITY_AH : LTD
+  44              		.loc 1 93 3 is_stmt 1 discriminator 4 view .LVU5
+  45              		.loc 1 93 35 is_stmt 0 discriminator 4 view .LVU6
+  46 000a 0B6A     		ldr	r3, [r1, #32]
+  47              		.loc 1 93 95 discriminator 4 view .LVU7
+  48 000c 0BBB     		cbnz	r3, .L6
+  49              		.loc 1 93 95 view .LVU8
+  50 000e 4FF08043 		mov	r3, #1073741824
+  51              	.L3:
+  52              		.loc 1 93 26 discriminator 4 view .LVU9
+  53 0012 8360     		str	r3, [r0, #8]
+  94:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.HSPolarity = (VidCfg->HSPolarity == DSI_HSYNC_ACTIVE_HIGH) ? LTDC_HSPOLARITY_AH : LTD
+  54              		.loc 1 94 3 is_stmt 1 discriminator 4 view .LVU10
+  55              		.loc 1 94 35 is_stmt 0 discriminator 4 view .LVU11
+  56 0014 CB69     		ldr	r3, [r1, #28]
+  57              		.loc 1 94 95 discriminator 4 view .LVU12
+  58 0016 F3B9     		cbnz	r3, .L7
+  59              		.loc 1 94 95 view .LVU13
+  60 0018 4FF00043 		mov	r3, #-2147483648
+  61              	.L4:
+  62              		.loc 1 94 26 discriminator 4 view .LVU14
+  63 001c 4360     		str	r3, [r0, #4]
+  95:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+  96:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* Note 2: Code to be used in case LTDC polarities inversion updated in the specification */
+  97:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* hltdc->Init.DEPolarity = VidCfg->DEPolarity << 29;
+  98:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****      hltdc->Init.VSPolarity = VidCfg->VSPolarity << 29;
+  99:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****      hltdc->Init.HSPolarity = VidCfg->HSPolarity << 29; */
+ 100:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****     
+ 101:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* Retrieve vertical timing parameters from DSI */
+ 102:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.VerticalSync       = VidCfg->VerticalSyncActive - 1U;
+  64              		.loc 1 102 3 is_stmt 1 discriminator 4 view .LVU15
+  65              		.loc 1 102 42 is_stmt 0 discriminator 4 view .LVU16
+  66 001e 4B6B     		ldr	r3, [r1, #52]
+  67              		.loc 1 102 63 discriminator 4 view .LVU17
+  68 0020 013B     		subs	r3, r3, #1
+  69              		.loc 1 102 34 discriminator 4 view .LVU18
+  70 0022 8361     		str	r3, [r0, #24]
+ARM GAS  /tmp/ccvdi28D.s 			page 4
+
+
+ 103:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.AccumulatedVBP     = VidCfg->VerticalSyncActive + VidCfg->VerticalBackPorch - 1U;
+  71              		.loc 1 103 3 is_stmt 1 discriminator 4 view .LVU19
+  72              		.loc 1 103 42 is_stmt 0 discriminator 4 view .LVU20
+  73 0024 4B6B     		ldr	r3, [r1, #52]
+  74              		.loc 1 103 71 discriminator 4 view .LVU21
+  75 0026 8A6B     		ldr	r2, [r1, #56]
+  76              		.loc 1 103 63 discriminator 4 view .LVU22
+  77 0028 1344     		add	r3, r3, r2
+  78              		.loc 1 103 91 discriminator 4 view .LVU23
+  79 002a 013B     		subs	r3, r3, #1
+  80              		.loc 1 103 34 discriminator 4 view .LVU24
+  81 002c 0362     		str	r3, [r0, #32]
+ 104:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.AccumulatedActiveH = VidCfg->VerticalSyncActive + VidCfg->VerticalBackPorch + VidCfg-
+  82              		.loc 1 104 3 is_stmt 1 discriminator 4 view .LVU25
+  83              		.loc 1 104 42 is_stmt 0 discriminator 4 view .LVU26
+  84 002e 4B6B     		ldr	r3, [r1, #52]
+  85              		.loc 1 104 71 discriminator 4 view .LVU27
+  86 0030 8A6B     		ldr	r2, [r1, #56]
+  87              		.loc 1 104 63 discriminator 4 view .LVU28
+  88 0032 1344     		add	r3, r3, r2
+  89              		.loc 1 104 99 discriminator 4 view .LVU29
+  90 0034 0A6C     		ldr	r2, [r1, #64]
+  91              		.loc 1 104 91 discriminator 4 view .LVU30
+  92 0036 1344     		add	r3, r3, r2
+  93              		.loc 1 104 116 discriminator 4 view .LVU31
+  94 0038 013B     		subs	r3, r3, #1
+  95              		.loc 1 104 34 discriminator 4 view .LVU32
+  96 003a 8362     		str	r3, [r0, #40]
+ 105:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.TotalHeigh         = VidCfg->VerticalSyncActive + VidCfg->VerticalBackPorch + VidCfg-
+  97              		.loc 1 105 3 is_stmt 1 discriminator 4 view .LVU33
+  98              		.loc 1 105 42 is_stmt 0 discriminator 4 view .LVU34
+  99 003c 4B6B     		ldr	r3, [r1, #52]
+ 100              		.loc 1 105 71 discriminator 4 view .LVU35
+ 101 003e 8A6B     		ldr	r2, [r1, #56]
+ 102              		.loc 1 105 63 discriminator 4 view .LVU36
+ 103 0040 1344     		add	r3, r3, r2
+ 104              		.loc 1 105 99 discriminator 4 view .LVU37
+ 105 0042 0A6C     		ldr	r2, [r1, #64]
+ 106              		.loc 1 105 91 discriminator 4 view .LVU38
+ 107 0044 1344     		add	r3, r3, r2
+ 108              		.loc 1 105 124 discriminator 4 view .LVU39
+ 109 0046 CA6B     		ldr	r2, [r1, #60]
+ 110              		.loc 1 105 116 discriminator 4 view .LVU40
+ 111 0048 1344     		add	r3, r3, r2
+ 112              		.loc 1 105 145 discriminator 4 view .LVU41
+ 113 004a 013B     		subs	r3, r3, #1
+ 114              		.loc 1 105 34 discriminator 4 view .LVU42
+ 115 004c 0363     		str	r3, [r0, #48]
+ 106:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   
+ 107:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   return HAL_OK;
+ 116              		.loc 1 107 3 is_stmt 1 discriminator 4 view .LVU43
+ 108:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** }
+ 117              		.loc 1 108 1 is_stmt 0 discriminator 4 view .LVU44
+ 118 004e 0020     		movs	r0, #0
+ 119              	.LVL1:
+ 120              		.loc 1 108 1 discriminator 4 view .LVU45
+ 121 0050 7047     		bx	lr
+ARM GAS  /tmp/ccvdi28D.s 			page 5
+
+
+ 122              	.LVL2:
+ 123              	.L6:
+  93:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.HSPolarity = (VidCfg->HSPolarity == DSI_HSYNC_ACTIVE_HIGH) ? LTDC_HSPOLARITY_AH : LTD
+ 124              		.loc 1 93 95 view .LVU46
+ 125 0052 0023     		movs	r3, #0
+ 126 0054 DDE7     		b	.L3
+ 127              	.L7:
+  94:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+ 128              		.loc 1 94 95 view .LVU47
+ 129 0056 0023     		movs	r3, #0
+ 130 0058 E0E7     		b	.L4
+ 131              		.cfi_endproc
+ 132              	.LFE126:
+ 134              		.section	.text.HAL_LTDCEx_StructInitFromAdaptedCommandConfig,"ax",%progbits
+ 135              		.align	1
+ 136              		.global	HAL_LTDCEx_StructInitFromAdaptedCommandConfig
+ 137              		.syntax unified
+ 138              		.thumb
+ 139              		.thumb_func
+ 140              		.fpu fpv4-sp-d16
+ 142              	HAL_LTDCEx_StructInitFromAdaptedCommandConfig:
+ 143              	.LVL3:
+ 144              	.LFB127:
+ 109:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** 
+ 110:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** /**
+ 111:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @brief  Retrieve common parameters from DSI Adapted command mode configuration structure
+ 112:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @param  hltdc   pointer to a LTDC_HandleTypeDef structure that contains
+ 113:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *                 the configuration information for the LTDC.
+ 114:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @param  CmdCfg  pointer to a DSI_CmdCfgTypeDef structure that contains
+ 115:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *                 the DSI command mode configuration parameters
+ 116:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @note   The implementation of this function is taking into account the LTDC
+ 117:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   *         polarities inversion as described in the current LTDC specification
+ 118:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   * @retval HAL status
+ 119:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   */
+ 120:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** HAL_StatusTypeDef HAL_LTDCEx_StructInitFromAdaptedCommandConfig(LTDC_HandleTypeDef* hltdc, DSI_CmdC
+ 121:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** {
+ 145              		.loc 1 121 1 is_stmt 1 view -0
+ 146              		.cfi_startproc
+ 147              		@ args = 0, pretend = 0, frame = 0
+ 148              		@ frame_needed = 0, uses_anonymous_args = 0
+ 149              		@ link register save eliminated.
+ 122:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* Retrieve signal polarities from DSI */
+ 123:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   
+ 124:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* The following polarities are inverted:
+ 125:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****                      LTDC_DEPOLARITY_AL <-> LTDC_DEPOLARITY_AH
+ 126:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****                      LTDC_VSPOLARITY_AL <-> LTDC_VSPOLARITY_AH
+ 127:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****                      LTDC_HSPOLARITY_AL <-> LTDC_HSPOLARITY_AH)*/
+ 128:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   
+ 129:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* Note 1 : Code in line w/ Current LTDC specification */
+ 130:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.DEPolarity = (CmdCfg->DEPolarity == DSI_DATA_ENABLE_ACTIVE_HIGH) ? LTDC_DEPOLARITY_AL
+ 150              		.loc 1 130 3 view .LVU49
+ 151              		.loc 1 130 35 is_stmt 0 view .LVU50
+ 152 0000 CB69     		ldr	r3, [r1, #28]
+ 153              		.loc 1 130 101 view .LVU51
+ 154 0002 0BB1     		cbz	r3, .L9
+ 155 0004 4FF00053 		mov	r3, #536870912
+ 156              	.L9:
+ARM GAS  /tmp/ccvdi28D.s 			page 6
+
+
+ 157              		.loc 1 130 26 discriminator 4 view .LVU52
+ 158 0008 C360     		str	r3, [r0, #12]
+ 131:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.VSPolarity = (CmdCfg->VSPolarity == DSI_VSYNC_ACTIVE_HIGH) ? LTDC_VSPOLARITY_AL : LTD
+ 159              		.loc 1 131 3 is_stmt 1 discriminator 4 view .LVU53
+ 160              		.loc 1 131 35 is_stmt 0 discriminator 4 view .LVU54
+ 161 000a 8B69     		ldr	r3, [r1, #24]
+ 162              		.loc 1 131 95 discriminator 4 view .LVU55
+ 163 000c 0BB1     		cbz	r3, .L10
+ 164              		.loc 1 131 95 view .LVU56
+ 165 000e 4FF08043 		mov	r3, #1073741824
+ 166              	.L10:
+ 167              		.loc 1 131 26 discriminator 4 view .LVU57
+ 168 0012 8360     		str	r3, [r0, #8]
+ 132:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   hltdc->Init.HSPolarity = (CmdCfg->HSPolarity == DSI_HSYNC_ACTIVE_HIGH) ? LTDC_HSPOLARITY_AL : LTD
+ 169              		.loc 1 132 3 is_stmt 1 discriminator 4 view .LVU58
+ 170              		.loc 1 132 35 is_stmt 0 discriminator 4 view .LVU59
+ 171 0014 4B69     		ldr	r3, [r1, #20]
+ 172              		.loc 1 132 95 discriminator 4 view .LVU60
+ 173 0016 0BB1     		cbz	r3, .L11
+ 174              		.loc 1 132 95 view .LVU61
+ 175 0018 4FF00043 		mov	r3, #-2147483648
+ 176              	.L11:
+ 177              		.loc 1 132 26 discriminator 4 view .LVU62
+ 178 001c 4360     		str	r3, [r0, #4]
+ 133:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   
+ 134:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* Note 2: Code to be used in case LTDC polarities inversion updated in the specification */
+ 135:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   /* hltdc->Init.DEPolarity = CmdCfg->DEPolarity << 29;
+ 136:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****      hltdc->Init.VSPolarity = CmdCfg->VSPolarity << 29;
+ 137:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****      hltdc->Init.HSPolarity = CmdCfg->HSPolarity << 29; */
+ 138:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   
+ 139:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c ****   return HAL_OK;
+ 179              		.loc 1 139 3 is_stmt 1 discriminator 4 view .LVU63
+ 140:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_ltdc_ex.c **** }
+ 180              		.loc 1 140 1 is_stmt 0 discriminator 4 view .LVU64
+ 181 001e 0020     		movs	r0, #0
+ 182              	.LVL4:
+ 183              		.loc 1 140 1 discriminator 4 view .LVU65
+ 184 0020 7047     		bx	lr
+ 185              		.cfi_endproc
+ 186              	.LFE127:
+ 188              		.text
+ 189              	.Letext0:
+ 190              		.file 2 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_default_t
+ 191              		.file 3 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 192              		.file 4 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Include/core_cm4.h"
+ 193              		.file 5 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+ 194              		.file 6 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+ 195              		.file 7 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h"
+ 196              		.file 8 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h"
+ 197              		.file 9 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdd
+ 198              		.file 10 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h"
+ 199              		.file 11 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 200              		.file 12 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 201              		.file 13 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ARM GAS  /tmp/ccvdi28D.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_hal_ltdc_ex.c
+     /tmp/ccvdi28D.s:18     .text.HAL_LTDCEx_StructInitFromVideoConfig:0000000000000000 $t
+     /tmp/ccvdi28D.s:26     .text.HAL_LTDCEx_StructInitFromVideoConfig:0000000000000000 HAL_LTDCEx_StructInitFromVideoConfig
+     /tmp/ccvdi28D.s:135    .text.HAL_LTDCEx_StructInitFromAdaptedCommandConfig:0000000000000000 $t
+     /tmp/ccvdi28D.s:142    .text.HAL_LTDCEx_StructInitFromAdaptedCommandConfig:0000000000000000 HAL_LTDCEx_StructInitFromAdaptedCommandConfig
+
+NO UNDEFINED SYMBOLS

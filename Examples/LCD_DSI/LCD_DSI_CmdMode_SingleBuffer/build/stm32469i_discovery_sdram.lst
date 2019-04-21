@@ -1,0 +1,1843 @@
+ARM GAS  /tmp/ccowqEUE.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32469i_discovery_sdram.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.BSP_SDRAM_Initialization_sequence,"ax",%progbits
+  18              		.align	1
+  19              		.global	BSP_SDRAM_Initialization_sequence
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	BSP_SDRAM_Initialization_sequence:
+  27              	.LVL0:
+  28              	.LFB128:
+  29              		.file 1 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_
+   1:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+   2:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   ******************************************************************************
+   3:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @file    stm32469i_discovery_sdram.c
+   4:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @author  MCD Application Team
+   5:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief   This file includes the SDRAM driver for the MT48LC4M32B2B5-7 memory
+   6:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *          device mounted on STM32469I-Discovery board.
+   7:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   ******************************************************************************
+   8:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @attention
+   9:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *
+  10:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  11:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *
+  12:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  13:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * are permitted provided that the following conditions are met:
+  14:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  15:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *      this list of conditions and the following disclaimer.
+  16:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  17:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *      this list of conditions and the following disclaimer in the documentation
+  18:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *      and/or other materials provided with the distribution.
+  19:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  20:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *      may be used to endorse or promote products derived from this software
+  21:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *      without specific prior written permission.
+  22:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *
+  23:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  24:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  25:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  26:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  27:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  28:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  29:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ARM GAS  /tmp/ccowqEUE.s 			page 2
+
+
+  30:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  31:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  32:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  33:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   *
+  34:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   ******************************************************************************
+  35:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+  36:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+  37:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /* File Info : -----------------------------------------------------------------
+  38:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                    User NOTES
+  39:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 1. How To use this driver:
+  40:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** --------------------------
+  41:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****    - This driver is used to drive the MT48LC4M32B2B5-7 SDRAM external memory mounted
+  42:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****      on STM32469I-Discovery board.
+  43:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****    - This driver does not need a specific component driver for the SDRAM device
+  44:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****      to be included with.
+  45:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+  46:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 2. Driver description:
+  47:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** ---------------------
+  48:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   + Initialization steps:
+  49:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****      o Initialize the SDRAM external memory using the BSP_SDRAM_Init() function. This
+  50:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        function includes the MSP layer hardware resources initialization and the
+  51:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        FMC controller configuration to interface with the external SDRAM memory.
+  52:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****      o It contains the SDRAM initialization sequence to program the SDRAM external
+  53:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        device using the function BSP_SDRAM_Initialization_sequence(). Note that this
+  54:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        sequence is standard for all SDRAM devices, but can include some differences
+  55:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        from a device to another. If it is the case, the right sequence should be
+  56:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        implemented separately.
+  57:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+  58:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   + SDRAM read/write operations
+  59:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****      o SDRAM external memory can be accessed with read/write operations once it is
+  60:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        initialized.
+  61:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        Read/write operation can be performed with AHB access using the functions
+  62:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        BSP_SDRAM_ReadData()/BSP_SDRAM_WriteData(), or by DMA transfer using the functions
+  63:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        BSP_SDRAM_ReadData_DMA()/BSP_SDRAM_WriteData_DMA().
+  64:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****      o The AHB access is performed with 32-bit width transaction, the DMA transfer
+  65:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        configuration is fixed at single (no burst) word transfer (see the
+  66:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        BSP_SDRAM_MspInit() weak function).
+  67:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****      o User can implement his own functions for read/write access with his desired
+  68:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        configurations.
+  69:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****      o If interrupt mode is used for DMA transfer, the function BSP_SDRAM_DMA_IRQHandler()
+  70:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        is called in IRQ handler file, to serve the generated interrupt once the DMA
+  71:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        transfer is complete.
+  72:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****      o You can send a command to the SDRAM device in runtime using the function
+  73:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        BSP_SDRAM_Sendcmd(), and giving the desired command as parameter chosen between
+  74:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        the predefined commands of the "FMC_SDRAM_CommandTypeDef" structure.
+  75:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+  76:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** ------------------------------------------------------------------------------*/
+  77:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+  78:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /* Includes ------------------------------------------------------------------*/
+  79:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** #include "stm32469i_discovery_sdram.h"
+  80:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+  81:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @addtogroup BSP
+  82:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+  83:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+  84:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+  85:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @addtogroup STM32469I_Discovery
+  86:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+ARM GAS  /tmp/ccowqEUE.s 			page 3
+
+
+  87:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+  88:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+  89:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @defgroup STM32469I-Discovery_SDRAM STM32469I Discovery SDRAM
+  90:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+  91:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+  92:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+  93:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @defgroup STM32469I-Discovery_SDRAM_Private_Types_Definitions STM32469I Discovery SDRAM Private
+  94:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+  95:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+  96:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+  97:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @}
+  98:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+  99:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 100:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @defgroup STM32469I-Discovery_SDRAM_Private_Defines STM32469I Discovery SDRAM Private Defines
+ 101:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+ 102:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 103:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 104:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @}
+ 105:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 106:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 107:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @defgroup STM32469I-Discovery_SDRAM_Private_Macros STM32469I Discovery SDRAM Private Macros
+ 108:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+ 109:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 110:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 111:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @}
+ 112:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 113:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 114:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @defgroup STM32469I-Discovery_SDRAM_Private_Variables STM32469I Discovery SDRAM Private Variabl
+ 115:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+ 116:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 117:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** static SDRAM_HandleTypeDef sdramHandle;
+ 118:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** static FMC_SDRAM_TimingTypeDef Timing;
+ 119:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** static FMC_SDRAM_CommandTypeDef Command;
+ 120:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 121:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @}
+ 122:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 123:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 124:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @defgroup STM32469I-Discovery_SDRAM_Private_Function_Prototypes STM32469I Discovery SDRAM Priva
+ 125:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+ 126:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 127:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 128:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 129:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @}
+ 130:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 131:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 132:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @defgroup STM32469I-Discovery_SDRAM_Private_Functions STM32469I Discovery SDRAM Private Functio
+ 133:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+ 134:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 135:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 136:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 137:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @}
+ 138:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 139:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 140:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /** @defgroup STM32469I_Discovery_SDRAM_Exported_Functions STM32469I Discovery SDRAM Exported Funct
+ 141:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @{
+ 142:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 143:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ARM GAS  /tmp/ccowqEUE.s 			page 4
+
+
+ 144:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 145:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  Initializes the SDRAM device.
+ 146:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @retval SDRAM status
+ 147:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 148:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** uint8_t BSP_SDRAM_Init(void)
+ 149:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ 150:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   static uint8_t sdramstatus = SDRAM_ERROR;
+ 151:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 152:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* SDRAM device configuration */
+ 153:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Instance = FMC_SDRAM_DEVICE;
+ 154:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 155:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Timing configuration for 90 MHz as SD clock frequency (System clock is up to 180 MHz) */
+ 156:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.LoadToActiveDelay    = 2;
+ 157:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.ExitSelfRefreshDelay = 7;
+ 158:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.SelfRefreshTime      = 4;
+ 159:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.RowCycleDelay        = 7;
+ 160:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.WriteRecoveryTime    = 2;
+ 161:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.RPDelay              = 2;
+ 162:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.RCDDelay             = 2;
+ 163:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 164:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.SDBank             = FMC_SDRAM_BANK1;
+ 165:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.ColumnBitsNumber   = FMC_SDRAM_COLUMN_BITS_NUM_8;
+ 166:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.RowBitsNumber      = FMC_SDRAM_ROW_BITS_NUM_12;
+ 167:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.MemoryDataWidth    = SDRAM_MEMORY_WIDTH;
+ 168:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.InternalBankNumber = FMC_SDRAM_INTERN_BANKS_NUM_4;
+ 169:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.CASLatency         = FMC_SDRAM_CAS_LATENCY_3;
+ 170:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.WriteProtection    = FMC_SDRAM_WRITE_PROTECTION_DISABLE;
+ 171:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.SDClockPeriod      = SDCLOCK_PERIOD;
+ 172:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.ReadBurst          = FMC_SDRAM_RBURST_ENABLE;
+ 173:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.ReadPipeDelay      = FMC_SDRAM_RPIPE_DELAY_0;
+ 174:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 175:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* SDRAM controller initialization */
+ 176:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* __weak function can be surcharged by the application code */
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   BSP_SDRAM_MspInit(&sdramHandle, (void *)NULL);
+ 178:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   if(HAL_SDRAM_Init(&sdramHandle, &Timing) != HAL_OK)
+ 179:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 180:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     sdramstatus = SDRAM_ERROR;
+ 181:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 182:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   else
+ 183:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 184:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     sdramstatus = SDRAM_OK;
+ 185:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 186:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 187:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* SDRAM initialization sequence */
+ 188:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   BSP_SDRAM_Initialization_sequence(REFRESH_COUNT);
+ 189:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 190:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   return sdramstatus;
+ 191:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 192:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 193:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 194:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  DeInitializes the SDRAM device.
+ 195:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @retval SDRAM status : SDRAM_OK or SDRAM_ERROR.
+ 196:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 197:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** uint8_t BSP_SDRAM_DeInit(void)
+ 198:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ 199:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   static uint8_t sdramstatus = SDRAM_ERROR;
+ 200:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ARM GAS  /tmp/ccowqEUE.s 			page 5
+
+
+ 201:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* SDRAM device configuration */
+ 202:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Instance = FMC_SDRAM_DEVICE;
+ 203:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 204:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   if(HAL_SDRAM_DeInit(&sdramHandle) == HAL_OK)
+ 205:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 206:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     sdramstatus = SDRAM_OK;
+ 207:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 208:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* SDRAM controller De-initialization */
+ 209:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****    BSP_SDRAM_MspDeInit(&sdramHandle, (void *)NULL);
+ 210:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 211:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 212:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   return sdramstatus;
+ 213:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 214:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 215:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 216:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 217:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  Programs the SDRAM device.
+ 218:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  RefreshCount: SDRAM refresh counter value
+ 219:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 220:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** void BSP_SDRAM_Initialization_sequence(uint32_t RefreshCount)
+ 221:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+  30              		.loc 1 221 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 221 1 is_stmt 0 view .LVU1
+  35 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 28
+  38              		.cfi_offset 4, -28
+  39              		.cfi_offset 5, -24
+  40              		.cfi_offset 6, -20
+  41              		.cfi_offset 7, -16
+  42              		.cfi_offset 8, -12
+  43              		.cfi_offset 9, -8
+  44              		.cfi_offset 14, -4
+  45 0004 83B0     		sub	sp, sp, #12
+  46              	.LCFI1:
+  47              		.cfi_def_cfa_offset 40
+  48 0006 8146     		mov	r9, r0
+ 222:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   __IO uint32_t tmpmrd = 0;
+  49              		.loc 1 222 3 is_stmt 1 view .LVU2
+  50              		.loc 1 222 17 is_stmt 0 view .LVU3
+  51 0008 4FF00008 		mov	r8, #0
+  52 000c CDF80480 		str	r8, [sp, #4]
+ 223:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 224:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Step 1: Configure a clock configuration enable command */
+ 225:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.CommandMode            = FMC_SDRAM_CMD_CLK_ENABLE;
+  53              		.loc 1 225 3 is_stmt 1 view .LVU4
+  54              		.loc 1 225 34 is_stmt 0 view .LVU5
+  55 0010 204C     		ldr	r4, .L3
+  56 0012 0126     		movs	r6, #1
+  57 0014 2660     		str	r6, [r4]
+ 226:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.CommandTarget          = FMC_SDRAM_CMD_TARGET_BANK1;
+  58              		.loc 1 226 3 is_stmt 1 view .LVU6
+  59              		.loc 1 226 34 is_stmt 0 view .LVU7
+  60 0016 1027     		movs	r7, #16
+ARM GAS  /tmp/ccowqEUE.s 			page 6
+
+
+  61 0018 6760     		str	r7, [r4, #4]
+ 227:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.AutoRefreshNumber      = 1;
+  62              		.loc 1 227 3 is_stmt 1 view .LVU8
+  63              		.loc 1 227 34 is_stmt 0 view .LVU9
+  64 001a A660     		str	r6, [r4, #8]
+ 228:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.ModeRegisterDefinition = 0;
+  65              		.loc 1 228 3 is_stmt 1 view .LVU10
+  66              		.loc 1 228 34 is_stmt 0 view .LVU11
+  67 001c C4F80C80 		str	r8, [r4, #12]
+ 229:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 230:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Send the command */
+ 231:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   HAL_SDRAM_SendCommand(&sdramHandle, &Command, SDRAM_TIMEOUT);
+  68              		.loc 1 231 3 is_stmt 1 view .LVU12
+  69 0020 1D4D     		ldr	r5, .L3+4
+  70 0022 4FF6FF72 		movw	r2, #65535
+  71 0026 2146     		mov	r1, r4
+  72 0028 2846     		mov	r0, r5
+  73              	.LVL1:
+  74              		.loc 1 231 3 is_stmt 0 view .LVU13
+  75 002a FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+  76              	.LVL2:
+ 232:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 233:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Step 2: Insert 100 us minimum delay */
+ 234:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Inserted delay is equal to 1 ms due to systick time base unit (ms) */
+ 235:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   HAL_Delay(1);
+  77              		.loc 1 235 3 is_stmt 1 view .LVU14
+  78 002e 3046     		mov	r0, r6
+  79 0030 FFF7FEFF 		bl	HAL_Delay
+  80              	.LVL3:
+ 236:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 237:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Step 3: Configure a PALL (precharge all) command */
+ 238:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.CommandMode            = FMC_SDRAM_CMD_PALL;
+  81              		.loc 1 238 3 view .LVU15
+  82              		.loc 1 238 34 is_stmt 0 view .LVU16
+  83 0034 0223     		movs	r3, #2
+  84 0036 2360     		str	r3, [r4]
+ 239:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.CommandTarget          = FMC_SDRAM_CMD_TARGET_BANK1;
+  85              		.loc 1 239 3 is_stmt 1 view .LVU17
+  86              		.loc 1 239 34 is_stmt 0 view .LVU18
+  87 0038 6760     		str	r7, [r4, #4]
+ 240:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.AutoRefreshNumber      = 1;
+  88              		.loc 1 240 3 is_stmt 1 view .LVU19
+  89              		.loc 1 240 34 is_stmt 0 view .LVU20
+  90 003a A660     		str	r6, [r4, #8]
+ 241:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.ModeRegisterDefinition = 0;
+  91              		.loc 1 241 3 is_stmt 1 view .LVU21
+  92              		.loc 1 241 34 is_stmt 0 view .LVU22
+  93 003c C4F80C80 		str	r8, [r4, #12]
+ 242:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 243:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Send the command */
+ 244:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   HAL_SDRAM_SendCommand(&sdramHandle, &Command, SDRAM_TIMEOUT);
+  94              		.loc 1 244 3 is_stmt 1 view .LVU23
+  95 0040 4FF6FF72 		movw	r2, #65535
+  96 0044 2146     		mov	r1, r4
+  97 0046 2846     		mov	r0, r5
+  98 0048 FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+  99              	.LVL4:
+ARM GAS  /tmp/ccowqEUE.s 			page 7
+
+
+ 245:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 246:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Step 4: Configure an Auto Refresh command */
+ 247:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.CommandMode            = FMC_SDRAM_CMD_AUTOREFRESH_MODE;
+ 100              		.loc 1 247 3 view .LVU24
+ 101              		.loc 1 247 34 is_stmt 0 view .LVU25
+ 102 004c 0323     		movs	r3, #3
+ 103 004e 2360     		str	r3, [r4]
+ 248:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.CommandTarget          = FMC_SDRAM_CMD_TARGET_BANK1;
+ 104              		.loc 1 248 3 is_stmt 1 view .LVU26
+ 105              		.loc 1 248 34 is_stmt 0 view .LVU27
+ 106 0050 6760     		str	r7, [r4, #4]
+ 249:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.AutoRefreshNumber      = 8;
+ 107              		.loc 1 249 3 is_stmt 1 view .LVU28
+ 108              		.loc 1 249 34 is_stmt 0 view .LVU29
+ 109 0052 0823     		movs	r3, #8
+ 110 0054 A360     		str	r3, [r4, #8]
+ 250:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.ModeRegisterDefinition = 0;
+ 111              		.loc 1 250 3 is_stmt 1 view .LVU30
+ 112              		.loc 1 250 34 is_stmt 0 view .LVU31
+ 113 0056 C4F80C80 		str	r8, [r4, #12]
+ 251:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 252:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Send the command */
+ 253:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   HAL_SDRAM_SendCommand(&sdramHandle, &Command, SDRAM_TIMEOUT);
+ 114              		.loc 1 253 3 is_stmt 1 view .LVU32
+ 115 005a 4FF6FF72 		movw	r2, #65535
+ 116 005e 2146     		mov	r1, r4
+ 117 0060 2846     		mov	r0, r5
+ 118 0062 FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+ 119              	.LVL5:
+ 254:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 255:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Step 5: Program the external memory mode register */
+ 256:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   tmpmrd = (uint32_t)SDRAM_MODEREG_BURST_LENGTH_1          |\
+ 120              		.loc 1 256 3 view .LVU33
+ 121              		.loc 1 256 10 is_stmt 0 view .LVU34
+ 122 0066 4FF40C73 		mov	r3, #560
+ 123 006a 0193     		str	r3, [sp, #4]
+ 257:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                      SDRAM_MODEREG_BURST_TYPE_SEQUENTIAL   |\
+ 258:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                      SDRAM_MODEREG_CAS_LATENCY_3           |\
+ 259:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                      SDRAM_MODEREG_OPERATING_MODE_STANDARD |\
+ 260:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                      SDRAM_MODEREG_WRITEBURST_MODE_SINGLE;
+ 261:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 262:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.CommandMode            = FMC_SDRAM_CMD_LOAD_MODE;
+ 124              		.loc 1 262 3 is_stmt 1 view .LVU35
+ 125              		.loc 1 262 34 is_stmt 0 view .LVU36
+ 126 006c 0423     		movs	r3, #4
+ 127 006e 2360     		str	r3, [r4]
+ 263:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.CommandTarget          = FMC_SDRAM_CMD_TARGET_BANK1;
+ 128              		.loc 1 263 3 is_stmt 1 view .LVU37
+ 129              		.loc 1 263 34 is_stmt 0 view .LVU38
+ 130 0070 6760     		str	r7, [r4, #4]
+ 264:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.AutoRefreshNumber      = 1;
+ 131              		.loc 1 264 3 is_stmt 1 view .LVU39
+ 132              		.loc 1 264 34 is_stmt 0 view .LVU40
+ 133 0072 A660     		str	r6, [r4, #8]
+ 265:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Command.ModeRegisterDefinition = tmpmrd;
+ 134              		.loc 1 265 3 is_stmt 1 view .LVU41
+ 135              		.loc 1 265 34 is_stmt 0 view .LVU42
+ARM GAS  /tmp/ccowqEUE.s 			page 8
+
+
+ 136 0074 019B     		ldr	r3, [sp, #4]
+ 137 0076 E360     		str	r3, [r4, #12]
+ 266:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 267:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Send the command */
+ 268:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   HAL_SDRAM_SendCommand(&sdramHandle, &Command, SDRAM_TIMEOUT);
+ 138              		.loc 1 268 3 is_stmt 1 view .LVU43
+ 139 0078 4FF6FF72 		movw	r2, #65535
+ 140 007c 2146     		mov	r1, r4
+ 141 007e 2846     		mov	r0, r5
+ 142 0080 FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+ 143              	.LVL6:
+ 269:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 270:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Step 6: Set the refresh rate counter */
+ 271:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   /* Set the device refresh rate */
+ 272:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   HAL_SDRAM_ProgramRefreshRate(&sdramHandle, RefreshCount);
+ 144              		.loc 1 272 3 view .LVU44
+ 145 0084 4946     		mov	r1, r9
+ 146 0086 2846     		mov	r0, r5
+ 147 0088 FFF7FEFF 		bl	HAL_SDRAM_ProgramRefreshRate
+ 148              	.LVL7:
+ 273:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 149              		.loc 1 273 1 is_stmt 0 view .LVU45
+ 150 008c 03B0     		add	sp, sp, #12
+ 151              	.LCFI2:
+ 152              		.cfi_def_cfa_offset 28
+ 153              		@ sp needed
+ 154 008e BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 155              	.LVL8:
+ 156              	.L4:
+ 157              		.loc 1 273 1 view .LVU46
+ 158 0092 00BF     		.align	2
+ 159              	.L3:
+ 160 0094 00000000 		.word	.LANCHOR0
+ 161 0098 00000000 		.word	.LANCHOR1
+ 162              		.cfi_endproc
+ 163              	.LFE128:
+ 165              		.section	.text.BSP_SDRAM_ReadData,"ax",%progbits
+ 166              		.align	1
+ 167              		.global	BSP_SDRAM_ReadData
+ 168              		.syntax unified
+ 169              		.thumb
+ 170              		.thumb_func
+ 171              		.fpu fpv4-sp-d16
+ 173              	BSP_SDRAM_ReadData:
+ 174              	.LVL9:
+ 175              	.LFB129:
+ 274:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 275:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 276:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  Reads an mount of data from the SDRAM memory in polling mode.
+ 277:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  uwStartAddress: Read start address
+ 278:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  pData: Pointer to data to be read
+ 279:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  uwDataSize: Size of read data from the memory
+ 280:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @retval SDRAM status : SDRAM_OK or SDRAM_ERROR.
+ 281:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 282:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** uint8_t BSP_SDRAM_ReadData(uint32_t uwStartAddress, uint32_t *pData, uint32_t uwDataSize)
+ 283:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ 176              		.loc 1 283 1 is_stmt 1 view -0
+ARM GAS  /tmp/ccowqEUE.s 			page 9
+
+
+ 177              		.cfi_startproc
+ 178              		@ args = 0, pretend = 0, frame = 0
+ 179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 180              		.loc 1 283 1 is_stmt 0 view .LVU48
+ 181 0000 08B5     		push	{r3, lr}
+ 182              	.LCFI3:
+ 183              		.cfi_def_cfa_offset 8
+ 184              		.cfi_offset 3, -8
+ 185              		.cfi_offset 14, -4
+ 284:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   if(HAL_SDRAM_Read_32b(&sdramHandle, (uint32_t *)uwStartAddress, pData, uwDataSize) != HAL_OK)
+ 186              		.loc 1 284 3 is_stmt 1 view .LVU49
+ 187              		.loc 1 284 6 is_stmt 0 view .LVU50
+ 188 0002 1346     		mov	r3, r2
+ 189 0004 0A46     		mov	r2, r1
+ 190              	.LVL10:
+ 191              		.loc 1 284 6 view .LVU51
+ 192 0006 0146     		mov	r1, r0
+ 193              	.LVL11:
+ 194              		.loc 1 284 6 view .LVU52
+ 195 0008 0348     		ldr	r0, .L9
+ 196              	.LVL12:
+ 197              		.loc 1 284 6 view .LVU53
+ 198 000a FFF7FEFF 		bl	HAL_SDRAM_Read_32b
+ 199              	.LVL13:
+ 200              		.loc 1 284 5 view .LVU54
+ 201 000e 08B1     		cbz	r0, .L7
+ 285:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 286:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 202              		.loc 1 286 12 view .LVU55
+ 203 0010 0120     		movs	r0, #1
+ 204              	.L6:
+ 287:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 288:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   else
+ 289:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 290:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_OK;
+ 291:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 292:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 205              		.loc 1 292 1 view .LVU56
+ 206 0012 08BD     		pop	{r3, pc}
+ 207              	.L7:
+ 290:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 208              		.loc 1 290 12 view .LVU57
+ 209 0014 0020     		movs	r0, #0
+ 210 0016 FCE7     		b	.L6
+ 211              	.L10:
+ 212              		.align	2
+ 213              	.L9:
+ 214 0018 00000000 		.word	.LANCHOR1
+ 215              		.cfi_endproc
+ 216              	.LFE129:
+ 218              		.section	.text.BSP_SDRAM_ReadData_DMA,"ax",%progbits
+ 219              		.align	1
+ 220              		.global	BSP_SDRAM_ReadData_DMA
+ 221              		.syntax unified
+ 222              		.thumb
+ 223              		.thumb_func
+ 224              		.fpu fpv4-sp-d16
+ARM GAS  /tmp/ccowqEUE.s 			page 10
+
+
+ 226              	BSP_SDRAM_ReadData_DMA:
+ 227              	.LVL14:
+ 228              	.LFB130:
+ 293:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 294:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 295:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  Reads an mount of data from the SDRAM memory in DMA mode.
+ 296:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  uwStartAddress: Read start address
+ 297:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  pData: Pointer to data to be read
+ 298:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  uwDataSize: Size of read data from the memory
+ 299:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @retval SDRAM status : SDRAM_OK or SDRAM_ERROR.
+ 300:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 301:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** uint8_t BSP_SDRAM_ReadData_DMA(uint32_t uwStartAddress, uint32_t *pData, uint32_t uwDataSize)
+ 302:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ 229              		.loc 1 302 1 is_stmt 1 view -0
+ 230              		.cfi_startproc
+ 231              		@ args = 0, pretend = 0, frame = 0
+ 232              		@ frame_needed = 0, uses_anonymous_args = 0
+ 233              		.loc 1 302 1 is_stmt 0 view .LVU59
+ 234 0000 08B5     		push	{r3, lr}
+ 235              	.LCFI4:
+ 236              		.cfi_def_cfa_offset 8
+ 237              		.cfi_offset 3, -8
+ 238              		.cfi_offset 14, -4
+ 303:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   if(HAL_SDRAM_Read_DMA(&sdramHandle, (uint32_t *)uwStartAddress, pData, uwDataSize) != HAL_OK)
+ 239              		.loc 1 303 3 is_stmt 1 view .LVU60
+ 240              		.loc 1 303 6 is_stmt 0 view .LVU61
+ 241 0002 1346     		mov	r3, r2
+ 242 0004 0A46     		mov	r2, r1
+ 243              	.LVL15:
+ 244              		.loc 1 303 6 view .LVU62
+ 245 0006 0146     		mov	r1, r0
+ 246              	.LVL16:
+ 247              		.loc 1 303 6 view .LVU63
+ 248 0008 0348     		ldr	r0, .L15
+ 249              	.LVL17:
+ 250              		.loc 1 303 6 view .LVU64
+ 251 000a FFF7FEFF 		bl	HAL_SDRAM_Read_DMA
+ 252              	.LVL18:
+ 253              		.loc 1 303 5 view .LVU65
+ 254 000e 08B1     		cbz	r0, .L13
+ 304:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 305:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 255              		.loc 1 305 12 view .LVU66
+ 256 0010 0120     		movs	r0, #1
+ 257              	.L12:
+ 306:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 307:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   else
+ 308:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 309:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_OK;
+ 310:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 311:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 258              		.loc 1 311 1 view .LVU67
+ 259 0012 08BD     		pop	{r3, pc}
+ 260              	.L13:
+ 309:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 261              		.loc 1 309 12 view .LVU68
+ 262 0014 0020     		movs	r0, #0
+ARM GAS  /tmp/ccowqEUE.s 			page 11
+
+
+ 263 0016 FCE7     		b	.L12
+ 264              	.L16:
+ 265              		.align	2
+ 266              	.L15:
+ 267 0018 00000000 		.word	.LANCHOR1
+ 268              		.cfi_endproc
+ 269              	.LFE130:
+ 271              		.section	.text.BSP_SDRAM_WriteData,"ax",%progbits
+ 272              		.align	1
+ 273              		.global	BSP_SDRAM_WriteData
+ 274              		.syntax unified
+ 275              		.thumb
+ 276              		.thumb_func
+ 277              		.fpu fpv4-sp-d16
+ 279              	BSP_SDRAM_WriteData:
+ 280              	.LVL19:
+ 281              	.LFB131:
+ 312:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 313:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 314:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  Writes an mount of data to the SDRAM memory in polling mode.
+ 315:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  uwStartAddress: Write start address
+ 316:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  pData: Pointer to data to be written
+ 317:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  uwDataSize: Size of written data from the memory
+ 318:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @retval SDRAM status : SDRAM_OK or SDRAM_ERROR.
+ 319:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 320:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** uint8_t BSP_SDRAM_WriteData(uint32_t uwStartAddress, uint32_t *pData, uint32_t uwDataSize)
+ 321:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ 282              		.loc 1 321 1 is_stmt 1 view -0
+ 283              		.cfi_startproc
+ 284              		@ args = 0, pretend = 0, frame = 0
+ 285              		@ frame_needed = 0, uses_anonymous_args = 0
+ 286              		.loc 1 321 1 is_stmt 0 view .LVU70
+ 287 0000 08B5     		push	{r3, lr}
+ 288              	.LCFI5:
+ 289              		.cfi_def_cfa_offset 8
+ 290              		.cfi_offset 3, -8
+ 291              		.cfi_offset 14, -4
+ 322:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   if(HAL_SDRAM_Write_32b(&sdramHandle, (uint32_t *)uwStartAddress, pData, uwDataSize) != HAL_OK)
+ 292              		.loc 1 322 3 is_stmt 1 view .LVU71
+ 293              		.loc 1 322 6 is_stmt 0 view .LVU72
+ 294 0002 1346     		mov	r3, r2
+ 295 0004 0A46     		mov	r2, r1
+ 296              	.LVL20:
+ 297              		.loc 1 322 6 view .LVU73
+ 298 0006 0146     		mov	r1, r0
+ 299              	.LVL21:
+ 300              		.loc 1 322 6 view .LVU74
+ 301 0008 0348     		ldr	r0, .L21
+ 302              	.LVL22:
+ 303              		.loc 1 322 6 view .LVU75
+ 304 000a FFF7FEFF 		bl	HAL_SDRAM_Write_32b
+ 305              	.LVL23:
+ 306              		.loc 1 322 5 view .LVU76
+ 307 000e 08B1     		cbz	r0, .L19
+ 323:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 324:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 308              		.loc 1 324 12 view .LVU77
+ARM GAS  /tmp/ccowqEUE.s 			page 12
+
+
+ 309 0010 0120     		movs	r0, #1
+ 310              	.L18:
+ 325:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 326:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   else
+ 327:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 328:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_OK;
+ 329:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 330:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 311              		.loc 1 330 1 view .LVU78
+ 312 0012 08BD     		pop	{r3, pc}
+ 313              	.L19:
+ 328:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 314              		.loc 1 328 12 view .LVU79
+ 315 0014 0020     		movs	r0, #0
+ 316 0016 FCE7     		b	.L18
+ 317              	.L22:
+ 318              		.align	2
+ 319              	.L21:
+ 320 0018 00000000 		.word	.LANCHOR1
+ 321              		.cfi_endproc
+ 322              	.LFE131:
+ 324              		.section	.text.BSP_SDRAM_WriteData_DMA,"ax",%progbits
+ 325              		.align	1
+ 326              		.global	BSP_SDRAM_WriteData_DMA
+ 327              		.syntax unified
+ 328              		.thumb
+ 329              		.thumb_func
+ 330              		.fpu fpv4-sp-d16
+ 332              	BSP_SDRAM_WriteData_DMA:
+ 333              	.LVL24:
+ 334              	.LFB132:
+ 331:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 332:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 333:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  Writes an mount of data to the SDRAM memory in DMA mode.
+ 334:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  uwStartAddress: Write start address
+ 335:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  pData: Pointer to data to be written
+ 336:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  uwDataSize: Size of written data from the memory
+ 337:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @retval SDRAM status : SDRAM_OK or SDRAM_ERROR.
+ 338:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 339:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** uint8_t BSP_SDRAM_WriteData_DMA(uint32_t uwStartAddress, uint32_t *pData, uint32_t uwDataSize)
+ 340:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ 335              		.loc 1 340 1 is_stmt 1 view -0
+ 336              		.cfi_startproc
+ 337              		@ args = 0, pretend = 0, frame = 0
+ 338              		@ frame_needed = 0, uses_anonymous_args = 0
+ 339              		.loc 1 340 1 is_stmt 0 view .LVU81
+ 340 0000 08B5     		push	{r3, lr}
+ 341              	.LCFI6:
+ 342              		.cfi_def_cfa_offset 8
+ 343              		.cfi_offset 3, -8
+ 344              		.cfi_offset 14, -4
+ 341:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   if(HAL_SDRAM_Write_DMA(&sdramHandle, (uint32_t *)uwStartAddress, pData, uwDataSize) != HAL_OK)
+ 345              		.loc 1 341 3 is_stmt 1 view .LVU82
+ 346              		.loc 1 341 6 is_stmt 0 view .LVU83
+ 347 0002 1346     		mov	r3, r2
+ 348 0004 0A46     		mov	r2, r1
+ 349              	.LVL25:
+ARM GAS  /tmp/ccowqEUE.s 			page 13
+
+
+ 350              		.loc 1 341 6 view .LVU84
+ 351 0006 0146     		mov	r1, r0
+ 352              	.LVL26:
+ 353              		.loc 1 341 6 view .LVU85
+ 354 0008 0348     		ldr	r0, .L27
+ 355              	.LVL27:
+ 356              		.loc 1 341 6 view .LVU86
+ 357 000a FFF7FEFF 		bl	HAL_SDRAM_Write_DMA
+ 358              	.LVL28:
+ 359              		.loc 1 341 5 view .LVU87
+ 360 000e 08B1     		cbz	r0, .L25
+ 342:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 343:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 361              		.loc 1 343 12 view .LVU88
+ 362 0010 0120     		movs	r0, #1
+ 363              	.L24:
+ 344:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 345:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   else
+ 346:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 347:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_OK;
+ 348:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 349:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 364              		.loc 1 349 1 view .LVU89
+ 365 0012 08BD     		pop	{r3, pc}
+ 366              	.L25:
+ 347:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 367              		.loc 1 347 12 view .LVU90
+ 368 0014 0020     		movs	r0, #0
+ 369 0016 FCE7     		b	.L24
+ 370              	.L28:
+ 371              		.align	2
+ 372              	.L27:
+ 373 0018 00000000 		.word	.LANCHOR1
+ 374              		.cfi_endproc
+ 375              	.LFE132:
+ 377              		.section	.text.BSP_SDRAM_Sendcmd,"ax",%progbits
+ 378              		.align	1
+ 379              		.global	BSP_SDRAM_Sendcmd
+ 380              		.syntax unified
+ 381              		.thumb
+ 382              		.thumb_func
+ 383              		.fpu fpv4-sp-d16
+ 385              	BSP_SDRAM_Sendcmd:
+ 386              	.LVL29:
+ 387              	.LFB133:
+ 350:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 351:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 352:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  Sends command to the SDRAM bank.
+ 353:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  SdramCmd: Pointer to SDRAM command structure
+ 354:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @retval HAL status : SDRAM_OK or SDRAM_ERROR.
+ 355:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 356:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** uint8_t BSP_SDRAM_Sendcmd(FMC_SDRAM_CommandTypeDef *SdramCmd)
+ 357:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ 388              		.loc 1 357 1 is_stmt 1 view -0
+ 389              		.cfi_startproc
+ 390              		@ args = 0, pretend = 0, frame = 0
+ 391              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccowqEUE.s 			page 14
+
+
+ 392              		.loc 1 357 1 is_stmt 0 view .LVU92
+ 393 0000 08B5     		push	{r3, lr}
+ 394              	.LCFI7:
+ 395              		.cfi_def_cfa_offset 8
+ 396              		.cfi_offset 3, -8
+ 397              		.cfi_offset 14, -4
+ 358:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   if(HAL_SDRAM_SendCommand(&sdramHandle, SdramCmd, SDRAM_TIMEOUT) != HAL_OK)
+ 398              		.loc 1 358 3 is_stmt 1 view .LVU93
+ 399              		.loc 1 358 6 is_stmt 0 view .LVU94
+ 400 0002 4FF6FF72 		movw	r2, #65535
+ 401 0006 0146     		mov	r1, r0
+ 402 0008 0348     		ldr	r0, .L33
+ 403              	.LVL30:
+ 404              		.loc 1 358 6 view .LVU95
+ 405 000a FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+ 406              	.LVL31:
+ 407              		.loc 1 358 5 view .LVU96
+ 408 000e 08B1     		cbz	r0, .L31
+ 359:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 360:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 409              		.loc 1 360 12 view .LVU97
+ 410 0010 0120     		movs	r0, #1
+ 411              	.L30:
+ 361:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 362:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   else
+ 363:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 364:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     return SDRAM_OK;
+ 365:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 366:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 412              		.loc 1 366 1 view .LVU98
+ 413 0012 08BD     		pop	{r3, pc}
+ 414              	.L31:
+ 364:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 415              		.loc 1 364 12 view .LVU99
+ 416 0014 0020     		movs	r0, #0
+ 417 0016 FCE7     		b	.L30
+ 418              	.L34:
+ 419              		.align	2
+ 420              	.L33:
+ 421 0018 00000000 		.word	.LANCHOR1
+ 422              		.cfi_endproc
+ 423              	.LFE133:
+ 425              		.section	.text.BSP_SDRAM_DMA_IRQHandler,"ax",%progbits
+ 426              		.align	1
+ 427              		.global	BSP_SDRAM_DMA_IRQHandler
+ 428              		.syntax unified
+ 429              		.thumb
+ 430              		.thumb_func
+ 431              		.fpu fpv4-sp-d16
+ 433              	BSP_SDRAM_DMA_IRQHandler:
+ 434              	.LFB134:
+ 367:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 368:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 369:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  Handles SDRAM DMA transfer interrupt request.
+ 370:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 371:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** void BSP_SDRAM_DMA_IRQHandler(void)
+ 372:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ARM GAS  /tmp/ccowqEUE.s 			page 15
+
+
+ 435              		.loc 1 372 1 is_stmt 1 view -0
+ 436              		.cfi_startproc
+ 437              		@ args = 0, pretend = 0, frame = 0
+ 438              		@ frame_needed = 0, uses_anonymous_args = 0
+ 439 0000 08B5     		push	{r3, lr}
+ 440              	.LCFI8:
+ 441              		.cfi_def_cfa_offset 8
+ 442              		.cfi_offset 3, -8
+ 443              		.cfi_offset 14, -4
+ 373:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   HAL_DMA_IRQHandler(sdramHandle.hdma);
+ 444              		.loc 1 373 3 view .LVU101
+ 445 0002 024B     		ldr	r3, .L37
+ 446 0004 186B     		ldr	r0, [r3, #48]
+ 447 0006 FFF7FEFF 		bl	HAL_DMA_IRQHandler
+ 448              	.LVL32:
+ 374:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 449              		.loc 1 374 1 is_stmt 0 view .LVU102
+ 450 000a 08BD     		pop	{r3, pc}
+ 451              	.L38:
+ 452              		.align	2
+ 453              	.L37:
+ 454 000c 00000000 		.word	.LANCHOR1
+ 455              		.cfi_endproc
+ 456              	.LFE134:
+ 458              		.section	.text.BSP_SDRAM_MspInit,"ax",%progbits
+ 459              		.align	1
+ 460              		.weak	BSP_SDRAM_MspInit
+ 461              		.syntax unified
+ 462              		.thumb
+ 463              		.thumb_func
+ 464              		.fpu fpv4-sp-d16
+ 466              	BSP_SDRAM_MspInit:
+ 467              	.LVL33:
+ 468              	.LFB135:
+ 375:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 376:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 377:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  Initializes SDRAM MSP.
+ 378:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @note   This function can be surcharged by application code.
+ 379:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  hsdram: pointer on SDRAM handle
+ 380:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  Params: pointer on additional configuration parameters, can be NULL.
+ 381:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 382:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** __weak void BSP_SDRAM_MspInit(SDRAM_HandleTypeDef  *hsdram, void *Params)
+ 383:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ 469              		.loc 1 383 1 is_stmt 1 view -0
+ 470              		.cfi_startproc
+ 471              		@ args = 0, pretend = 0, frame = 56
+ 472              		@ frame_needed = 0, uses_anonymous_args = 0
+ 384:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   static DMA_HandleTypeDef dma_handle;
+ 473              		.loc 1 384 3 view .LVU104
+ 385:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   GPIO_InitTypeDef gpio_init_structure;
+ 474              		.loc 1 385 3 view .LVU105
+ 386:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 387:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   if(hsdram != (SDRAM_HandleTypeDef  *)NULL)
+ 475              		.loc 1 387 3 view .LVU106
+ 476              		.loc 1 387 5 is_stmt 0 view .LVU107
+ 477 0000 0028     		cmp	r0, #0
+ 478 0002 00F0C280 		beq	.L42
+ARM GAS  /tmp/ccowqEUE.s 			page 16
+
+
+ 383:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   static DMA_HandleTypeDef dma_handle;
+ 479              		.loc 1 383 1 view .LVU108
+ 480 0006 70B5     		push	{r4, r5, r6, lr}
+ 481              	.LCFI9:
+ 482              		.cfi_def_cfa_offset 16
+ 483              		.cfi_offset 4, -16
+ 484              		.cfi_offset 5, -12
+ 485              		.cfi_offset 6, -8
+ 486              		.cfi_offset 14, -4
+ 487 0008 8EB0     		sub	sp, sp, #56
+ 488              	.LCFI10:
+ 489              		.cfi_def_cfa_offset 72
+ 490 000a 0646     		mov	r6, r0
+ 388:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 389:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* Enable FMC clock */
+ 390:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __HAL_RCC_FMC_CLK_ENABLE();
+ 491              		.loc 1 390 5 is_stmt 1 view .LVU109
+ 492              	.LBB2:
+ 493              		.loc 1 390 5 view .LVU110
+ 494 000c 0025     		movs	r5, #0
+ 495 000e 0095     		str	r5, [sp]
+ 496              		.loc 1 390 5 view .LVU111
+ 497 0010 5E4B     		ldr	r3, .L45
+ 498 0012 9A6B     		ldr	r2, [r3, #56]
+ 499 0014 42F00102 		orr	r2, r2, #1
+ 500 0018 9A63     		str	r2, [r3, #56]
+ 501              		.loc 1 390 5 view .LVU112
+ 502 001a 9A6B     		ldr	r2, [r3, #56]
+ 503 001c 02F00102 		and	r2, r2, #1
+ 504 0020 0092     		str	r2, [sp]
+ 505              		.loc 1 390 5 view .LVU113
+ 506 0022 009A     		ldr	r2, [sp]
+ 507              	.LBE2:
+ 391:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 392:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* Enable chosen DMAx clock */
+ 393:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __DMAx_CLK_ENABLE();
+ 508              		.loc 1 393 5 view .LVU114
+ 509              	.LBB3:
+ 510              		.loc 1 393 5 view .LVU115
+ 511 0024 0195     		str	r5, [sp, #4]
+ 512              		.loc 1 393 5 view .LVU116
+ 513 0026 1A6B     		ldr	r2, [r3, #48]
+ 514 0028 42F48002 		orr	r2, r2, #4194304
+ 515 002c 1A63     		str	r2, [r3, #48]
+ 516              		.loc 1 393 5 view .LVU117
+ 517 002e 1A6B     		ldr	r2, [r3, #48]
+ 518 0030 02F48002 		and	r2, r2, #4194304
+ 519 0034 0192     		str	r2, [sp, #4]
+ 520              		.loc 1 393 5 view .LVU118
+ 521 0036 019A     		ldr	r2, [sp, #4]
+ 522              	.LBE3:
+ 394:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 395:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* Enable GPIOs clock */
+ 396:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __HAL_RCC_GPIOC_CLK_ENABLE();
+ 523              		.loc 1 396 5 view .LVU119
+ 524              	.LBB4:
+ 525              		.loc 1 396 5 view .LVU120
+ARM GAS  /tmp/ccowqEUE.s 			page 17
+
+
+ 526 0038 0295     		str	r5, [sp, #8]
+ 527              		.loc 1 396 5 view .LVU121
+ 528 003a 1A6B     		ldr	r2, [r3, #48]
+ 529 003c 42F00402 		orr	r2, r2, #4
+ 530 0040 1A63     		str	r2, [r3, #48]
+ 531              		.loc 1 396 5 view .LVU122
+ 532 0042 1A6B     		ldr	r2, [r3, #48]
+ 533 0044 02F00402 		and	r2, r2, #4
+ 534 0048 0292     		str	r2, [sp, #8]
+ 535              		.loc 1 396 5 view .LVU123
+ 536 004a 029A     		ldr	r2, [sp, #8]
+ 537              	.LBE4:
+ 397:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 538              		.loc 1 397 5 view .LVU124
+ 539              	.LBB5:
+ 540              		.loc 1 397 5 view .LVU125
+ 541 004c 0395     		str	r5, [sp, #12]
+ 542              		.loc 1 397 5 view .LVU126
+ 543 004e 1A6B     		ldr	r2, [r3, #48]
+ 544 0050 42F00802 		orr	r2, r2, #8
+ 545 0054 1A63     		str	r2, [r3, #48]
+ 546              		.loc 1 397 5 view .LVU127
+ 547 0056 1A6B     		ldr	r2, [r3, #48]
+ 548 0058 02F00802 		and	r2, r2, #8
+ 549 005c 0392     		str	r2, [sp, #12]
+ 550              		.loc 1 397 5 view .LVU128
+ 551 005e 039A     		ldr	r2, [sp, #12]
+ 552              	.LBE5:
+ 398:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __HAL_RCC_GPIOE_CLK_ENABLE();
+ 553              		.loc 1 398 5 view .LVU129
+ 554              	.LBB6:
+ 555              		.loc 1 398 5 view .LVU130
+ 556 0060 0495     		str	r5, [sp, #16]
+ 557              		.loc 1 398 5 view .LVU131
+ 558 0062 1A6B     		ldr	r2, [r3, #48]
+ 559 0064 42F01002 		orr	r2, r2, #16
+ 560 0068 1A63     		str	r2, [r3, #48]
+ 561              		.loc 1 398 5 view .LVU132
+ 562 006a 1A6B     		ldr	r2, [r3, #48]
+ 563 006c 02F01002 		and	r2, r2, #16
+ 564 0070 0492     		str	r2, [sp, #16]
+ 565              		.loc 1 398 5 view .LVU133
+ 566 0072 049A     		ldr	r2, [sp, #16]
+ 567              	.LBE6:
+ 399:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __HAL_RCC_GPIOF_CLK_ENABLE();
+ 568              		.loc 1 399 5 view .LVU134
+ 569              	.LBB7:
+ 570              		.loc 1 399 5 view .LVU135
+ 571 0074 0595     		str	r5, [sp, #20]
+ 572              		.loc 1 399 5 view .LVU136
+ 573 0076 1A6B     		ldr	r2, [r3, #48]
+ 574 0078 42F02002 		orr	r2, r2, #32
+ 575 007c 1A63     		str	r2, [r3, #48]
+ 576              		.loc 1 399 5 view .LVU137
+ 577 007e 1A6B     		ldr	r2, [r3, #48]
+ 578 0080 02F02002 		and	r2, r2, #32
+ 579 0084 0592     		str	r2, [sp, #20]
+ARM GAS  /tmp/ccowqEUE.s 			page 18
+
+
+ 580              		.loc 1 399 5 view .LVU138
+ 581 0086 059A     		ldr	r2, [sp, #20]
+ 582              	.LBE7:
+ 400:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __HAL_RCC_GPIOG_CLK_ENABLE();
+ 583              		.loc 1 400 5 view .LVU139
+ 584              	.LBB8:
+ 585              		.loc 1 400 5 view .LVU140
+ 586 0088 0695     		str	r5, [sp, #24]
+ 587              		.loc 1 400 5 view .LVU141
+ 588 008a 1A6B     		ldr	r2, [r3, #48]
+ 589 008c 42F04002 		orr	r2, r2, #64
+ 590 0090 1A63     		str	r2, [r3, #48]
+ 591              		.loc 1 400 5 view .LVU142
+ 592 0092 1A6B     		ldr	r2, [r3, #48]
+ 593 0094 02F04002 		and	r2, r2, #64
+ 594 0098 0692     		str	r2, [sp, #24]
+ 595              		.loc 1 400 5 view .LVU143
+ 596 009a 069A     		ldr	r2, [sp, #24]
+ 597              	.LBE8:
+ 401:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __HAL_RCC_GPIOH_CLK_ENABLE();
+ 598              		.loc 1 401 5 view .LVU144
+ 599              	.LBB9:
+ 600              		.loc 1 401 5 view .LVU145
+ 601 009c 0795     		str	r5, [sp, #28]
+ 602              		.loc 1 401 5 view .LVU146
+ 603 009e 1A6B     		ldr	r2, [r3, #48]
+ 604 00a0 42F08002 		orr	r2, r2, #128
+ 605 00a4 1A63     		str	r2, [r3, #48]
+ 606              		.loc 1 401 5 view .LVU147
+ 607 00a6 1A6B     		ldr	r2, [r3, #48]
+ 608 00a8 02F08002 		and	r2, r2, #128
+ 609 00ac 0792     		str	r2, [sp, #28]
+ 610              		.loc 1 401 5 view .LVU148
+ 611 00ae 079A     		ldr	r2, [sp, #28]
+ 612              	.LBE9:
+ 402:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __HAL_RCC_GPIOI_CLK_ENABLE();
+ 613              		.loc 1 402 5 view .LVU149
+ 614              	.LBB10:
+ 615              		.loc 1 402 5 view .LVU150
+ 616 00b0 0895     		str	r5, [sp, #32]
+ 617              		.loc 1 402 5 view .LVU151
+ 618 00b2 1A6B     		ldr	r2, [r3, #48]
+ 619 00b4 42F48072 		orr	r2, r2, #256
+ 620 00b8 1A63     		str	r2, [r3, #48]
+ 621              		.loc 1 402 5 view .LVU152
+ 622 00ba 1B6B     		ldr	r3, [r3, #48]
+ 623 00bc 03F48073 		and	r3, r3, #256
+ 624 00c0 0893     		str	r3, [sp, #32]
+ 625              		.loc 1 402 5 view .LVU153
+ 626 00c2 089B     		ldr	r3, [sp, #32]
+ 627              	.LBE10:
+ 403:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 404:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* Common GPIO configuration */
+ 405:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Mode      = GPIO_MODE_AF_PP;
+ 628              		.loc 1 405 5 view .LVU154
+ 629              		.loc 1 405 35 is_stmt 0 view .LVU155
+ 630 00c4 0222     		movs	r2, #2
+ARM GAS  /tmp/ccowqEUE.s 			page 19
+
+
+ 631 00c6 0A92     		str	r2, [sp, #40]
+ 406:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Pull      = GPIO_PULLUP;
+ 632              		.loc 1 406 5 is_stmt 1 view .LVU156
+ 633              		.loc 1 406 35 is_stmt 0 view .LVU157
+ 634 00c8 0123     		movs	r3, #1
+ 635 00ca 0B93     		str	r3, [sp, #44]
+ 407:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Speed     = GPIO_SPEED_FAST;
+ 636              		.loc 1 407 5 is_stmt 1 view .LVU158
+ 637              		.loc 1 407 35 is_stmt 0 view .LVU159
+ 638 00cc 0C92     		str	r2, [sp, #48]
+ 408:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Alternate = GPIO_AF12_FMC;
+ 639              		.loc 1 408 5 is_stmt 1 view .LVU160
+ 640              		.loc 1 408 35 is_stmt 0 view .LVU161
+ 641 00ce 0C22     		movs	r2, #12
+ 642 00d0 0D92     		str	r2, [sp, #52]
+ 409:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 410:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* GPIOC configuration : PC0 is SDNWE */
+ 411:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Pin   = GPIO_PIN_0;
+ 643              		.loc 1 411 5 is_stmt 1 view .LVU162
+ 644              		.loc 1 411 31 is_stmt 0 view .LVU163
+ 645 00d2 0993     		str	r3, [sp, #36]
+ 412:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_GPIO_Init(GPIOC, &gpio_init_structure);
+ 646              		.loc 1 412 5 is_stmt 1 view .LVU164
+ 647 00d4 09A9     		add	r1, sp, #36
+ 648              	.LVL34:
+ 649              		.loc 1 412 5 is_stmt 0 view .LVU165
+ 650 00d6 2E48     		ldr	r0, .L45+4
+ 651              	.LVL35:
+ 652              		.loc 1 412 5 view .LVU166
+ 653 00d8 FFF7FEFF 		bl	HAL_GPIO_Init
+ 654              	.LVL36:
+ 413:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 414:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* GPIOD configuration */
+ 415:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_8| GPIO_PIN_9 | GPIO_PIN_10 |\
+ 655              		.loc 1 415 5 is_stmt 1 view .LVU167
+ 656              		.loc 1 415 31 is_stmt 0 view .LVU168
+ 657 00dc 4CF20373 		movw	r3, #50947
+ 658 00e0 0993     		str	r3, [sp, #36]
+ 416:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                 GPIO_PIN_14 | GPIO_PIN_15;
+ 417:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 418:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 419:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_GPIO_Init(GPIOD, &gpio_init_structure);
+ 659              		.loc 1 419 5 is_stmt 1 view .LVU169
+ 660 00e2 09A9     		add	r1, sp, #36
+ 661 00e4 2B48     		ldr	r0, .L45+8
+ 662 00e6 FFF7FEFF 		bl	HAL_GPIO_Init
+ 663              	.LVL37:
+ 420:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 421:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* GPIOE configuration */
+ 422:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_7| GPIO_PIN_8 | GPIO_PIN_9 |\
+ 664              		.loc 1 422 5 view .LVU170
+ 665              		.loc 1 422 31 is_stmt 0 view .LVU171
+ 666 00ea 4FF68373 		movw	r3, #65411
+ 667 00ee 0993     		str	r3, [sp, #36]
+ 423:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                 GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14
+ 424:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                 GPIO_PIN_15;
+ 425:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ARM GAS  /tmp/ccowqEUE.s 			page 20
+
+
+ 426:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_GPIO_Init(GPIOE, &gpio_init_structure);
+ 668              		.loc 1 426 5 is_stmt 1 view .LVU172
+ 669 00f0 09A9     		add	r1, sp, #36
+ 670 00f2 2948     		ldr	r0, .L45+12
+ 671 00f4 FFF7FEFF 		bl	HAL_GPIO_Init
+ 672              	.LVL38:
+ 427:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 428:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* GPIOF configuration */
+ 429:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2| GPIO_PIN_3 | GPIO_PIN_4 |\
+ 673              		.loc 1 429 5 view .LVU173
+ 674              		.loc 1 429 31 is_stmt 0 view .LVU174
+ 675 00f8 4FF63F03 		movw	r3, #63551
+ 676 00fc 0993     		str	r3, [sp, #36]
+ 430:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                 GPIO_PIN_5 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 
+ 431:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                 GPIO_PIN_15;
+ 432:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 433:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_GPIO_Init(GPIOF, &gpio_init_structure);
+ 677              		.loc 1 433 5 is_stmt 1 view .LVU175
+ 678 00fe 09A9     		add	r1, sp, #36
+ 679 0100 2648     		ldr	r0, .L45+16
+ 680 0102 FFF7FEFF 		bl	HAL_GPIO_Init
+ 681              	.LVL39:
+ 434:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 435:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* GPIOG configuration */
+ 436:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4| GPIO_PIN_5 | GPIO_PIN_8 |\
+ 682              		.loc 1 436 5 view .LVU176
+ 683              		.loc 1 436 31 is_stmt 0 view .LVU177
+ 684 0106 48F23313 		movw	r3, #33075
+ 685 010a 0993     		str	r3, [sp, #36]
+ 437:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                 GPIO_PIN_15;
+ 438:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_GPIO_Init(GPIOG, &gpio_init_structure);
+ 686              		.loc 1 438 5 is_stmt 1 view .LVU178
+ 687 010c 09A9     		add	r1, sp, #36
+ 688 010e 2448     		ldr	r0, .L45+20
+ 689 0110 FFF7FEFF 		bl	HAL_GPIO_Init
+ 690              	.LVL40:
+ 439:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 440:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* GPIOH configuration */
+ 441:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Pin   = GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_8 | GPIO_PIN_9 |\
+ 691              		.loc 1 441 5 view .LVU179
+ 692              		.loc 1 441 31 is_stmt 0 view .LVU180
+ 693 0114 4FF60C73 		movw	r3, #65292
+ 694 0118 0993     		str	r3, [sp, #36]
+ 442:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                 GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14
+ 443:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                 GPIO_PIN_15;
+ 444:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_GPIO_Init(GPIOH, &gpio_init_structure);
+ 695              		.loc 1 444 5 is_stmt 1 view .LVU181
+ 696 011a 09A9     		add	r1, sp, #36
+ 697 011c 2148     		ldr	r0, .L45+24
+ 698 011e FFF7FEFF 		bl	HAL_GPIO_Init
+ 699              	.LVL41:
+ 445:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 446:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* GPIOI configuration */
+ 447:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 |\
+ 700              		.loc 1 447 5 view .LVU182
+ 701              		.loc 1 447 31 is_stmt 0 view .LVU183
+ 702 0122 40F2FF63 		movw	r3, #1791
+ARM GAS  /tmp/ccowqEUE.s 			page 21
+
+
+ 703 0126 0993     		str	r3, [sp, #36]
+ 448:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****                                 GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_9 | GPIO_PIN_10;
+ 449:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_GPIO_Init(GPIOI, &gpio_init_structure);
+ 704              		.loc 1 449 5 is_stmt 1 view .LVU184
+ 705 0128 09A9     		add	r1, sp, #36
+ 706 012a 1F48     		ldr	r0, .L45+28
+ 707 012c FFF7FEFF 		bl	HAL_GPIO_Init
+ 708              	.LVL42:
+ 450:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 451:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* Configure common DMA parameters */
+ 452:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.Channel             = SDRAM_DMAx_CHANNEL;
+ 709              		.loc 1 452 5 view .LVU185
+ 710              		.loc 1 452 41 is_stmt 0 view .LVU186
+ 711 0130 1E4C     		ldr	r4, .L45+32
+ 712 0132 6560     		str	r5, [r4, #4]
+ 453:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.Direction           = DMA_MEMORY_TO_MEMORY;
+ 713              		.loc 1 453 5 is_stmt 1 view .LVU187
+ 714              		.loc 1 453 41 is_stmt 0 view .LVU188
+ 715 0134 8023     		movs	r3, #128
+ 716 0136 A360     		str	r3, [r4, #8]
+ 454:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.PeriphInc           = DMA_PINC_ENABLE;
+ 717              		.loc 1 454 5 is_stmt 1 view .LVU189
+ 718              		.loc 1 454 41 is_stmt 0 view .LVU190
+ 719 0138 4FF40073 		mov	r3, #512
+ 720 013c E360     		str	r3, [r4, #12]
+ 455:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.MemInc              = DMA_MINC_ENABLE;
+ 721              		.loc 1 455 5 is_stmt 1 view .LVU191
+ 722              		.loc 1 455 41 is_stmt 0 view .LVU192
+ 723 013e 4FF48063 		mov	r3, #1024
+ 724 0142 2361     		str	r3, [r4, #16]
+ 456:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+ 725              		.loc 1 456 5 is_stmt 1 view .LVU193
+ 726              		.loc 1 456 41 is_stmt 0 view .LVU194
+ 727 0144 4FF48053 		mov	r3, #4096
+ 728 0148 6361     		str	r3, [r4, #20]
+ 457:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.MemDataAlignment    = DMA_MDATAALIGN_WORD;
+ 729              		.loc 1 457 5 is_stmt 1 view .LVU195
+ 730              		.loc 1 457 41 is_stmt 0 view .LVU196
+ 731 014a 4FF48043 		mov	r3, #16384
+ 732 014e A361     		str	r3, [r4, #24]
+ 458:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.Mode                = DMA_NORMAL;
+ 733              		.loc 1 458 5 is_stmt 1 view .LVU197
+ 734              		.loc 1 458 41 is_stmt 0 view .LVU198
+ 735 0150 E561     		str	r5, [r4, #28]
+ 459:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.Priority            = DMA_PRIORITY_HIGH;
+ 736              		.loc 1 459 5 is_stmt 1 view .LVU199
+ 737              		.loc 1 459 41 is_stmt 0 view .LVU200
+ 738 0152 4FF40033 		mov	r3, #131072
+ 739 0156 2362     		str	r3, [r4, #32]
+ 460:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.FIFOMode            = DMA_FIFOMODE_DISABLE;
+ 740              		.loc 1 460 5 is_stmt 1 view .LVU201
+ 741              		.loc 1 460 41 is_stmt 0 view .LVU202
+ 742 0158 6562     		str	r5, [r4, #36]
+ 461:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.FIFOThreshold       = DMA_FIFO_THRESHOLD_FULL;
+ 743              		.loc 1 461 5 is_stmt 1 view .LVU203
+ 744              		.loc 1 461 41 is_stmt 0 view .LVU204
+ 745 015a 0323     		movs	r3, #3
+ARM GAS  /tmp/ccowqEUE.s 			page 22
+
+
+ 746 015c A362     		str	r3, [r4, #40]
+ 462:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.MemBurst            = DMA_MBURST_SINGLE;
+ 747              		.loc 1 462 5 is_stmt 1 view .LVU205
+ 748              		.loc 1 462 41 is_stmt 0 view .LVU206
+ 749 015e E562     		str	r5, [r4, #44]
+ 463:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Init.PeriphBurst         = DMA_PBURST_SINGLE;
+ 750              		.loc 1 463 5 is_stmt 1 view .LVU207
+ 751              		.loc 1 463 41 is_stmt 0 view .LVU208
+ 752 0160 2563     		str	r5, [r4, #48]
+ 464:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 465:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     dma_handle.Instance = SDRAM_DMAx_STREAM;
+ 753              		.loc 1 465 5 is_stmt 1 view .LVU209
+ 754              		.loc 1 465 25 is_stmt 0 view .LVU210
+ 755 0162 134B     		ldr	r3, .L45+36
+ 756 0164 2360     		str	r3, [r4]
+ 466:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 467:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* Associate the DMA handle */
+ 468:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     __HAL_LINKDMA(hsdram, hdma, dma_handle);
+ 757              		.loc 1 468 5 is_stmt 1 view .LVU211
+ 758              		.loc 1 468 5 view .LVU212
+ 759 0166 3463     		str	r4, [r6, #48]
+ 760              		.loc 1 468 5 view .LVU213
+ 761 0168 A663     		str	r6, [r4, #56]
+ 469:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 470:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* Deinitialize the stream for new transfer */
+ 471:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_DMA_DeInit(&dma_handle);
+ 762              		.loc 1 471 5 view .LVU214
+ 763 016a 2046     		mov	r0, r4
+ 764 016c FFF7FEFF 		bl	HAL_DMA_DeInit
+ 765              	.LVL43:
+ 472:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 473:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* Configure the DMA stream */
+ 474:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_DMA_Init(&dma_handle);
+ 766              		.loc 1 474 5 view .LVU215
+ 767 0170 2046     		mov	r0, r4
+ 768 0172 FFF7FEFF 		bl	HAL_DMA_Init
+ 769              	.LVL44:
+ 475:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 476:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     /* NVIC configuration for DMA transfer complete interrupt */
+ 477:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_NVIC_SetPriority(SDRAM_DMAx_IRQn, 5, 0);
+ 770              		.loc 1 477 5 view .LVU216
+ 771 0176 2A46     		mov	r2, r5
+ 772 0178 0521     		movs	r1, #5
+ 773 017a 3820     		movs	r0, #56
+ 774 017c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 775              	.LVL45:
+ 478:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     HAL_NVIC_EnableIRQ(SDRAM_DMAx_IRQn);
+ 776              		.loc 1 478 5 view .LVU217
+ 777 0180 3820     		movs	r0, #56
+ 778 0182 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 779              	.LVL46:
+ 479:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 480:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   } /* of if(hsdram != (SDRAM_HandleTypeDef  *)NULL) */
+ 481:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 780              		.loc 1 481 1 is_stmt 0 view .LVU218
+ 781 0186 0EB0     		add	sp, sp, #56
+ 782              	.LCFI11:
+ARM GAS  /tmp/ccowqEUE.s 			page 23
+
+
+ 783              		.cfi_def_cfa_offset 16
+ 784              		@ sp needed
+ 785 0188 70BD     		pop	{r4, r5, r6, pc}
+ 786              	.LVL47:
+ 787              	.L42:
+ 788              	.LCFI12:
+ 789              		.cfi_def_cfa_offset 0
+ 790              		.cfi_restore 4
+ 791              		.cfi_restore 5
+ 792              		.cfi_restore 6
+ 793              		.cfi_restore 14
+ 794              		.loc 1 481 1 view .LVU219
+ 795 018a 7047     		bx	lr
+ 796              	.L46:
+ 797              		.align	2
+ 798              	.L45:
+ 799 018c 00380240 		.word	1073887232
+ 800 0190 00080240 		.word	1073874944
+ 801 0194 000C0240 		.word	1073875968
+ 802 0198 00100240 		.word	1073876992
+ 803 019c 00140240 		.word	1073878016
+ 804 01a0 00180240 		.word	1073879040
+ 805 01a4 001C0240 		.word	1073880064
+ 806 01a8 00200240 		.word	1073881088
+ 807 01ac 00000000 		.word	.LANCHOR2
+ 808 01b0 10640240 		.word	1073898512
+ 809              		.cfi_endproc
+ 810              	.LFE135:
+ 812              		.section	.text.BSP_SDRAM_Init,"ax",%progbits
+ 813              		.align	1
+ 814              		.global	BSP_SDRAM_Init
+ 815              		.syntax unified
+ 816              		.thumb
+ 817              		.thumb_func
+ 818              		.fpu fpv4-sp-d16
+ 820              	BSP_SDRAM_Init:
+ 821              	.LFB126:
+ 149:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   static uint8_t sdramstatus = SDRAM_ERROR;
+ 822              		.loc 1 149 1 is_stmt 1 view -0
+ 823              		.cfi_startproc
+ 824              		@ args = 0, pretend = 0, frame = 0
+ 825              		@ frame_needed = 0, uses_anonymous_args = 0
+ 826 0000 38B5     		push	{r3, r4, r5, lr}
+ 827              	.LCFI13:
+ 828              		.cfi_def_cfa_offset 16
+ 829              		.cfi_offset 3, -16
+ 830              		.cfi_offset 4, -12
+ 831              		.cfi_offset 5, -8
+ 832              		.cfi_offset 14, -4
+ 150:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 833              		.loc 1 150 3 view .LVU221
+ 153:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 834              		.loc 1 153 3 view .LVU222
+ 153:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 835              		.loc 1 153 24 is_stmt 0 view .LVU223
+ 836 0002 1B4C     		ldr	r4, .L51
+ 837 0004 1B4B     		ldr	r3, .L51+4
+ARM GAS  /tmp/ccowqEUE.s 			page 24
+
+
+ 838 0006 2360     		str	r3, [r4]
+ 156:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.ExitSelfRefreshDelay = 7;
+ 839              		.loc 1 156 3 is_stmt 1 view .LVU224
+ 156:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.ExitSelfRefreshDelay = 7;
+ 840              		.loc 1 156 31 is_stmt 0 view .LVU225
+ 841 0008 1B4D     		ldr	r5, .L51+8
+ 842 000a 0223     		movs	r3, #2
+ 843 000c 2B60     		str	r3, [r5]
+ 157:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.SelfRefreshTime      = 4;
+ 844              		.loc 1 157 3 is_stmt 1 view .LVU226
+ 157:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.SelfRefreshTime      = 4;
+ 845              		.loc 1 157 31 is_stmt 0 view .LVU227
+ 846 000e 0721     		movs	r1, #7
+ 847 0010 6960     		str	r1, [r5, #4]
+ 158:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.RowCycleDelay        = 7;
+ 848              		.loc 1 158 3 is_stmt 1 view .LVU228
+ 158:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.RowCycleDelay        = 7;
+ 849              		.loc 1 158 31 is_stmt 0 view .LVU229
+ 850 0012 0422     		movs	r2, #4
+ 851 0014 AA60     		str	r2, [r5, #8]
+ 159:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.WriteRecoveryTime    = 2;
+ 852              		.loc 1 159 3 is_stmt 1 view .LVU230
+ 159:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.WriteRecoveryTime    = 2;
+ 853              		.loc 1 159 31 is_stmt 0 view .LVU231
+ 854 0016 E960     		str	r1, [r5, #12]
+ 160:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.RPDelay              = 2;
+ 855              		.loc 1 160 3 is_stmt 1 view .LVU232
+ 160:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.RPDelay              = 2;
+ 856              		.loc 1 160 31 is_stmt 0 view .LVU233
+ 857 0018 2B61     		str	r3, [r5, #16]
+ 161:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.RCDDelay             = 2;
+ 858              		.loc 1 161 3 is_stmt 1 view .LVU234
+ 161:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   Timing.RCDDelay             = 2;
+ 859              		.loc 1 161 31 is_stmt 0 view .LVU235
+ 860 001a 6B61     		str	r3, [r5, #20]
+ 162:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 861              		.loc 1 162 3 is_stmt 1 view .LVU236
+ 162:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 862              		.loc 1 162 31 is_stmt 0 view .LVU237
+ 863 001c AB61     		str	r3, [r5, #24]
+ 164:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.ColumnBitsNumber   = FMC_SDRAM_COLUMN_BITS_NUM_8;
+ 864              		.loc 1 164 3 is_stmt 1 view .LVU238
+ 164:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.ColumnBitsNumber   = FMC_SDRAM_COLUMN_BITS_NUM_8;
+ 865              		.loc 1 164 39 is_stmt 0 view .LVU239
+ 866 001e 0021     		movs	r1, #0
+ 867 0020 6160     		str	r1, [r4, #4]
+ 165:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.RowBitsNumber      = FMC_SDRAM_ROW_BITS_NUM_12;
+ 868              		.loc 1 165 3 is_stmt 1 view .LVU240
+ 165:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.RowBitsNumber      = FMC_SDRAM_ROW_BITS_NUM_12;
+ 869              		.loc 1 165 39 is_stmt 0 view .LVU241
+ 870 0022 A160     		str	r1, [r4, #8]
+ 166:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.MemoryDataWidth    = SDRAM_MEMORY_WIDTH;
+ 871              		.loc 1 166 3 is_stmt 1 view .LVU242
+ 166:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.MemoryDataWidth    = SDRAM_MEMORY_WIDTH;
+ 872              		.loc 1 166 39 is_stmt 0 view .LVU243
+ 873 0024 E260     		str	r2, [r4, #12]
+ 167:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.InternalBankNumber = FMC_SDRAM_INTERN_BANKS_NUM_4;
+ARM GAS  /tmp/ccowqEUE.s 			page 25
+
+
+ 874              		.loc 1 167 3 is_stmt 1 view .LVU244
+ 167:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.InternalBankNumber = FMC_SDRAM_INTERN_BANKS_NUM_4;
+ 875              		.loc 1 167 39 is_stmt 0 view .LVU245
+ 876 0026 2023     		movs	r3, #32
+ 877 0028 2361     		str	r3, [r4, #16]
+ 168:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.CASLatency         = FMC_SDRAM_CAS_LATENCY_3;
+ 878              		.loc 1 168 3 is_stmt 1 view .LVU246
+ 168:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.CASLatency         = FMC_SDRAM_CAS_LATENCY_3;
+ 879              		.loc 1 168 39 is_stmt 0 view .LVU247
+ 880 002a 4023     		movs	r3, #64
+ 881 002c 6361     		str	r3, [r4, #20]
+ 169:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.WriteProtection    = FMC_SDRAM_WRITE_PROTECTION_DISABLE;
+ 882              		.loc 1 169 3 is_stmt 1 view .LVU248
+ 169:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.WriteProtection    = FMC_SDRAM_WRITE_PROTECTION_DISABLE;
+ 883              		.loc 1 169 39 is_stmt 0 view .LVU249
+ 884 002e 4FF4C073 		mov	r3, #384
+ 885 0032 A361     		str	r3, [r4, #24]
+ 170:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.SDClockPeriod      = SDCLOCK_PERIOD;
+ 886              		.loc 1 170 3 is_stmt 1 view .LVU250
+ 170:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.SDClockPeriod      = SDCLOCK_PERIOD;
+ 887              		.loc 1 170 39 is_stmt 0 view .LVU251
+ 888 0034 E161     		str	r1, [r4, #28]
+ 171:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.ReadBurst          = FMC_SDRAM_RBURST_ENABLE;
+ 889              		.loc 1 171 3 is_stmt 1 view .LVU252
+ 171:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.ReadBurst          = FMC_SDRAM_RBURST_ENABLE;
+ 890              		.loc 1 171 39 is_stmt 0 view .LVU253
+ 891 0036 4FF40063 		mov	r3, #2048
+ 892 003a 2362     		str	r3, [r4, #32]
+ 172:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.ReadPipeDelay      = FMC_SDRAM_RPIPE_DELAY_0;
+ 893              		.loc 1 172 3 is_stmt 1 view .LVU254
+ 172:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   sdramHandle.Init.ReadPipeDelay      = FMC_SDRAM_RPIPE_DELAY_0;
+ 894              		.loc 1 172 39 is_stmt 0 view .LVU255
+ 895 003c 4FF48053 		mov	r3, #4096
+ 896 0040 6362     		str	r3, [r4, #36]
+ 173:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 897              		.loc 1 173 3 is_stmt 1 view .LVU256
+ 173:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 898              		.loc 1 173 39 is_stmt 0 view .LVU257
+ 899 0042 A162     		str	r1, [r4, #40]
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   if(HAL_SDRAM_Init(&sdramHandle, &Timing) != HAL_OK)
+ 900              		.loc 1 177 3 is_stmt 1 view .LVU258
+ 901 0044 2046     		mov	r0, r4
+ 902 0046 FFF7FEFF 		bl	BSP_SDRAM_MspInit
+ 903              	.LVL48:
+ 178:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 904              		.loc 1 178 3 view .LVU259
+ 178:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 905              		.loc 1 178 6 is_stmt 0 view .LVU260
+ 906 004a 2946     		mov	r1, r5
+ 907 004c 2046     		mov	r0, r4
+ 908 004e FFF7FEFF 		bl	HAL_SDRAM_Init
+ 909              	.LVL49:
+ 178:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 910              		.loc 1 178 5 view .LVU261
+ 911 0052 48B1     		cbz	r0, .L48
+ 180:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 912              		.loc 1 180 5 is_stmt 1 view .LVU262
+ARM GAS  /tmp/ccowqEUE.s 			page 26
+
+
+ 180:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 913              		.loc 1 180 17 is_stmt 0 view .LVU263
+ 914 0054 094B     		ldr	r3, .L51+12
+ 915 0056 0122     		movs	r2, #1
+ 916 0058 1A70     		strb	r2, [r3]
+ 917              	.L49:
+ 188:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 918              		.loc 1 188 3 is_stmt 1 view .LVU264
+ 919 005a 40F26950 		movw	r0, #1385
+ 920 005e FFF7FEFF 		bl	BSP_SDRAM_Initialization_sequence
+ 921              	.LVL50:
+ 190:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 922              		.loc 1 190 3 view .LVU265
+ 191:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 923              		.loc 1 191 1 is_stmt 0 view .LVU266
+ 924 0062 064B     		ldr	r3, .L51+12
+ 925 0064 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 926 0066 38BD     		pop	{r3, r4, r5, pc}
+ 927              	.L48:
+ 184:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 928              		.loc 1 184 5 is_stmt 1 view .LVU267
+ 184:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 929              		.loc 1 184 17 is_stmt 0 view .LVU268
+ 930 0068 044B     		ldr	r3, .L51+12
+ 931 006a 0022     		movs	r2, #0
+ 932 006c 1A70     		strb	r2, [r3]
+ 933 006e F4E7     		b	.L49
+ 934              	.L52:
+ 935              		.align	2
+ 936              	.L51:
+ 937 0070 00000000 		.word	.LANCHOR1
+ 938 0074 400100A0 		.word	-1610612416
+ 939 0078 00000000 		.word	.LANCHOR3
+ 940 007c 00000000 		.word	.LANCHOR4
+ 941              		.cfi_endproc
+ 942              	.LFE126:
+ 944              		.section	.text.BSP_SDRAM_MspDeInit,"ax",%progbits
+ 945              		.align	1
+ 946              		.weak	BSP_SDRAM_MspDeInit
+ 947              		.syntax unified
+ 948              		.thumb
+ 949              		.thumb_func
+ 950              		.fpu fpv4-sp-d16
+ 952              	BSP_SDRAM_MspDeInit:
+ 953              	.LVL51:
+ 954              	.LFB136:
+ 482:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 483:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** /**
+ 484:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @brief  DeInitializes SDRAM MSP.
+ 485:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @note   This function can be surcharged by application code.
+ 486:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  hsdram: pointer on SDRAM handle
+ 487:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   * @param  Params: pointer on additional configuration parameters, can be NULL.
+ 488:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   */
+ 489:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** __weak void BSP_SDRAM_MspDeInit(SDRAM_HandleTypeDef  *hsdram, void *Params)
+ 490:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** {
+ 955              		.loc 1 490 1 is_stmt 1 view -0
+ 956              		.cfi_startproc
+ARM GAS  /tmp/ccowqEUE.s 			page 27
+
+
+ 957              		@ args = 0, pretend = 0, frame = 0
+ 958              		@ frame_needed = 0, uses_anonymous_args = 0
+ 491:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     static DMA_HandleTypeDef dma_handle;
+ 959              		.loc 1 491 5 view .LVU270
+ 492:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 493:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     if(hsdram != (SDRAM_HandleTypeDef  *)NULL)
+ 960              		.loc 1 493 5 view .LVU271
+ 961              		.loc 1 493 7 is_stmt 0 view .LVU272
+ 962 0000 48B1     		cbz	r0, .L56
+ 490:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     static DMA_HandleTypeDef dma_handle;
+ 963              		.loc 1 490 1 view .LVU273
+ 964 0002 08B5     		push	{r3, lr}
+ 965              	.LCFI14:
+ 966              		.cfi_def_cfa_offset 8
+ 967              		.cfi_offset 3, -8
+ 968              		.cfi_offset 14, -4
+ 494:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     {
+ 495:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****       /* Disable NVIC configuration for DMA interrupt */
+ 496:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****       HAL_NVIC_DisableIRQ(SDRAM_DMAx_IRQn);
+ 969              		.loc 1 496 7 is_stmt 1 view .LVU274
+ 970 0004 3820     		movs	r0, #56
+ 971              	.LVL52:
+ 972              		.loc 1 496 7 is_stmt 0 view .LVU275
+ 973 0006 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 974              	.LVL53:
+ 497:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 498:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****       /* Deinitialize the stream for new transfer */
+ 499:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****       dma_handle.Instance = SDRAM_DMAx_STREAM;
+ 975              		.loc 1 499 7 is_stmt 1 view .LVU276
+ 976              		.loc 1 499 27 is_stmt 0 view .LVU277
+ 977 000a 0348     		ldr	r0, .L59
+ 978 000c 034B     		ldr	r3, .L59+4
+ 979 000e 0360     		str	r3, [r0]
+ 500:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****       HAL_DMA_DeInit(&dma_handle);
+ 980              		.loc 1 500 7 is_stmt 1 view .LVU278
+ 981 0010 FFF7FEFF 		bl	HAL_DMA_DeInit
+ 982              	.LVL54:
+ 501:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 502:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****       /* DeInit GPIO pins can be done in the application
+ 503:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        (by surcharging this __weak function) */
+ 504:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 505:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****       /* GPIO pins clock, FMC clock and DMA clock can be shut down in the application
+ 506:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****        by surcharging this __weak function */
+ 507:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 508:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****     } /* of if(hsdram != (SDRAM_HandleTypeDef  *)NULL) */
+ 509:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 983              		.loc 1 509 1 is_stmt 0 view .LVU279
+ 984 0014 08BD     		pop	{r3, pc}
+ 985              	.LVL55:
+ 986              	.L56:
+ 987              	.LCFI15:
+ 988              		.cfi_def_cfa_offset 0
+ 989              		.cfi_restore 3
+ 990              		.cfi_restore 14
+ 991              		.loc 1 509 1 view .LVU280
+ 992 0016 7047     		bx	lr
+ 993              	.L60:
+ARM GAS  /tmp/ccowqEUE.s 			page 28
+
+
+ 994              		.align	2
+ 995              	.L59:
+ 996 0018 00000000 		.word	.LANCHOR5
+ 997 001c 10640240 		.word	1073898512
+ 998              		.cfi_endproc
+ 999              	.LFE136:
+ 1001              		.section	.text.BSP_SDRAM_DeInit,"ax",%progbits
+ 1002              		.align	1
+ 1003              		.global	BSP_SDRAM_DeInit
+ 1004              		.syntax unified
+ 1005              		.thumb
+ 1006              		.thumb_func
+ 1007              		.fpu fpv4-sp-d16
+ 1009              	BSP_SDRAM_DeInit:
+ 1010              	.LFB127:
+ 198:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   static uint8_t sdramstatus = SDRAM_ERROR;
+ 1011              		.loc 1 198 1 is_stmt 1 view -0
+ 1012              		.cfi_startproc
+ 1013              		@ args = 0, pretend = 0, frame = 0
+ 1014              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1015 0000 08B5     		push	{r3, lr}
+ 1016              	.LCFI16:
+ 1017              		.cfi_def_cfa_offset 8
+ 1018              		.cfi_offset 3, -8
+ 1019              		.cfi_offset 14, -4
+ 199:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 1020              		.loc 1 199 3 view .LVU282
+ 202:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 1021              		.loc 1 202 3 view .LVU283
+ 202:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 1022              		.loc 1 202 24 is_stmt 0 view .LVU284
+ 1023 0002 0848     		ldr	r0, .L65
+ 1024 0004 084B     		ldr	r3, .L65+4
+ 1025 0006 0360     		str	r3, [r0]
+ 204:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 1026              		.loc 1 204 3 is_stmt 1 view .LVU285
+ 204:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 1027              		.loc 1 204 6 is_stmt 0 view .LVU286
+ 1028 0008 FFF7FEFF 		bl	HAL_SDRAM_DeInit
+ 1029              	.LVL56:
+ 204:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   {
+ 1030              		.loc 1 204 5 view .LVU287
+ 1031 000c 10B1     		cbz	r0, .L64
+ 1032              	.L62:
+ 212:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** }
+ 1033              		.loc 1 212 3 is_stmt 1 view .LVU288
+ 213:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 1034              		.loc 1 213 1 is_stmt 0 view .LVU289
+ 1035 000e 074B     		ldr	r3, .L65+8
+ 1036 0010 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 1037 0012 08BD     		pop	{r3, pc}
+ 1038              	.L64:
+ 206:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 1039              		.loc 1 206 5 is_stmt 1 view .LVU290
+ 206:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c **** 
+ 1040              		.loc 1 206 17 is_stmt 0 view .LVU291
+ 1041 0014 0021     		movs	r1, #0
+ARM GAS  /tmp/ccowqEUE.s 			page 29
+
+
+ 1042 0016 054B     		ldr	r3, .L65+8
+ 1043 0018 1970     		strb	r1, [r3]
+ 209:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_sdram.c ****   }
+ 1044              		.loc 1 209 4 is_stmt 1 view .LVU292
+ 1045 001a 0248     		ldr	r0, .L65
+ 1046 001c FFF7FEFF 		bl	BSP_SDRAM_MspDeInit
+ 1047              	.LVL57:
+ 1048 0020 F5E7     		b	.L62
+ 1049              	.L66:
+ 1050 0022 00BF     		.align	2
+ 1051              	.L65:
+ 1052 0024 00000000 		.word	.LANCHOR1
+ 1053 0028 400100A0 		.word	-1610612416
+ 1054 002c 00000000 		.word	.LANCHOR6
+ 1055              		.cfi_endproc
+ 1056              	.LFE127:
+ 1058              		.section	.bss.Command,"aw",%nobits
+ 1059              		.align	2
+ 1060              		.set	.LANCHOR0,. + 0
+ 1063              	Command:
+ 1064 0000 00000000 		.space	16
+ 1064      00000000 
+ 1064      00000000 
+ 1064      00000000 
+ 1065              		.section	.bss.Timing,"aw",%nobits
+ 1066              		.align	2
+ 1067              		.set	.LANCHOR3,. + 0
+ 1070              	Timing:
+ 1071 0000 00000000 		.space	28
+ 1071      00000000 
+ 1071      00000000 
+ 1071      00000000 
+ 1071      00000000 
+ 1072              		.section	.bss.dma_handle.10090,"aw",%nobits
+ 1073              		.align	2
+ 1074              		.set	.LANCHOR2,. + 0
+ 1077              	dma_handle.10090:
+ 1078 0000 00000000 		.space	96
+ 1078      00000000 
+ 1078      00000000 
+ 1078      00000000 
+ 1078      00000000 
+ 1079              		.section	.bss.dma_handle.10105,"aw",%nobits
+ 1080              		.align	2
+ 1081              		.set	.LANCHOR5,. + 0
+ 1084              	dma_handle.10105:
+ 1085 0000 00000000 		.space	96
+ 1085      00000000 
+ 1085      00000000 
+ 1085      00000000 
+ 1085      00000000 
+ 1086              		.section	.bss.sdramHandle,"aw",%nobits
+ 1087              		.align	2
+ 1088              		.set	.LANCHOR1,. + 0
+ 1091              	sdramHandle:
+ 1092 0000 00000000 		.space	52
+ 1092      00000000 
+ARM GAS  /tmp/ccowqEUE.s 			page 30
+
+
+ 1092      00000000 
+ 1092      00000000 
+ 1092      00000000 
+ 1093              		.section	.data.sdramstatus.10051,"aw"
+ 1094              		.set	.LANCHOR4,. + 0
+ 1097              	sdramstatus.10051:
+ 1098 0000 01       		.byte	1
+ 1099              		.section	.data.sdramstatus.10055,"aw"
+ 1100              		.set	.LANCHOR6,. + 0
+ 1103              	sdramstatus.10055:
+ 1104 0000 01       		.byte	1
+ 1105              		.text
+ 1106              	.Letext0:
+ 1107              		.file 2 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_default_t
+ 1108              		.file 3 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 1109              		.file 4 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Include/core_cm4.h"
+ 1110              		.file 5 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+ 1111              		.file 6 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+ 1112              		.file 7 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h"
+ 1113              		.file 8 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h"
+ 1114              		.file 9 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdd
+ 1115              		.file 10 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h"
+ 1116              		.file 11 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 1117              		.file 12 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 1118              		.file 13 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 1119              		.file 14 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 1120              		.file 15 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 1121              		.file 16 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 1122              		.file 17 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ARM GAS  /tmp/ccowqEUE.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32469i_discovery_sdram.c
+     /tmp/ccowqEUE.s:18     .text.BSP_SDRAM_Initialization_sequence:0000000000000000 $t
+     /tmp/ccowqEUE.s:26     .text.BSP_SDRAM_Initialization_sequence:0000000000000000 BSP_SDRAM_Initialization_sequence
+     /tmp/ccowqEUE.s:160    .text.BSP_SDRAM_Initialization_sequence:0000000000000094 $d
+     /tmp/ccowqEUE.s:166    .text.BSP_SDRAM_ReadData:0000000000000000 $t
+     /tmp/ccowqEUE.s:173    .text.BSP_SDRAM_ReadData:0000000000000000 BSP_SDRAM_ReadData
+     /tmp/ccowqEUE.s:214    .text.BSP_SDRAM_ReadData:0000000000000018 $d
+     /tmp/ccowqEUE.s:219    .text.BSP_SDRAM_ReadData_DMA:0000000000000000 $t
+     /tmp/ccowqEUE.s:226    .text.BSP_SDRAM_ReadData_DMA:0000000000000000 BSP_SDRAM_ReadData_DMA
+     /tmp/ccowqEUE.s:267    .text.BSP_SDRAM_ReadData_DMA:0000000000000018 $d
+     /tmp/ccowqEUE.s:272    .text.BSP_SDRAM_WriteData:0000000000000000 $t
+     /tmp/ccowqEUE.s:279    .text.BSP_SDRAM_WriteData:0000000000000000 BSP_SDRAM_WriteData
+     /tmp/ccowqEUE.s:320    .text.BSP_SDRAM_WriteData:0000000000000018 $d
+     /tmp/ccowqEUE.s:325    .text.BSP_SDRAM_WriteData_DMA:0000000000000000 $t
+     /tmp/ccowqEUE.s:332    .text.BSP_SDRAM_WriteData_DMA:0000000000000000 BSP_SDRAM_WriteData_DMA
+     /tmp/ccowqEUE.s:373    .text.BSP_SDRAM_WriteData_DMA:0000000000000018 $d
+     /tmp/ccowqEUE.s:378    .text.BSP_SDRAM_Sendcmd:0000000000000000 $t
+     /tmp/ccowqEUE.s:385    .text.BSP_SDRAM_Sendcmd:0000000000000000 BSP_SDRAM_Sendcmd
+     /tmp/ccowqEUE.s:421    .text.BSP_SDRAM_Sendcmd:0000000000000018 $d
+     /tmp/ccowqEUE.s:426    .text.BSP_SDRAM_DMA_IRQHandler:0000000000000000 $t
+     /tmp/ccowqEUE.s:433    .text.BSP_SDRAM_DMA_IRQHandler:0000000000000000 BSP_SDRAM_DMA_IRQHandler
+     /tmp/ccowqEUE.s:454    .text.BSP_SDRAM_DMA_IRQHandler:000000000000000c $d
+     /tmp/ccowqEUE.s:459    .text.BSP_SDRAM_MspInit:0000000000000000 $t
+     /tmp/ccowqEUE.s:466    .text.BSP_SDRAM_MspInit:0000000000000000 BSP_SDRAM_MspInit
+     /tmp/ccowqEUE.s:799    .text.BSP_SDRAM_MspInit:000000000000018c $d
+     /tmp/ccowqEUE.s:813    .text.BSP_SDRAM_Init:0000000000000000 $t
+     /tmp/ccowqEUE.s:820    .text.BSP_SDRAM_Init:0000000000000000 BSP_SDRAM_Init
+     /tmp/ccowqEUE.s:937    .text.BSP_SDRAM_Init:0000000000000070 $d
+     /tmp/ccowqEUE.s:945    .text.BSP_SDRAM_MspDeInit:0000000000000000 $t
+     /tmp/ccowqEUE.s:952    .text.BSP_SDRAM_MspDeInit:0000000000000000 BSP_SDRAM_MspDeInit
+     /tmp/ccowqEUE.s:996    .text.BSP_SDRAM_MspDeInit:0000000000000018 $d
+     /tmp/ccowqEUE.s:1002   .text.BSP_SDRAM_DeInit:0000000000000000 $t
+     /tmp/ccowqEUE.s:1009   .text.BSP_SDRAM_DeInit:0000000000000000 BSP_SDRAM_DeInit
+     /tmp/ccowqEUE.s:1052   .text.BSP_SDRAM_DeInit:0000000000000024 $d
+     /tmp/ccowqEUE.s:1059   .bss.Command:0000000000000000 $d
+     /tmp/ccowqEUE.s:1063   .bss.Command:0000000000000000 Command
+     /tmp/ccowqEUE.s:1066   .bss.Timing:0000000000000000 $d
+     /tmp/ccowqEUE.s:1070   .bss.Timing:0000000000000000 Timing
+     /tmp/ccowqEUE.s:1073   .bss.dma_handle.10090:0000000000000000 $d
+     /tmp/ccowqEUE.s:1077   .bss.dma_handle.10090:0000000000000000 dma_handle.10090
+     /tmp/ccowqEUE.s:1080   .bss.dma_handle.10105:0000000000000000 $d
+     /tmp/ccowqEUE.s:1084   .bss.dma_handle.10105:0000000000000000 dma_handle.10105
+     /tmp/ccowqEUE.s:1087   .bss.sdramHandle:0000000000000000 $d
+     /tmp/ccowqEUE.s:1091   .bss.sdramHandle:0000000000000000 sdramHandle
+     /tmp/ccowqEUE.s:1097   .data.sdramstatus.10051:0000000000000000 sdramstatus.10051
+     /tmp/ccowqEUE.s:1103   .data.sdramstatus.10055:0000000000000000 sdramstatus.10055
+
+UNDEFINED SYMBOLS
+HAL_SDRAM_SendCommand
+HAL_Delay
+HAL_SDRAM_ProgramRefreshRate
+HAL_SDRAM_Read_32b
+HAL_SDRAM_Read_DMA
+HAL_SDRAM_Write_32b
+HAL_SDRAM_Write_DMA
+HAL_DMA_IRQHandler
+ARM GAS  /tmp/ccowqEUE.s 			page 32
+
+
+HAL_GPIO_Init
+HAL_DMA_DeInit
+HAL_DMA_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_SDRAM_Init
+HAL_NVIC_DisableIRQ
+HAL_SDRAM_DeInit

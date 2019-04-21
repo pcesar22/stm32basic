@@ -1,0 +1,1377 @@
+ARM GAS  /tmp/ccoio22m.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32469i_discovery_eeprom.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.BSP_EEPROM_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	BSP_EEPROM_Init
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	BSP_EEPROM_Init:
+  27              	.LFB126:
+  28              		.file 1 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_
+   1:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+   2:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   ******************************************************************************
+   3:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @file    stm32469i_discovery_eeprom.c
+   4:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @author  MCD Application Team
+   5:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @brief   This file provides a set of functions needed to manage an I2C M24LR64 
+   6:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          EEPROM memory.
+   7:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          To be able to use this driver, the switch EE_M24LR64 must be defined
+   8:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          in your toolchain compiler preprocessor
+   9:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          
+  10:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          =================================================================== 
+  11:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          Notes:
+  12:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *           - This driver is intended for STM32F4xx families devices only. 
+  13:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *           - The I2C EEPROM memory (M24LR64) is available on separate daughter 
+  14:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *             board ANT7-M24LR-A, which is not provided with the STM32469I-Discovery
+  15:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *             board.
+  16:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *             To use this driver you have to connect the ANT7-M24LR-A to CN11
+  17:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *             connector of STM32469I-Discovery board.
+  18:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          ===================================================================
+  19:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *              
+  20:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          It implements a high level communication layer for read and write 
+  21:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          from/to this memory. The needed STM32F4xx hardware resources (I2C and 
+  22:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          GPIO) are defined in stm32469i_discovery.h file, and the initialization is
+  23:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          performed in EEPROM_IO_Init() function declared in stm32469i_discovery.c
+  24:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          file.
+  25:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          You can easily tailor this driver to any other development board, 
+  26:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          by just adapting the defines for hardware resources and 
+  27:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          EEPROM_IO_Init() function. 
+  28:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *        
+  29:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *          @note In this driver, basic read and write functions (BSP_EEPROM_ReadBuffer() 
+  30:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *                and BSP_EEPROM_WritePage()) use DMA mode to perform the data 
+ARM GAS  /tmp/ccoio22m.s 			page 2
+
+
+  31:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *                transfer to/from EEPROM memory.
+  32:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *
+  33:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         @note   Regarding BSP_EEPROM_WritePage(), it is a optimized function to perform
+  34:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *                small write (less than 1 page) BUT The number of bytes (combined to write start 
+  35:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *                cross the EEPROM page boundary. This function can only write into
+  36:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *                the boundaries of an EEPROM page.
+  37:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *                This function doesn't check on boundaries condition (in this driver 
+  38:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *                the function BSP_EEPROM_WriteBuffer() which calls BSP_EEPROM_WritePage() is 
+  39:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *                responsible of checking on Page boundaries).
+  40:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+  41:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *             
+  42:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     +-----------------------------------------------------------------+
+  43:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     |               Pin assignment for M24LR64 EEPROM                 |
+  44:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     +---------------------------------------+-----------+-------------+
+  45:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     |  STM32F4xx I2C Pins                   |   EEPROM  |   Pin       |
+  46:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     +---------------------------------------+-----------+-------------+
+  47:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     | .                                     |   E0(GND) |    1  (0V)  |
+  48:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     | .                                     |   AC0     |    2        |
+  49:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     | .                                     |   AC1     |    3        |
+  50:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     | .                                     |   VSS     |    4  (0V)  |
+  51:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     | SDA                                   |   SDA     |    5        |
+  52:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     | SCL                                   |   SCL     |    6        |
+  53:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     | .                                     |   E1(GND) |    7  (0V)  |
+  54:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     | .                                     |   VDD     |    8 (3.3V) |
+  55:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *     +---------------------------------------+-----------+-------------+
+  56:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *
+  57:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   ******************************************************************************
+  58:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @attention
+  59:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *
+  60:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  61:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *
+  62:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  63:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * are permitted provided that the following conditions are met:
+  64:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  65:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *      this list of conditions and the following disclaimer.
+  66:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  67:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *      this list of conditions and the following disclaimer in the documentation
+  68:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *      and/or other materials provided with the distribution.
+  69:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  70:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *      may be used to endorse or promote products derived from this software
+  71:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *      without specific prior written permission.
+  72:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *
+  73:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  74:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  75:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  76:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  77:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  78:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  79:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  80:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  81:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  82:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  83:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *
+  84:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   ******************************************************************************
+  85:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+  86:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /* Includes ------------------------------------------------------------------*/
+  87:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** #include "stm32469i_discovery_eeprom.h"
+ARM GAS  /tmp/ccoio22m.s 			page 3
+
+
+  88:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+  89:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /** @addtogroup BSP
+  90:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @{
+  91:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+  92:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+  93:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /** @addtogroup STM32469I_Discovery
+  94:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @{
+  95:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+  96:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+  97:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /** @defgroup STM32469I-Discovery_EEPROM STM32469I Discovery EEPROM
+  98:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @brief This file includes the I2C EEPROM driver of STM32469I-Discovery board.
+  99:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @{
+ 100:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+ 101:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 102:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /** @defgroup STM32469I-Discovery_EEPROM_Private_Types STM32469I Discovery EEPROM Private Types
+ 103:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @{
+ 104:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+ 105:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 106:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @}
+ 107:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+ 108:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 109:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /** @defgroup STM32469I-Discovery_EEPROM_Private_Defines STM32469I Discovery EEPROM Private Defines
+ 110:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @{
+ 111:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */  
+ 112:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 113:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @}
+ 114:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+ 115:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 116:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /** @defgroup STM32469I-Discovery_EEPROM_Private_Macros STM32469I Discovery EEPROM Private Macros
+ 117:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @{
+ 118:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+ 119:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 120:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @}
+ 121:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+ 122:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 123:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /** @defgroup STM32469I-Discovery_EEPROM_Private_Variables STM32469I Discovery EEPROM Private Varia
+ 124:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @{
+ 125:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+ 126:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** __IO uint16_t EEPROMAddress = 0;
+ 127:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** __IO uint32_t EEPROMTimeout = EEPROM_READ_TIMEOUT;
+ 128:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** __IO uint16_t EEPROMDataRead;
+ 129:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** __IO uint8_t  EEPROMDataWrite;
+ 130:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 131:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @}
+ 132:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+ 133:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 134:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /** @defgroup STM32469I-Discovery_EEPROM_Private_Function_Prototypes STM32469I Discovery EEPROM Pri
+ 135:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @{
+ 136:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+ 137:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 138:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @}
+ 139:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+ 140:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 141:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /** @defgroup STM32469I-Discovery_EEPROM_Private_Functions STM32469I Discovery EEPROM Private Funct
+ 142:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @{
+ 143:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */ 
+ 144:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ARM GAS  /tmp/ccoio22m.s 			page 4
+
+
+ 145:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 146:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @brief  Initializes peripherals used by the I2C EEPROM driver.
+ 147:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+ 148:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @note   There are 2 different versions of M24LR64 (A01 & A02).
+ 149:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *             Then try to connect on 1st one (EEPROM_I2C_ADDRESS_A01) 
+ 150:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *             and if problem, check the 2nd one (EEPROM_I2C_ADDRESS_A02)
+ 151:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @retval EEPROM_OK (0) if operation is correctly performed, else return value 
+ 152:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         different from EEPROM_OK (0)
+ 153:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+ 154:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** uint32_t BSP_EEPROM_Init(void)
+ 155:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** { 
+  29              		.loc 1 155 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+ 156:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* I2C Initialization */
+ 157:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   EEPROM_IO_Init();
+  38              		.loc 1 157 3 view .LVU1
+  39 0002 FFF7FEFF 		bl	EEPROM_IO_Init
+  40              	.LVL0:
+ 158:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 159:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* Select the EEPROM address for A01 and check if OK */
+ 160:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   EEPROMAddress = EEPROM_I2C_ADDRESS_A01;
+  41              		.loc 1 160 3 view .LVU2
+  42              		.loc 1 160 17 is_stmt 0 view .LVU3
+  43 0006 0B4B     		ldr	r3, .L7
+  44 0008 A022     		movs	r2, #160
+  45 000a 1A80     		strh	r2, [r3]	@ movhi
+ 161:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   if(EEPROM_IO_IsDeviceReady(EEPROMAddress, EEPROM_MAX_TRIALS) != HAL_OK) 
+  46              		.loc 1 161 3 is_stmt 1 view .LVU4
+  47              		.loc 1 161 6 is_stmt 0 view .LVU5
+  48 000c 1888     		ldrh	r0, [r3]
+  49 000e 40F6B831 		movw	r1, #3000
+  50 0012 FFF7FEFF 		bl	EEPROM_IO_IsDeviceReady
+  51              	.LVL1:
+  52              		.loc 1 161 5 view .LVU6
+  53 0016 08B9     		cbnz	r0, .L6
+ 162:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 163:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     /* Select the EEPROM address for A02 and check if OK */
+ 164:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     EEPROMAddress = EEPROM_I2C_ADDRESS_A02;
+ 165:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     if(EEPROM_IO_IsDeviceReady(EEPROMAddress, EEPROM_MAX_TRIALS) != HAL_OK)
+ 166:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+ 167:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       return EEPROM_FAIL;
+ 168:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     }
+ 169:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 170:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   return EEPROM_OK;
+  54              		.loc 1 170 10 view .LVU7
+  55 0018 0020     		movs	r0, #0
+  56              	.L1:
+ 171:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+  57              		.loc 1 171 1 view .LVU8
+  58 001a 08BD     		pop	{r3, pc}
+ARM GAS  /tmp/ccoio22m.s 			page 5
+
+
+  59              	.L6:
+ 164:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     if(EEPROM_IO_IsDeviceReady(EEPROMAddress, EEPROM_MAX_TRIALS) != HAL_OK)
+  60              		.loc 1 164 5 is_stmt 1 view .LVU9
+ 164:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     if(EEPROM_IO_IsDeviceReady(EEPROMAddress, EEPROM_MAX_TRIALS) != HAL_OK)
+  61              		.loc 1 164 19 is_stmt 0 view .LVU10
+  62 001c 054B     		ldr	r3, .L7
+  63 001e A622     		movs	r2, #166
+  64 0020 1A80     		strh	r2, [r3]	@ movhi
+ 165:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+  65              		.loc 1 165 5 is_stmt 1 view .LVU11
+ 165:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+  66              		.loc 1 165 8 is_stmt 0 view .LVU12
+  67 0022 1888     		ldrh	r0, [r3]
+  68 0024 40F6B831 		movw	r1, #3000
+  69 0028 FFF7FEFF 		bl	EEPROM_IO_IsDeviceReady
+  70              	.LVL2:
+ 165:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+  71              		.loc 1 165 7 view .LVU13
+  72 002c 0028     		cmp	r0, #0
+  73 002e F4D0     		beq	.L1
+ 167:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     }
+  74              		.loc 1 167 14 view .LVU14
+  75 0030 0120     		movs	r0, #1
+  76 0032 F2E7     		b	.L1
+  77              	.L8:
+  78              		.align	2
+  79              	.L7:
+  80 0034 00000000 		.word	.LANCHOR0
+  81              		.cfi_endproc
+  82              	.LFE126:
+  84              		.section	.text.BSP_EEPROM_DeInit,"ax",%progbits
+  85              		.align	1
+  86              		.global	BSP_EEPROM_DeInit
+  87              		.syntax unified
+  88              		.thumb
+  89              		.thumb_func
+  90              		.fpu fpv4-sp-d16
+  92              	BSP_EEPROM_DeInit:
+  93              	.LFB127:
+ 172:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 173:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 174:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @brief  DeInitializes the EEPROM.
+ 175:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @retval EEPROM state
+ 176:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** uint8_t BSP_EEPROM_DeInit(void)
+ 178:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** { 
+  94              		.loc 1 178 1 is_stmt 1 view -0
+  95              		.cfi_startproc
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+  98              		@ link register save eliminated.
+ 179:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* I2C won't be disabled because common to other functionalities */
+ 180:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   return EEPROM_OK;
+  99              		.loc 1 180 3 view .LVU16
+ 181:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+ 100              		.loc 1 181 1 is_stmt 0 view .LVU17
+ 101 0000 0020     		movs	r0, #0
+ARM GAS  /tmp/ccoio22m.s 			page 6
+
+
+ 102 0002 7047     		bx	lr
+ 103              		.cfi_endproc
+ 104              	.LFE127:
+ 106              		.section	.text.BSP_EEPROM_TIMEOUT_UserCallback,"ax",%progbits
+ 107              		.align	1
+ 108              		.weak	BSP_EEPROM_TIMEOUT_UserCallback
+ 109              		.syntax unified
+ 110              		.thumb
+ 111              		.thumb_func
+ 112              		.fpu fpv4-sp-d16
+ 114              	BSP_EEPROM_TIMEOUT_UserCallback:
+ 115              	.LFB132:
+ 182:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 183:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 184:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @brief  Reads a block of data from the EEPROM.
+ 185:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @param  pBuffer: pointer to the buffer that receives the data read from 
+ 186:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         the EEPROM.
+ 187:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @param  ReadAddr: EEPROM's internal address to start reading from.
+ 188:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @param  NumByteToRead: pointer to the variable holding number of bytes to 
+ 189:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         be read from the EEPROM.
+ 190:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+ 191:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *        @note The variable pointed by NumByteToRead is reset to 0 when all the 
+ 192:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *              data are read from the EEPROM. Application should monitor this 
+ 193:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *              variable in order know when the transfer is complete.
+ 194:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+ 195:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @retval EEPROM_OK (0) if operation is correctly performed, else return value 
+ 196:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         different from EEPROM_OK (0) or the timeout user callback.
+ 197:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+ 198:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** uint32_t BSP_EEPROM_ReadBuffer(uint8_t* pBuffer, uint16_t ReadAddr, uint16_t* NumByteToRead)
+ 199:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** {  
+ 200:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t buffersize = *NumByteToRead;
+ 201:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 202:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* Set the pointer to the Number of data to be read. This pointer will be used 
+ 203:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****      by the DMA Transfer Completer interrupt Handler in order to reset the 
+ 204:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****      variable to 0. User should check on this variable in order to know if the 
+ 205:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****      DMA transfer has been complete or not. */
+ 206:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   EEPROMDataRead = *NumByteToRead;
+ 207:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 208:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   if(EEPROM_IO_ReadData(EEPROMAddress, ReadAddr, pBuffer, buffersize) != HAL_OK)
+ 209:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 210:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     BSP_EEPROM_TIMEOUT_UserCallback();
+ 211:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     return EEPROM_FAIL;
+ 212:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 213:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 214:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* If all operations OK, return EEPROM_OK (0) */
+ 215:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   return EEPROM_OK;
+ 216:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+ 217:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 218:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 219:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @brief  Writes more than one byte to the EEPROM with a single WRITE cycle.
+ 220:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *
+ 221:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @note   The number of bytes (combined to write start address) must not 
+ 222:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         cross the EEPROM page boundary. This function can only write into
+ 223:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         the boundaries of an EEPROM page.
+ 224:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         This function doesn't check on boundaries condition (in this driver 
+ 225:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         the function BSP_EEPROM_WriteBuffer() which calls BSP_EEPROM_WritePage() is 
+ 226:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         responsible of checking on Page boundaries).
+ARM GAS  /tmp/ccoio22m.s 			page 7
+
+
+ 227:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+ 228:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @param  pBuffer: pointer to the buffer containing the data to be written to 
+ 229:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         the EEPROM.
+ 230:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @param  WriteAddr: EEPROM's internal address to write to.
+ 231:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @param  NumByteToWrite: pointer to the variable holding number of bytes to 
+ 232:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         be written into the EEPROM. 
+ 233:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+ 234:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *        @note The variable pointed by NumByteToWrite is reset to 0 when all the 
+ 235:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *              data are written to the EEPROM. Application should monitor this 
+ 236:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *              variable in order know when the transfer is complete.
+ 237:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+ 238:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *        @note This function just configure the communication and enable the DMA 
+ 239:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *              channel to transfer data. Meanwhile, the user application may perform 
+ 240:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *              other tasks in parallel.
+ 241:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+ 242:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @retval EEPROM_OK (0) if operation is correctly performed, else return value 
+ 243:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         different from EEPROM_OK (0) or the timeout user callback.
+ 244:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+ 245:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** uint32_t BSP_EEPROM_WritePage(uint8_t* pBuffer, uint16_t WriteAddr, uint8_t* NumByteToWrite)
+ 246:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** { 
+ 247:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t buffersize = *NumByteToWrite;
+ 248:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t status = EEPROM_OK;
+ 249:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 250:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* Set the pointer to the Number of data to be written. This pointer will be used 
+ 251:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       by the DMA Transfer Completer interrupt Handler in order to reset the 
+ 252:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       variable to 0. User should check on this variable in order to know if the 
+ 253:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       DMA transfer has been complete or not. */
+ 254:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   EEPROMDataWrite = *NumByteToWrite;  
+ 255:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 256:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   if(EEPROM_IO_WriteData(EEPROMAddress, WriteAddr, pBuffer, buffersize) != HAL_OK)
+ 257:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 258:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     BSP_EEPROM_TIMEOUT_UserCallback();
+ 259:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     status = EEPROM_FAIL;
+ 260:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 261:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 262:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   if(BSP_EEPROM_WaitEepromStandbyState() != EEPROM_OK) 
+ 263:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 264:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     return EEPROM_FAIL;
+ 265:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 266:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 267:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* If all operations OK, return EEPROM_OK (0) */
+ 268:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   return status;
+ 269:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+ 270:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 271:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 272:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @brief  Writes buffer of data to the I2C EEPROM.
+ 273:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @param  pBuffer: pointer to the buffer  containing the data to be written 
+ 274:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         to the EEPROM.
+ 275:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @param  WriteAddr: EEPROM's internal address to write to.
+ 276:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @param  NumByteToWrite: number of bytes to write to the EEPROM.
+ 277:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @retval EEPROM_OK (0) if operation is correctly performed, else return value 
+ 278:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         different from EEPROM_OK (0) or the timeout user callback.
+ 279:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+ 280:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** uint32_t BSP_EEPROM_WriteBuffer(uint8_t *pBuffer, uint16_t WriteAddr, uint16_t NumByteToWrite)
+ 281:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** {
+ 282:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint16_t numofpage = 0, numofsingle = 0, count = 0;
+ 283:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint16_t addr = 0;
+ARM GAS  /tmp/ccoio22m.s 			page 8
+
+
+ 284:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint8_t  dataindex = 0;
+ 285:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t status = EEPROM_OK;
+ 286:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 287:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   addr = WriteAddr % EEPROM_PAGESIZE;
+ 288:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   count = EEPROM_PAGESIZE - addr;
+ 289:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   numofpage =  NumByteToWrite / EEPROM_PAGESIZE;
+ 290:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   numofsingle = NumByteToWrite % EEPROM_PAGESIZE;
+ 291:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****  
+ 292:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* If WriteAddr is EEPROM_PAGESIZE aligned */
+ 293:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   if(addr == 0) 
+ 294:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 295:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     /* If NumByteToWrite < EEPROM_PAGESIZE */
+ 296:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     if(numofpage == 0) 
+ 297:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+ 298:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       /* Store the number of data to be written */
+ 299:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       dataindex = numofsingle;
+ 300:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       /* Start writing data */
+ 301:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 302:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       if(status != EEPROM_OK)
+ 303:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 304:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         return status;
+ 305:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }
+ 306:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     }
+ 307:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     /* If NumByteToWrite > EEPROM_PAGESIZE */
+ 308:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     else  
+ 309:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+ 310:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       while(numofpage--)
+ 311:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 312:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Store the number of data to be written */
+ 313:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         dataindex = EEPROM_PAGESIZE;        
+ 314:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 315:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 316:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 317:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****           return status;
+ 318:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         }
+ 319:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         
+ 320:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         WriteAddr +=  EEPROM_PAGESIZE;
+ 321:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += EEPROM_PAGESIZE;
+ 322:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }
+ 323:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       
+ 324:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       if(numofsingle!=0)
+ 325:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 326:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Store the number of data to be written */
+ 327:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         dataindex = numofsingle;          
+ 328:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 329:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 330:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 331:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****           return status;
+ 332:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         }
+ 333:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }
+ 334:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     }
+ 335:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 336:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* If WriteAddr is not EEPROM_PAGESIZE aligned */
+ 337:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   else 
+ 338:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 339:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     /* If NumByteToWrite < EEPROM_PAGESIZE */
+ 340:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     if(numofpage== 0) 
+ARM GAS  /tmp/ccoio22m.s 			page 9
+
+
+ 341:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+ 342:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       /* If the number of data to be written is more than the remaining space 
+ 343:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       in the current page: */
+ 344:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       if(NumByteToWrite > count)
+ 345:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 346:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Store the number of data to be written */
+ 347:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         dataindex = count;        
+ 348:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Write the data contained in same page */
+ 349:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 350:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 351:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 352:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****           return status;
+ 353:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         }
+ 354:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         
+ 355:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Store the number of data to be written */
+ 356:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         dataindex = (NumByteToWrite - count);          
+ 357:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Write the remaining data in the following page */
+ 358:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage((uint8_t*)(pBuffer + count), (WriteAddr + count), (uint8_t*)(
+ 359:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 360:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 361:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****           return status;
+ 362:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         }
+ 363:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }      
+ 364:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       else      
+ 365:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 366:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Store the number of data to be written */
+ 367:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         dataindex = numofsingle;         
+ 368:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 369:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 370:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 371:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****           return status;
+ 372:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         }
+ 373:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }     
+ 374:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     }
+ 375:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     /* If NumByteToWrite > EEPROM_PAGESIZE */
+ 376:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     else
+ 377:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+ 378:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       NumByteToWrite -= count;
+ 379:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       numofpage =  NumByteToWrite / EEPROM_PAGESIZE;
+ 380:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       numofsingle = NumByteToWrite % EEPROM_PAGESIZE;
+ 381:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       
+ 382:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       if(count != 0)
+ 383:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {  
+ 384:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Store the number of data to be written */
+ 385:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         dataindex = count;         
+ 386:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 387:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 388:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 389:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****           return status;
+ 390:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         }
+ 391:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         WriteAddr += count;
+ 392:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += count;
+ 393:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       } 
+ 394:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       
+ 395:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       while(numofpage--)
+ 396:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 397:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Store the number of data to be written */
+ARM GAS  /tmp/ccoio22m.s 			page 10
+
+
+ 398:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         dataindex = EEPROM_PAGESIZE;          
+ 399:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 400:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 401:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 402:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****           return status;
+ 403:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         }
+ 404:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         WriteAddr +=  EEPROM_PAGESIZE;
+ 405:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += EEPROM_PAGESIZE;  
+ 406:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }
+ 407:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       if(numofsingle != 0)
+ 408:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 409:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Store the number of data to be written */
+ 410:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         dataindex = numofsingle;           
+ 411:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 412:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 413:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 414:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****           return status;
+ 415:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         }
+ 416:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }
+ 417:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     }
+ 418:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }  
+ 419:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****                                    
+ 420:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* If all operations OK, return EEPROM_OK (0) */
+ 421:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   return EEPROM_OK;
+ 422:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+ 423:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 424:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 425:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @brief  Wait for EEPROM Standby state.
+ 426:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+ 427:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @note  This function allows to wait and check that EEPROM has finished the 
+ 428:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *        last operation. It is mostly used after Write operation: after receiving
+ 429:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *        the buffer to be written, the EEPROM may need additional time to actually
+ 430:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *        perform the write operation. During this time, it doesn't answer to
+ 431:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *        I2C packets addressed to it. Once the write operation is complete
+ 432:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *        the EEPROM responds to its address.
+ 433:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * 
+ 434:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @retval EEPROM_OK (0) if operation is correctly performed, else return value 
+ 435:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   *         different from EEPROM_OK (0) or the timeout user callback.
+ 436:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+ 437:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** uint32_t BSP_EEPROM_WaitEepromStandbyState(void)      
+ 438:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** {
+ 439:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* Check if the maximum allowed number of trials has bee reached */
+ 440:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   if(EEPROM_IO_IsDeviceReady(EEPROMAddress, EEPROM_MAX_TRIALS) != HAL_OK)
+ 441:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 442:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     /* If the maximum number of trials has been reached, exit the function */
+ 443:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     BSP_EEPROM_TIMEOUT_UserCallback();
+ 444:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     return EEPROM_TIMEOUT;
+ 445:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 446:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   return EEPROM_OK;
+ 447:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+ 448:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 449:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** /**
+ 450:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   * @brief  Basic management of the timeout situation.
+ 451:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   */
+ 452:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** __weak void BSP_EEPROM_TIMEOUT_UserCallback(void)
+ 453:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** {
+ 116              		.loc 1 453 1 is_stmt 1 view -0
+ARM GAS  /tmp/ccoio22m.s 			page 11
+
+
+ 117              		.cfi_startproc
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 0, uses_anonymous_args = 0
+ 120              		@ link register save eliminated.
+ 454:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+ 121              		.loc 1 454 1 view .LVU19
+ 122 0000 7047     		bx	lr
+ 123              		.cfi_endproc
+ 124              	.LFE132:
+ 126              		.section	.text.BSP_EEPROM_ReadBuffer,"ax",%progbits
+ 127              		.align	1
+ 128              		.global	BSP_EEPROM_ReadBuffer
+ 129              		.syntax unified
+ 130              		.thumb
+ 131              		.thumb_func
+ 132              		.fpu fpv4-sp-d16
+ 134              	BSP_EEPROM_ReadBuffer:
+ 135              	.LVL3:
+ 136              	.LFB128:
+ 199:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t buffersize = *NumByteToRead;
+ 137              		.loc 1 199 1 view -0
+ 138              		.cfi_startproc
+ 139              		@ args = 0, pretend = 0, frame = 0
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 199:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t buffersize = *NumByteToRead;
+ 141              		.loc 1 199 1 is_stmt 0 view .LVU21
+ 142 0000 10B5     		push	{r4, lr}
+ 143              	.LCFI1:
+ 144              		.cfi_def_cfa_offset 8
+ 145              		.cfi_offset 4, -8
+ 146              		.cfi_offset 14, -4
+ 200:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 147              		.loc 1 200 3 is_stmt 1 view .LVU22
+ 200:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 148              		.loc 1 200 25 is_stmt 0 view .LVU23
+ 149 0002 1388     		ldrh	r3, [r2]
+ 150              	.LVL4:
+ 206:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 151              		.loc 1 206 3 is_stmt 1 view .LVU24
+ 206:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 152              		.loc 1 206 18 is_stmt 0 view .LVU25
+ 153 0004 074A     		ldr	r2, .L16
+ 154              	.LVL5:
+ 206:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 155              		.loc 1 206 18 view .LVU26
+ 156 0006 1380     		strh	r3, [r2]	@ movhi
+ 208:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 157              		.loc 1 208 3 is_stmt 1 view .LVU27
+ 208:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 158              		.loc 1 208 6 is_stmt 0 view .LVU28
+ 159 0008 074A     		ldr	r2, .L16+4
+ 160 000a 1488     		ldrh	r4, [r2]
+ 161 000c 0246     		mov	r2, r0
+ 162 000e 2046     		mov	r0, r4
+ 163              	.LVL6:
+ 208:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 164              		.loc 1 208 6 view .LVU29
+ARM GAS  /tmp/ccoio22m.s 			page 12
+
+
+ 165 0010 FFF7FEFF 		bl	EEPROM_IO_ReadData
+ 166              	.LVL7:
+ 208:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 167              		.loc 1 208 5 view .LVU30
+ 168 0014 08B9     		cbnz	r0, .L15
+ 215:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+ 169              		.loc 1 215 10 view .LVU31
+ 170 0016 0020     		movs	r0, #0
+ 171              	.L11:
+ 216:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 172              		.loc 1 216 1 view .LVU32
+ 173 0018 10BD     		pop	{r4, pc}
+ 174              	.L15:
+ 210:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     return EEPROM_FAIL;
+ 175              		.loc 1 210 5 is_stmt 1 view .LVU33
+ 176 001a FFF7FEFF 		bl	BSP_EEPROM_TIMEOUT_UserCallback
+ 177              	.LVL8:
+ 211:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 178              		.loc 1 211 5 view .LVU34
+ 211:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 179              		.loc 1 211 12 is_stmt 0 view .LVU35
+ 180 001e 0120     		movs	r0, #1
+ 181 0020 FAE7     		b	.L11
+ 182              	.L17:
+ 183 0022 00BF     		.align	2
+ 184              	.L16:
+ 185 0024 00000000 		.word	EEPROMDataRead
+ 186 0028 00000000 		.word	.LANCHOR0
+ 187              		.cfi_endproc
+ 188              	.LFE128:
+ 190              		.section	.text.BSP_EEPROM_WaitEepromStandbyState,"ax",%progbits
+ 191              		.align	1
+ 192              		.global	BSP_EEPROM_WaitEepromStandbyState
+ 193              		.syntax unified
+ 194              		.thumb
+ 195              		.thumb_func
+ 196              		.fpu fpv4-sp-d16
+ 198              	BSP_EEPROM_WaitEepromStandbyState:
+ 199              	.LFB131:
+ 438:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   /* Check if the maximum allowed number of trials has bee reached */
+ 200              		.loc 1 438 1 is_stmt 1 view -0
+ 201              		.cfi_startproc
+ 202              		@ args = 0, pretend = 0, frame = 0
+ 203              		@ frame_needed = 0, uses_anonymous_args = 0
+ 204 0000 08B5     		push	{r3, lr}
+ 205              	.LCFI2:
+ 206              		.cfi_def_cfa_offset 8
+ 207              		.cfi_offset 3, -8
+ 208              		.cfi_offset 14, -4
+ 440:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 209              		.loc 1 440 3 view .LVU37
+ 440:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 210              		.loc 1 440 6 is_stmt 0 view .LVU38
+ 211 0002 064B     		ldr	r3, .L23
+ 212 0004 1888     		ldrh	r0, [r3]
+ 213 0006 40F6B831 		movw	r1, #3000
+ 214 000a FFF7FEFF 		bl	EEPROM_IO_IsDeviceReady
+ARM GAS  /tmp/ccoio22m.s 			page 13
+
+
+ 215              	.LVL9:
+ 440:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 216              		.loc 1 440 5 view .LVU39
+ 217 000e 08B9     		cbnz	r0, .L22
+ 446:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+ 218              		.loc 1 446 10 view .LVU40
+ 219 0010 0020     		movs	r0, #0
+ 220              	.L18:
+ 447:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 221              		.loc 1 447 1 view .LVU41
+ 222 0012 08BD     		pop	{r3, pc}
+ 223              	.L22:
+ 443:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     return EEPROM_TIMEOUT;
+ 224              		.loc 1 443 5 is_stmt 1 view .LVU42
+ 225 0014 FFF7FEFF 		bl	BSP_EEPROM_TIMEOUT_UserCallback
+ 226              	.LVL10:
+ 444:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 227              		.loc 1 444 5 view .LVU43
+ 444:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 228              		.loc 1 444 12 is_stmt 0 view .LVU44
+ 229 0018 0220     		movs	r0, #2
+ 230 001a FAE7     		b	.L18
+ 231              	.L24:
+ 232              		.align	2
+ 233              	.L23:
+ 234 001c 00000000 		.word	.LANCHOR0
+ 235              		.cfi_endproc
+ 236              	.LFE131:
+ 238              		.section	.text.BSP_EEPROM_WritePage,"ax",%progbits
+ 239              		.align	1
+ 240              		.global	BSP_EEPROM_WritePage
+ 241              		.syntax unified
+ 242              		.thumb
+ 243              		.thumb_func
+ 244              		.fpu fpv4-sp-d16
+ 246              	BSP_EEPROM_WritePage:
+ 247              	.LVL11:
+ 248              	.LFB129:
+ 246:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t buffersize = *NumByteToWrite;
+ 249              		.loc 1 246 1 is_stmt 1 view -0
+ 250              		.cfi_startproc
+ 251              		@ args = 0, pretend = 0, frame = 0
+ 252              		@ frame_needed = 0, uses_anonymous_args = 0
+ 246:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t buffersize = *NumByteToWrite;
+ 253              		.loc 1 246 1 is_stmt 0 view .LVU46
+ 254 0000 10B5     		push	{r4, lr}
+ 255              	.LCFI3:
+ 256              		.cfi_def_cfa_offset 8
+ 257              		.cfi_offset 4, -8
+ 258              		.cfi_offset 14, -4
+ 247:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t status = EEPROM_OK;
+ 259              		.loc 1 247 3 is_stmt 1 view .LVU47
+ 247:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t status = EEPROM_OK;
+ 260              		.loc 1 247 25 is_stmt 0 view .LVU48
+ 261 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 262              	.LVL12:
+ 248:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ARM GAS  /tmp/ccoio22m.s 			page 14
+
+
+ 263              		.loc 1 248 3 is_stmt 1 view .LVU49
+ 254:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 264              		.loc 1 254 3 view .LVU50
+ 254:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 265              		.loc 1 254 19 is_stmt 0 view .LVU51
+ 266 0004 0A4A     		ldr	r2, .L33
+ 267              	.LVL13:
+ 254:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 268              		.loc 1 254 19 view .LVU52
+ 269 0006 1370     		strb	r3, [r2]
+ 256:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 270              		.loc 1 256 3 is_stmt 1 view .LVU53
+ 256:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 271              		.loc 1 256 6 is_stmt 0 view .LVU54
+ 272 0008 0A4A     		ldr	r2, .L33+4
+ 273 000a 1488     		ldrh	r4, [r2]
+ 274 000c 0246     		mov	r2, r0
+ 275 000e 2046     		mov	r0, r4
+ 276              	.LVL14:
+ 256:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 277              		.loc 1 256 6 view .LVU55
+ 278 0010 FFF7FEFF 		bl	EEPROM_IO_WriteData
+ 279              	.LVL15:
+ 256:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 280              		.loc 1 256 5 view .LVU56
+ 281 0014 28B9     		cbnz	r0, .L31
+ 248:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   
+ 282              		.loc 1 248 12 view .LVU57
+ 283 0016 0024     		movs	r4, #0
+ 284              	.LVL16:
+ 285              	.L26:
+ 262:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 286              		.loc 1 262 3 is_stmt 1 view .LVU58
+ 262:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 287              		.loc 1 262 6 is_stmt 0 view .LVU59
+ 288 0018 FFF7FEFF 		bl	BSP_EEPROM_WaitEepromStandbyState
+ 289              	.LVL17:
+ 262:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 290              		.loc 1 262 5 view .LVU60
+ 291 001c 28B9     		cbnz	r0, .L32
+ 292              	.LVL18:
+ 293              	.L25:
+ 269:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 294              		.loc 1 269 1 view .LVU61
+ 295 001e 2046     		mov	r0, r4
+ 296 0020 10BD     		pop	{r4, pc}
+ 297              	.LVL19:
+ 298              	.L31:
+ 258:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     status = EEPROM_FAIL;
+ 299              		.loc 1 258 5 is_stmt 1 view .LVU62
+ 300 0022 FFF7FEFF 		bl	BSP_EEPROM_TIMEOUT_UserCallback
+ 301              	.LVL20:
+ 259:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 302              		.loc 1 259 5 view .LVU63
+ 259:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 303              		.loc 1 259 12 is_stmt 0 view .LVU64
+ 304 0026 0124     		movs	r4, #1
+ARM GAS  /tmp/ccoio22m.s 			page 15
+
+
+ 305 0028 F6E7     		b	.L26
+ 306              	.LVL21:
+ 307              	.L32:
+ 264:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 308              		.loc 1 264 12 view .LVU65
+ 309 002a 0124     		movs	r4, #1
+ 310              	.LVL22:
+ 264:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   }
+ 311              		.loc 1 264 12 view .LVU66
+ 312 002c F7E7     		b	.L25
+ 313              	.L34:
+ 314 002e 00BF     		.align	2
+ 315              	.L33:
+ 316 0030 00000000 		.word	EEPROMDataWrite
+ 317 0034 00000000 		.word	.LANCHOR0
+ 318              		.cfi_endproc
+ 319              	.LFE129:
+ 321              		.section	.text.BSP_EEPROM_WriteBuffer,"ax",%progbits
+ 322              		.align	1
+ 323              		.global	BSP_EEPROM_WriteBuffer
+ 324              		.syntax unified
+ 325              		.thumb
+ 326              		.thumb_func
+ 327              		.fpu fpv4-sp-d16
+ 329              	BSP_EEPROM_WriteBuffer:
+ 330              	.LVL23:
+ 331              	.LFB130:
+ 281:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint16_t numofpage = 0, numofsingle = 0, count = 0;
+ 332              		.loc 1 281 1 is_stmt 1 view -0
+ 333              		.cfi_startproc
+ 334              		@ args = 0, pretend = 0, frame = 8
+ 335              		@ frame_needed = 0, uses_anonymous_args = 0
+ 281:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint16_t numofpage = 0, numofsingle = 0, count = 0;
+ 336              		.loc 1 281 1 is_stmt 0 view .LVU68
+ 337 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 338              	.LCFI4:
+ 339              		.cfi_def_cfa_offset 32
+ 340              		.cfi_offset 4, -32
+ 341              		.cfi_offset 5, -28
+ 342              		.cfi_offset 6, -24
+ 343              		.cfi_offset 7, -20
+ 344              		.cfi_offset 8, -16
+ 345              		.cfi_offset 9, -12
+ 346              		.cfi_offset 10, -8
+ 347              		.cfi_offset 14, -4
+ 348 0004 82B0     		sub	sp, sp, #8
+ 349              	.LCFI5:
+ 350              		.cfi_def_cfa_offset 40
+ 351 0006 0646     		mov	r6, r0
+ 352 0008 0C46     		mov	r4, r1
+ 353 000a 9146     		mov	r9, r2
+ 282:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint16_t addr = 0;
+ 354              		.loc 1 282 3 is_stmt 1 view .LVU69
+ 355              	.LVL24:
+ 283:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint8_t  dataindex = 0;
+ 356              		.loc 1 283 3 view .LVU70
+ 284:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   uint32_t status = EEPROM_OK;
+ARM GAS  /tmp/ccoio22m.s 			page 16
+
+
+ 357              		.loc 1 284 3 view .LVU71
+ 285:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 358              		.loc 1 285 3 view .LVU72
+ 287:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   count = EEPROM_PAGESIZE - addr;
+ 359              		.loc 1 287 3 view .LVU73
+ 287:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   count = EEPROM_PAGESIZE - addr;
+ 360              		.loc 1 287 8 is_stmt 0 view .LVU74
+ 361 000c 01F00303 		and	r3, r1, #3
+ 362              	.LVL25:
+ 288:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   numofpage =  NumByteToWrite / EEPROM_PAGESIZE;
+ 363              		.loc 1 288 3 is_stmt 1 view .LVU75
+ 289:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   numofsingle = NumByteToWrite % EEPROM_PAGESIZE;
+ 364              		.loc 1 289 3 view .LVU76
+ 290:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****  
+ 365              		.loc 1 290 3 view .LVU77
+ 290:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****  
+ 366              		.loc 1 290 15 is_stmt 0 view .LVU78
+ 367 0010 02F00307 		and	r7, r2, #3
+ 368              	.LVL26:
+ 293:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 369              		.loc 1 293 3 is_stmt 1 view .LVU79
+ 293:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****   {
+ 370              		.loc 1 293 5 is_stmt 0 view .LVU80
+ 371 0014 7BBB     		cbnz	r3, .L36
+ 372 0016 9208     		lsrs	r2, r2, #2
+ 373              	.LVL27:
+ 296:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+ 374              		.loc 1 296 5 is_stmt 1 view .LVU81
+ 296:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+ 375              		.loc 1 296 7 is_stmt 0 view .LVU82
+ 376 0018 B9F1030F 		cmp	r9, #3
+ 377 001c 12D9     		bls	.L47
+ 378              	.LVL28:
+ 379              	.L37:
+ 310:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 380              		.loc 1 310 22 view .LVU83
+ 381 001e 531E     		subs	r3, r2, #1
+ 382 0020 9DB2     		uxth	r5, r3
+ 383              	.LVL29:
+ 310:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 384              		.loc 1 310 12 view .LVU84
+ 385 0022 D2B1     		cbz	r2, .L48
+ 313:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 386              		.loc 1 313 9 is_stmt 1 view .LVU85
+ 313:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 387              		.loc 1 313 19 is_stmt 0 view .LVU86
+ 388 0024 0423     		movs	r3, #4
+ 389 0026 8DF80730 		strb	r3, [sp, #7]
+ 314:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 390              		.loc 1 314 9 is_stmt 1 view .LVU87
+ 314:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 391              		.loc 1 314 18 is_stmt 0 view .LVU88
+ 392 002a 0DF10702 		add	r2, sp, #7
+ 393 002e 2146     		mov	r1, r4
+ 394 0030 3046     		mov	r0, r6
+ 395 0032 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 396              	.LVL30:
+ARM GAS  /tmp/ccoio22m.s 			page 17
+
+
+ 315:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 397              		.loc 1 315 9 is_stmt 1 view .LVU89
+ 315:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 398              		.loc 1 315 11 is_stmt 0 view .LVU90
+ 399 0036 8046     		mov	r8, r0
+ 400 0038 58B9     		cbnz	r0, .L35
+ 320:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += EEPROM_PAGESIZE;
+ 401              		.loc 1 320 9 is_stmt 1 view .LVU91
+ 320:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += EEPROM_PAGESIZE;
+ 402              		.loc 1 320 19 is_stmt 0 view .LVU92
+ 403 003a 0434     		adds	r4, r4, #4
+ 404              	.LVL31:
+ 320:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += EEPROM_PAGESIZE;
+ 405              		.loc 1 320 19 view .LVU93
+ 406 003c A4B2     		uxth	r4, r4
+ 407              	.LVL32:
+ 321:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }
+ 408              		.loc 1 321 9 is_stmt 1 view .LVU94
+ 321:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }
+ 409              		.loc 1 321 17 is_stmt 0 view .LVU95
+ 410 003e 0436     		adds	r6, r6, #4
+ 411              	.LVL33:
+ 310:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 412              		.loc 1 310 22 view .LVU96
+ 413 0040 2A46     		mov	r2, r5
+ 414 0042 ECE7     		b	.L37
+ 415              	.LVL34:
+ 416              	.L47:
+ 299:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       /* Start writing data */
+ 417              		.loc 1 299 7 is_stmt 1 view .LVU97
+ 299:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       /* Start writing data */
+ 418              		.loc 1 299 17 is_stmt 0 view .LVU98
+ 419 0044 8DF80770 		strb	r7, [sp, #7]
+ 301:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       if(status != EEPROM_OK)
+ 420              		.loc 1 301 7 is_stmt 1 view .LVU99
+ 301:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       if(status != EEPROM_OK)
+ 421              		.loc 1 301 16 is_stmt 0 view .LVU100
+ 422 0048 0DF10702 		add	r2, sp, #7
+ 423 004c FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 424              	.LVL35:
+ 301:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       if(status != EEPROM_OK)
+ 425              		.loc 1 301 16 view .LVU101
+ 426 0050 8046     		mov	r8, r0
+ 427              	.LVL36:
+ 302:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 428              		.loc 1 302 7 is_stmt 1 view .LVU102
+ 429              	.L35:
+ 422:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** 
+ 430              		.loc 1 422 1 is_stmt 0 view .LVU103
+ 431 0052 4046     		mov	r0, r8
+ 432 0054 02B0     		add	sp, sp, #8
+ 433              	.LCFI6:
+ 434              		.cfi_remember_state
+ 435              		.cfi_def_cfa_offset 32
+ 436              		@ sp needed
+ 437 0056 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 438              	.LVL37:
+ARM GAS  /tmp/ccoio22m.s 			page 18
+
+
+ 439              	.L48:
+ 440              	.LCFI7:
+ 441              		.cfi_restore_state
+ 324:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 442              		.loc 1 324 7 is_stmt 1 view .LVU104
+ 324:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 443              		.loc 1 324 9 is_stmt 0 view .LVU105
+ 444 005a 17B9     		cbnz	r7, .L49
+ 421:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c **** }
+ 445              		.loc 1 421 10 view .LVU106
+ 446 005c 4FF00008 		mov	r8, #0
+ 447 0060 F7E7     		b	.L35
+ 448              	.L49:
+ 327:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 449              		.loc 1 327 9 is_stmt 1 view .LVU107
+ 327:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 450              		.loc 1 327 19 is_stmt 0 view .LVU108
+ 451 0062 8DF80770 		strb	r7, [sp, #7]
+ 328:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 452              		.loc 1 328 9 is_stmt 1 view .LVU109
+ 328:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 453              		.loc 1 328 18 is_stmt 0 view .LVU110
+ 454 0066 0DF10702 		add	r2, sp, #7
+ 455 006a 2146     		mov	r1, r4
+ 456 006c 3046     		mov	r0, r6
+ 457 006e FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 458              	.LVL38:
+ 459 0072 8046     		mov	r8, r0
+ 460              	.LVL39:
+ 329:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 461              		.loc 1 329 9 is_stmt 1 view .LVU111
+ 462 0074 EDE7     		b	.L35
+ 463              	.LVL40:
+ 464              	.L36:
+ 329:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 465              		.loc 1 329 9 is_stmt 0 view .LVU112
+ 466 0076 C3F10405 		rsb	r5, r3, #4
+ 467 007a ADB2     		uxth	r5, r5
+ 340:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+ 468              		.loc 1 340 5 is_stmt 1 view .LVU113
+ 340:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****     {
+ 469              		.loc 1 340 7 is_stmt 0 view .LVU114
+ 470 007c 032A     		cmp	r2, #3
+ 471 007e 20D8     		bhi	.L40
+ 344:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 472              		.loc 1 344 7 is_stmt 1 view .LVU115
+ 344:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 473              		.loc 1 344 9 is_stmt 0 view .LVU116
+ 474 0080 9542     		cmp	r5, r2
+ 475 0082 16D2     		bcs	.L41
+ 347:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Write the data contained in same page */
+ 476              		.loc 1 347 9 is_stmt 1 view .LVU117
+ 347:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Write the data contained in same page */
+ 477              		.loc 1 347 19 is_stmt 0 view .LVU118
+ 478 0084 EFB2     		uxtb	r7, r5
+ 479              	.LVL41:
+ 347:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Write the data contained in same page */
+ARM GAS  /tmp/ccoio22m.s 			page 19
+
+
+ 480              		.loc 1 347 19 view .LVU119
+ 481 0086 8DF80770 		strb	r7, [sp, #7]
+ 349:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 482              		.loc 1 349 9 is_stmt 1 view .LVU120
+ 349:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 483              		.loc 1 349 18 is_stmt 0 view .LVU121
+ 484 008a 0DF10702 		add	r2, sp, #7
+ 485              	.LVL42:
+ 349:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 486              		.loc 1 349 18 view .LVU122
+ 487 008e FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 488              	.LVL43:
+ 350:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 489              		.loc 1 350 9 is_stmt 1 view .LVU123
+ 350:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 490              		.loc 1 350 11 is_stmt 0 view .LVU124
+ 491 0092 8046     		mov	r8, r0
+ 492 0094 0028     		cmp	r0, #0
+ 493 0096 DCD1     		bne	.L35
+ 356:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Write the remaining data in the following page */
+ 494              		.loc 1 356 9 is_stmt 1 view .LVU125
+ 356:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Write the remaining data in the following page */
+ 495              		.loc 1 356 37 is_stmt 0 view .LVU126
+ 496 0098 A9EB0703 		sub	r3, r9, r7
+ 356:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         /* Write the remaining data in the following page */
+ 497              		.loc 1 356 19 view .LVU127
+ 498 009c 8DF80730 		strb	r3, [sp, #7]
+ 358:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 499              		.loc 1 358 9 is_stmt 1 view .LVU128
+ 358:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 500              		.loc 1 358 18 is_stmt 0 view .LVU129
+ 501 00a0 6119     		adds	r1, r4, r5
+ 502 00a2 0DF10702 		add	r2, sp, #7
+ 503 00a6 89B2     		uxth	r1, r1
+ 504 00a8 7019     		adds	r0, r6, r5
+ 505              	.LVL44:
+ 358:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 506              		.loc 1 358 18 view .LVU130
+ 507 00aa FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 508              	.LVL45:
+ 509 00ae 8046     		mov	r8, r0
+ 510              	.LVL46:
+ 359:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 511              		.loc 1 359 9 is_stmt 1 view .LVU131
+ 512 00b0 CFE7     		b	.L35
+ 513              	.LVL47:
+ 514              	.L41:
+ 367:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 515              		.loc 1 367 9 view .LVU132
+ 367:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 516              		.loc 1 367 19 is_stmt 0 view .LVU133
+ 517 00b2 8DF80770 		strb	r7, [sp, #7]
+ 368:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 518              		.loc 1 368 9 is_stmt 1 view .LVU134
+ 368:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 519              		.loc 1 368 18 is_stmt 0 view .LVU135
+ 520 00b6 0DF10702 		add	r2, sp, #7
+ARM GAS  /tmp/ccoio22m.s 			page 20
+
+
+ 521              	.LVL48:
+ 368:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 522              		.loc 1 368 18 view .LVU136
+ 523 00ba FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 524              	.LVL49:
+ 368:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 525              		.loc 1 368 18 view .LVU137
+ 526 00be 8046     		mov	r8, r0
+ 527              	.LVL50:
+ 369:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 528              		.loc 1 369 9 is_stmt 1 view .LVU138
+ 529 00c0 C7E7     		b	.L35
+ 530              	.LVL51:
+ 531              	.L40:
+ 378:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       numofpage =  NumByteToWrite / EEPROM_PAGESIZE;
+ 532              		.loc 1 378 7 view .LVU139
+ 378:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       numofpage =  NumByteToWrite / EEPROM_PAGESIZE;
+ 533              		.loc 1 378 22 is_stmt 0 view .LVU140
+ 534 00c2 043B     		subs	r3, r3, #4
+ 535              	.LVL52:
+ 378:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       numofpage =  NumByteToWrite / EEPROM_PAGESIZE;
+ 536              		.loc 1 378 22 view .LVU141
+ 537 00c4 1344     		add	r3, r3, r2
+ 538              	.LVL53:
+ 378:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       numofpage =  NumByteToWrite / EEPROM_PAGESIZE;
+ 539              		.loc 1 378 22 view .LVU142
+ 540 00c6 9BB2     		uxth	r3, r3
+ 541              	.LVL54:
+ 379:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       numofsingle = NumByteToWrite % EEPROM_PAGESIZE;
+ 542              		.loc 1 379 7 is_stmt 1 view .LVU143
+ 379:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       numofsingle = NumByteToWrite % EEPROM_PAGESIZE;
+ 543              		.loc 1 379 17 is_stmt 0 view .LVU144
+ 544 00c8 9F08     		lsrs	r7, r3, #2
+ 545              	.LVL55:
+ 380:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       
+ 546              		.loc 1 380 7 is_stmt 1 view .LVU145
+ 380:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       
+ 547              		.loc 1 380 19 is_stmt 0 view .LVU146
+ 548 00ca 03F00309 		and	r9, r3, #3
+ 549              	.LVL56:
+ 382:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {  
+ 550              		.loc 1 382 7 is_stmt 1 view .LVU147
+ 385:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 551              		.loc 1 385 9 view .LVU148
+ 385:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 552              		.loc 1 385 19 is_stmt 0 view .LVU149
+ 553 00ce 8DF80750 		strb	r5, [sp, #7]
+ 386:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 554              		.loc 1 386 9 is_stmt 1 view .LVU150
+ 386:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 555              		.loc 1 386 18 is_stmt 0 view .LVU151
+ 556 00d2 0DF10702 		add	r2, sp, #7
+ 557 00d6 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 558              	.LVL57:
+ 387:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 559              		.loc 1 387 9 is_stmt 1 view .LVU152
+ 387:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ARM GAS  /tmp/ccoio22m.s 			page 21
+
+
+ 560              		.loc 1 387 11 is_stmt 0 view .LVU153
+ 561 00da 8046     		mov	r8, r0
+ 562 00dc 0028     		cmp	r0, #0
+ 563 00de B8D1     		bne	.L35
+ 391:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += count;
+ 564              		.loc 1 391 9 is_stmt 1 view .LVU154
+ 391:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += count;
+ 565              		.loc 1 391 19 is_stmt 0 view .LVU155
+ 566 00e0 2C44     		add	r4, r4, r5
+ 567              	.LVL58:
+ 391:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += count;
+ 568              		.loc 1 391 19 view .LVU156
+ 569 00e2 A4B2     		uxth	r4, r4
+ 570              	.LVL59:
+ 392:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       } 
+ 571              		.loc 1 392 9 is_stmt 1 view .LVU157
+ 392:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       } 
+ 572              		.loc 1 392 17 is_stmt 0 view .LVU158
+ 573 00e4 2E44     		add	r6, r6, r5
+ 574              	.LVL60:
+ 575              	.L42:
+ 395:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 576              		.loc 1 395 22 view .LVU159
+ 577 00e6 7B1E     		subs	r3, r7, #1
+ 578 00e8 1FFA83FA 		uxth	r10, r3
+ 579              	.LVL61:
+ 395:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 580              		.loc 1 395 12 view .LVU160
+ 581 00ec 77B1     		cbz	r7, .L50
+ 398:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 582              		.loc 1 398 9 is_stmt 1 view .LVU161
+ 398:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 583              		.loc 1 398 19 is_stmt 0 view .LVU162
+ 584 00ee 0423     		movs	r3, #4
+ 585 00f0 8DF80730 		strb	r3, [sp, #7]
+ 399:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 586              		.loc 1 399 9 is_stmt 1 view .LVU163
+ 399:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 587              		.loc 1 399 18 is_stmt 0 view .LVU164
+ 588 00f4 0DF10702 		add	r2, sp, #7
+ 589 00f8 2146     		mov	r1, r4
+ 590 00fa 3046     		mov	r0, r6
+ 591              	.LVL62:
+ 399:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 592              		.loc 1 399 18 view .LVU165
+ 593 00fc FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 594              	.LVL63:
+ 400:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 595              		.loc 1 400 9 is_stmt 1 view .LVU166
+ 400:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 596              		.loc 1 400 11 is_stmt 0 view .LVU167
+ 597 0100 88B9     		cbnz	r0, .L45
+ 404:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += EEPROM_PAGESIZE;  
+ 598              		.loc 1 404 9 is_stmt 1 view .LVU168
+ 404:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += EEPROM_PAGESIZE;  
+ 599              		.loc 1 404 19 is_stmt 0 view .LVU169
+ 600 0102 0434     		adds	r4, r4, #4
+ARM GAS  /tmp/ccoio22m.s 			page 22
+
+
+ 601              	.LVL64:
+ 404:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         pBuffer += EEPROM_PAGESIZE;  
+ 602              		.loc 1 404 19 view .LVU170
+ 603 0104 A4B2     		uxth	r4, r4
+ 604              	.LVL65:
+ 405:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }
+ 605              		.loc 1 405 9 is_stmt 1 view .LVU171
+ 405:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       }
+ 606              		.loc 1 405 17 is_stmt 0 view .LVU172
+ 607 0106 0436     		adds	r6, r6, #4
+ 608              	.LVL66:
+ 395:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 609              		.loc 1 395 22 view .LVU173
+ 610 0108 5746     		mov	r7, r10
+ 611 010a ECE7     		b	.L42
+ 612              	.L50:
+ 407:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 613              		.loc 1 407 7 is_stmt 1 view .LVU174
+ 407:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****       {
+ 614              		.loc 1 407 9 is_stmt 0 view .LVU175
+ 615 010c B9F1000F 		cmp	r9, #0
+ 616 0110 9FD0     		beq	.L35
+ 410:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 617              		.loc 1 410 9 is_stmt 1 view .LVU176
+ 410:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         status = BSP_EEPROM_WritePage(pBuffer, WriteAddr, (uint8_t*)(&dataindex));
+ 618              		.loc 1 410 19 is_stmt 0 view .LVU177
+ 619 0112 8DF80790 		strb	r9, [sp, #7]
+ 411:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 620              		.loc 1 411 9 is_stmt 1 view .LVU178
+ 411:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 621              		.loc 1 411 18 is_stmt 0 view .LVU179
+ 622 0116 0DF10702 		add	r2, sp, #7
+ 623 011a 2146     		mov	r1, r4
+ 624 011c 3046     		mov	r0, r6
+ 625              	.LVL67:
+ 411:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         if(status != EEPROM_OK)
+ 626              		.loc 1 411 18 view .LVU180
+ 627 011e FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 628              	.LVL68:
+ 629 0122 8046     		mov	r8, r0
+ 630              	.LVL69:
+ 412:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         {
+ 631              		.loc 1 412 9 is_stmt 1 view .LVU181
+ 632 0124 95E7     		b	.L35
+ 633              	.L45:
+ 402:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i_discovery_eeprom.c ****         }
+ 634              		.loc 1 402 18 is_stmt 0 view .LVU182
+ 635 0126 8046     		mov	r8, r0
+ 636 0128 93E7     		b	.L35
+ 637              		.cfi_endproc
+ 638              	.LFE130:
+ 640              		.comm	EEPROMDataWrite,1,1
+ 641              		.comm	EEPROMDataRead,2,2
+ 642              		.global	EEPROMTimeout
+ 643              		.global	EEPROMAddress
+ 644              		.section	.bss.EEPROMAddress,"aw",%nobits
+ 645              		.align	1
+ARM GAS  /tmp/ccoio22m.s 			page 23
+
+
+ 646              		.set	.LANCHOR0,. + 0
+ 649              	EEPROMAddress:
+ 650 0000 0000     		.space	2
+ 651              		.section	.data.EEPROMTimeout,"aw"
+ 652              		.align	2
+ 655              	EEPROMTimeout:
+ 656 0000 E8030000 		.word	1000
+ 657              		.text
+ 658              	.Letext0:
+ 659              		.file 2 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_default_t
+ 660              		.file 3 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 661              		.file 4 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Include/core_cm4.h"
+ 662              		.file 5 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+ 663              		.file 6 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h"
+ 664              		.file 7 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h"
+ 665              		.file 8 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdd
+ 666              		.file 9 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h"
+ 667              		.file 10 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i
+ 668              		.file 11 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ARM GAS  /tmp/ccoio22m.s 			page 24
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32469i_discovery_eeprom.c
+     /tmp/ccoio22m.s:18     .text.BSP_EEPROM_Init:0000000000000000 $t
+     /tmp/ccoio22m.s:26     .text.BSP_EEPROM_Init:0000000000000000 BSP_EEPROM_Init
+     /tmp/ccoio22m.s:80     .text.BSP_EEPROM_Init:0000000000000034 $d
+     /tmp/ccoio22m.s:85     .text.BSP_EEPROM_DeInit:0000000000000000 $t
+     /tmp/ccoio22m.s:92     .text.BSP_EEPROM_DeInit:0000000000000000 BSP_EEPROM_DeInit
+     /tmp/ccoio22m.s:107    .text.BSP_EEPROM_TIMEOUT_UserCallback:0000000000000000 $t
+     /tmp/ccoio22m.s:114    .text.BSP_EEPROM_TIMEOUT_UserCallback:0000000000000000 BSP_EEPROM_TIMEOUT_UserCallback
+     /tmp/ccoio22m.s:127    .text.BSP_EEPROM_ReadBuffer:0000000000000000 $t
+     /tmp/ccoio22m.s:134    .text.BSP_EEPROM_ReadBuffer:0000000000000000 BSP_EEPROM_ReadBuffer
+     /tmp/ccoio22m.s:185    .text.BSP_EEPROM_ReadBuffer:0000000000000024 $d
+                            *COM*:0000000000000002 EEPROMDataRead
+     /tmp/ccoio22m.s:191    .text.BSP_EEPROM_WaitEepromStandbyState:0000000000000000 $t
+     /tmp/ccoio22m.s:198    .text.BSP_EEPROM_WaitEepromStandbyState:0000000000000000 BSP_EEPROM_WaitEepromStandbyState
+     /tmp/ccoio22m.s:234    .text.BSP_EEPROM_WaitEepromStandbyState:000000000000001c $d
+     /tmp/ccoio22m.s:239    .text.BSP_EEPROM_WritePage:0000000000000000 $t
+     /tmp/ccoio22m.s:246    .text.BSP_EEPROM_WritePage:0000000000000000 BSP_EEPROM_WritePage
+     /tmp/ccoio22m.s:316    .text.BSP_EEPROM_WritePage:0000000000000030 $d
+                            *COM*:0000000000000001 EEPROMDataWrite
+     /tmp/ccoio22m.s:322    .text.BSP_EEPROM_WriteBuffer:0000000000000000 $t
+     /tmp/ccoio22m.s:329    .text.BSP_EEPROM_WriteBuffer:0000000000000000 BSP_EEPROM_WriteBuffer
+     /tmp/ccoio22m.s:655    .data.EEPROMTimeout:0000000000000000 EEPROMTimeout
+     /tmp/ccoio22m.s:649    .bss.EEPROMAddress:0000000000000000 EEPROMAddress
+     /tmp/ccoio22m.s:645    .bss.EEPROMAddress:0000000000000000 $d
+     /tmp/ccoio22m.s:652    .data.EEPROMTimeout:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+EEPROM_IO_Init
+EEPROM_IO_IsDeviceReady
+EEPROM_IO_ReadData
+EEPROM_IO_WriteData

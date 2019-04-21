@@ -1,0 +1,780 @@
+ARM GAS  /tmp/cckd31i3.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.SystemClock_Config,"ax",%progbits
+  18              		.align	1
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	SystemClock_Config:
+  26              	.LFB127:
+  27              		.file 1 "Src/main.c"
+   1:Src/main.c    **** /**
+   2:Src/main.c    ****   ******************************************************************************
+   3:Src/main.c    ****   * @file    ADC/ADC_RegularConversion_DMA/Src/main.c
+   4:Src/main.c    ****   * @author  MCD Application Team
+   5:Src/main.c    ****   * @brief   This example describes how to use the DMA to transfer
+   6:Src/main.c    ****   *          continuously converted data.
+   7:Src/main.c    ****   ******************************************************************************
+   8:Src/main.c    ****   * @attention
+   9:Src/main.c    ****   *
+  10:Src/main.c    ****   * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  11:Src/main.c    ****   *
+  12:Src/main.c    ****   * Redistribution and use in source and binary forms, with or without modification,
+  13:Src/main.c    ****   * are permitted provided that the following conditions are met:
+  14:Src/main.c    ****   *   1. Redistributions of source code must retain the above copyright notice,
+  15:Src/main.c    ****   *      this list of conditions and the following disclaimer.
+  16:Src/main.c    ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  17:Src/main.c    ****   *      this list of conditions and the following disclaimer in the documentation
+  18:Src/main.c    ****   *      and/or other materials provided with the distribution.
+  19:Src/main.c    ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  20:Src/main.c    ****   *      may be used to endorse or promote products derived from this software
+  21:Src/main.c    ****   *      without specific prior written permission.
+  22:Src/main.c    ****   *
+  23:Src/main.c    ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  24:Src/main.c    ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  25:Src/main.c    ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  26:Src/main.c    ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  27:Src/main.c    ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  28:Src/main.c    ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  29:Src/main.c    ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  30:Src/main.c    ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  31:Src/main.c    ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ARM GAS  /tmp/cckd31i3.s 			page 2
+
+
+  32:Src/main.c    ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  33:Src/main.c    ****   *
+  34:Src/main.c    ****   ******************************************************************************
+  35:Src/main.c    ****   */
+  36:Src/main.c    **** 
+  37:Src/main.c    **** /* Includes ------------------------------------------------------------------*/
+  38:Src/main.c    **** #include "main.h"
+  39:Src/main.c    **** 
+  40:Src/main.c    **** /** @addtogroup STM32F4xx_HAL_Examples
+  41:Src/main.c    ****   * @{
+  42:Src/main.c    ****   */
+  43:Src/main.c    **** 
+  44:Src/main.c    **** /** @addtogroup ADC_RegularConversion_DMA
+  45:Src/main.c    ****   * @{
+  46:Src/main.c    ****   */
+  47:Src/main.c    **** 
+  48:Src/main.c    **** /* Private typedef -----------------------------------------------------------*/
+  49:Src/main.c    **** /* Private define ------------------------------------------------------------*/
+  50:Src/main.c    **** /* Private macro -------------------------------------------------------------*/
+  51:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
+  52:Src/main.c    **** /* ADC handler declaration */
+  53:Src/main.c    **** ADC_HandleTypeDef    AdcHandle;
+  54:Src/main.c    **** 
+  55:Src/main.c    **** /* Variable used to get converted value */
+  56:Src/main.c    **** __IO uint16_t uhADCxConvertedValue = 0;
+  57:Src/main.c    **** 
+  58:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
+  59:Src/main.c    **** static void SystemClock_Config(void);
+  60:Src/main.c    **** static void Error_Handler(void);
+  61:Src/main.c    **** 
+  62:Src/main.c    **** /* Private functions ---------------------------------------------------------*/
+  63:Src/main.c    **** 
+  64:Src/main.c    **** /**
+  65:Src/main.c    ****   * @brief  Main program.
+  66:Src/main.c    ****   * @param  None
+  67:Src/main.c    ****   * @retval None
+  68:Src/main.c    ****   */
+  69:Src/main.c    **** int main(void)
+  70:Src/main.c    **** {
+  71:Src/main.c    ****   ADC_ChannelConfTypeDef sConfig;
+  72:Src/main.c    **** 
+  73:Src/main.c    **** 
+  74:Src/main.c    ****   /* STM32F4xx HAL library initialization:
+  75:Src/main.c    ****        - Configure the Flash prefetch, instruction and Data caches
+  76:Src/main.c    ****        - Systick timer is configured by default as source of time base, but user 
+  77:Src/main.c    ****          can eventually implement his proper time base source (a general purpose 
+  78:Src/main.c    ****          timer for example or other time source), keeping in mind that Time base 
+  79:Src/main.c    ****          duration should be kept 1ms since PPP_TIMEOUT_VALUEs are defined and 
+  80:Src/main.c    ****          handled in milliseconds basis.
+  81:Src/main.c    ****        - Set NVIC Group Priority to 4
+  82:Src/main.c    ****        - Low Level Initialization: global MSP (MCU Support Package) initialization
+  83:Src/main.c    ****      */
+  84:Src/main.c    ****   HAL_Init();
+  85:Src/main.c    **** 
+  86:Src/main.c    ****   /* Configure the system clock to 180 MHz */
+  87:Src/main.c    ****   SystemClock_Config();
+  88:Src/main.c    **** 
+ARM GAS  /tmp/cckd31i3.s 			page 3
+
+
+  89:Src/main.c    ****   /* Configure LED1 and LED3 */
+  90:Src/main.c    ****   BSP_LED_Init(LED1);
+  91:Src/main.c    ****   BSP_LED_Init(LED3);
+  92:Src/main.c    **** 
+  93:Src/main.c    **** 
+  94:Src/main.c    ****   /*##-1- Configure the ADC peripheral #######################################*/
+  95:Src/main.c    ****   AdcHandle.Instance          = ADCx;
+  96:Src/main.c    ****   
+  97:Src/main.c    ****   AdcHandle.Init.ClockPrescaler        = ADC_CLOCKPRESCALER_PCLK_DIV4;
+  98:Src/main.c    ****   AdcHandle.Init.Resolution            = ADC_RESOLUTION_12B;
+  99:Src/main.c    ****   AdcHandle.Init.ScanConvMode          = DISABLE;                       /* Sequencer disabled (ADC 
+ 100:Src/main.c    ****   AdcHandle.Init.ContinuousConvMode    = ENABLE;                        /* Continuous mode disabled
+ 101:Src/main.c    ****   AdcHandle.Init.DiscontinuousConvMode = DISABLE;                       /* Parameter discarded beca
+ 102:Src/main.c    ****   AdcHandle.Init.NbrOfDiscConversion   = 0;
+ 103:Src/main.c    ****   AdcHandle.Init.ExternalTrigConvEdge  = ADC_EXTERNALTRIGCONVEDGE_NONE;        /* Conversion start 
+ 104:Src/main.c    ****   AdcHandle.Init.ExternalTrigConv      = ADC_EXTERNALTRIGCONV_T1_CC1;
+ 105:Src/main.c    ****   AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
+ 106:Src/main.c    ****   AdcHandle.Init.NbrOfConversion       = 1;
+ 107:Src/main.c    ****   AdcHandle.Init.DMAContinuousRequests = ENABLE;
+ 108:Src/main.c    ****   AdcHandle.Init.EOCSelection          = DISABLE;
+ 109:Src/main.c    **** 
+ 110:Src/main.c    ****   if (HAL_ADC_Init(&AdcHandle) != HAL_OK)
+ 111:Src/main.c    ****   {
+ 112:Src/main.c    ****     /* ADC initialization Error */
+ 113:Src/main.c    ****     Error_Handler();
+ 114:Src/main.c    ****   }
+ 115:Src/main.c    **** 
+ 116:Src/main.c    ****   /*##-2- Configure ADC regular channel ######################################*/
+ 117:Src/main.c    ****   sConfig.Channel      = ADC_CHANNEL_5;
+ 118:Src/main.c    ****   sConfig.Rank         = 1;
+ 119:Src/main.c    ****   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+ 120:Src/main.c    ****   sConfig.Offset       = 0;
+ 121:Src/main.c    **** 
+ 122:Src/main.c    ****   if (HAL_ADC_ConfigChannel(&AdcHandle, &sConfig) != HAL_OK)
+ 123:Src/main.c    ****   {
+ 124:Src/main.c    ****     /* Channel Configuration Error */
+ 125:Src/main.c    ****     Error_Handler();
+ 126:Src/main.c    ****   }
+ 127:Src/main.c    **** 
+ 128:Src/main.c    **** 
+ 129:Src/main.c    ****   /*##-3- Start the conversion process #######################################*/
+ 130:Src/main.c    ****   /* Note: Considering IT occurring after each number of ADC conversions      */
+ 131:Src/main.c    ****   /*       (IT by DMA end of transfer), select sampling time and ADC clock    */
+ 132:Src/main.c    ****   /*       with sufficient duration to not create an overhead situation in    */
+ 133:Src/main.c    ****   /*        IRQHandler. */ 
+ 134:Src/main.c    ****   if(HAL_ADC_Start_DMA(&AdcHandle, (uint32_t*)&uhADCxConvertedValue, 1) != HAL_OK)
+ 135:Src/main.c    ****   {
+ 136:Src/main.c    ****     /* Start Conversation Error */
+ 137:Src/main.c    ****     Error_Handler();
+ 138:Src/main.c    ****   }
+ 139:Src/main.c    **** 
+ 140:Src/main.c    ****   /* Infinite loop */
+ 141:Src/main.c    ****   while (1)
+ 142:Src/main.c    ****   {
+ 143:Src/main.c    ****   }
+ 144:Src/main.c    **** }
+ 145:Src/main.c    **** 
+ARM GAS  /tmp/cckd31i3.s 			page 4
+
+
+ 146:Src/main.c    **** /**
+ 147:Src/main.c    ****   * @brief  System Clock Configuration
+ 148:Src/main.c    ****   *         The system Clock is configured as follow : 
+ 149:Src/main.c    ****   *            System Clock source            = PLL (HSE)
+ 150:Src/main.c    ****   *            SYSCLK(Hz)                     = 180000000
+ 151:Src/main.c    ****   *            HCLK(Hz)                       = 180000000
+ 152:Src/main.c    ****   *            AHB Prescaler                  = 1
+ 153:Src/main.c    ****   *            APB1 Prescaler                 = 4
+ 154:Src/main.c    ****   *            APB2 Prescaler                 = 2
+ 155:Src/main.c    ****   *            HSE Frequency(Hz)              = 8000000
+ 156:Src/main.c    ****   *            PLL_M                          = 8
+ 157:Src/main.c    ****   *            PLL_N                          = 360
+ 158:Src/main.c    ****   *            PLL_P                          = 2
+ 159:Src/main.c    ****   *            PLL_Q                          = 7
+ 160:Src/main.c    ****   *            PLL_R                          = 6
+ 161:Src/main.c    ****   *            VDD(V)                         = 3.3
+ 162:Src/main.c    ****   *            Main regulator output voltage  = Scale1 mode
+ 163:Src/main.c    ****   *            Flash Latency(WS)              = 5
+ 164:Src/main.c    ****   * @param  None
+ 165:Src/main.c    ****   * @retval None
+ 166:Src/main.c    ****   */
+ 167:Src/main.c    **** static void SystemClock_Config(void)
+ 168:Src/main.c    **** {
+  28              		.loc 1 168 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 80
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 00B5     		push	{lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 4
+  35              		.cfi_offset 14, -4
+  36 0002 95B0     		sub	sp, sp, #84
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 88
+ 169:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
+  39              		.loc 1 169 3 view .LVU1
+ 170:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct;
+  40              		.loc 1 170 3 view .LVU2
+ 171:Src/main.c    ****   HAL_StatusTypeDef ret = HAL_OK;
+  41              		.loc 1 171 3 view .LVU3
+  42              	.LVL0:
+ 172:Src/main.c    **** 
+ 173:Src/main.c    ****   /* Enable Power Control clock */
+ 174:Src/main.c    ****   __HAL_RCC_PWR_CLK_ENABLE();
+  43              		.loc 1 174 3 view .LVU4
+  44              	.LBB2:
+  45              		.loc 1 174 3 view .LVU5
+  46 0004 0021     		movs	r1, #0
+  47 0006 0091     		str	r1, [sp]
+  48              		.loc 1 174 3 view .LVU6
+  49 0008 234B     		ldr	r3, .L9
+  50 000a 1A6C     		ldr	r2, [r3, #64]
+  51 000c 42F08052 		orr	r2, r2, #268435456
+  52 0010 1A64     		str	r2, [r3, #64]
+  53              		.loc 1 174 3 view .LVU7
+  54 0012 1B6C     		ldr	r3, [r3, #64]
+  55 0014 03F08053 		and	r3, r3, #268435456
+ARM GAS  /tmp/cckd31i3.s 			page 5
+
+
+  56 0018 0093     		str	r3, [sp]
+  57              		.loc 1 174 3 view .LVU8
+  58 001a 009B     		ldr	r3, [sp]
+  59              	.LBE2:
+ 175:Src/main.c    **** 
+ 176:Src/main.c    ****   /* The voltage scaling allows optimizing the power consumption when the device is 
+ 177:Src/main.c    ****      clocked below the maximum system frequency, to update the voltage scaling value 
+ 178:Src/main.c    ****      regarding system frequency refer to product datasheet.  */
+ 179:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  60              		.loc 1 179 3 view .LVU9
+  61              	.LBB3:
+  62              		.loc 1 179 3 view .LVU10
+  63 001c 0191     		str	r1, [sp, #4]
+  64              		.loc 1 179 3 view .LVU11
+  65 001e 1F4B     		ldr	r3, .L9+4
+  66 0020 1A68     		ldr	r2, [r3]
+  67 0022 42F44042 		orr	r2, r2, #49152
+  68 0026 1A60     		str	r2, [r3]
+  69              		.loc 1 179 3 view .LVU12
+  70 0028 1B68     		ldr	r3, [r3]
+  71 002a 03F44043 		and	r3, r3, #49152
+  72 002e 0193     		str	r3, [sp, #4]
+  73              		.loc 1 179 3 view .LVU13
+  74 0030 019B     		ldr	r3, [sp, #4]
+  75              	.LBE3:
+ 180:Src/main.c    **** 
+ 181:Src/main.c    ****   /* Enable HSE Oscillator and activate PLL with HSE as source */
+ 182:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  76              		.loc 1 182 3 view .LVU14
+  77              		.loc 1 182 36 is_stmt 0 view .LVU15
+  78 0032 0123     		movs	r3, #1
+  79 0034 0293     		str	r3, [sp, #8]
+ 183:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  80              		.loc 1 183 3 is_stmt 1 view .LVU16
+  81              		.loc 1 183 30 is_stmt 0 view .LVU17
+  82 0036 4FF48033 		mov	r3, #65536
+  83 003a 0393     		str	r3, [sp, #12]
+ 184:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  84              		.loc 1 184 3 is_stmt 1 view .LVU18
+  85              		.loc 1 184 34 is_stmt 0 view .LVU19
+  86 003c 0223     		movs	r3, #2
+  87 003e 0893     		str	r3, [sp, #32]
+ 185:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  88              		.loc 1 185 3 is_stmt 1 view .LVU20
+  89              		.loc 1 185 35 is_stmt 0 view .LVU21
+  90 0040 4FF48002 		mov	r2, #4194304
+  91 0044 0992     		str	r2, [sp, #36]
+ 186:Src/main.c    **** #if defined(USE_STM32469I_DISCO_REVA)
+ 187:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 25;
+ 188:Src/main.c    **** #else
+ 189:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 8;
+  92              		.loc 1 189 3 is_stmt 1 view .LVU22
+  93              		.loc 1 189 30 is_stmt 0 view .LVU23
+  94 0046 0822     		movs	r2, #8
+  95 0048 0A92     		str	r2, [sp, #40]
+ 190:Src/main.c    **** #endif /* USE_STM32469I_DISCO_REVA */
+ 191:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 360;
+ARM GAS  /tmp/cckd31i3.s 			page 6
+
+
+  96              		.loc 1 191 3 is_stmt 1 view .LVU24
+  97              		.loc 1 191 30 is_stmt 0 view .LVU25
+  98 004a 4FF4B472 		mov	r2, #360
+  99 004e 0B92     		str	r2, [sp, #44]
+ 192:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 100              		.loc 1 192 3 is_stmt 1 view .LVU26
+ 101              		.loc 1 192 30 is_stmt 0 view .LVU27
+ 102 0050 0C93     		str	r3, [sp, #48]
+ 193:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 7;
+ 103              		.loc 1 193 3 is_stmt 1 view .LVU28
+ 104              		.loc 1 193 30 is_stmt 0 view .LVU29
+ 105 0052 0723     		movs	r3, #7
+ 106 0054 0D93     		str	r3, [sp, #52]
+ 194:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLR = 6;
+ 107              		.loc 1 194 3 is_stmt 1 view .LVU30
+ 108              		.loc 1 194 30 is_stmt 0 view .LVU31
+ 109 0056 0623     		movs	r3, #6
+ 110 0058 0E93     		str	r3, [sp, #56]
+ 195:Src/main.c    ****   
+ 196:Src/main.c    ****   ret = HAL_RCC_OscConfig(&RCC_OscInitStruct);
+ 111              		.loc 1 196 3 is_stmt 1 view .LVU32
+ 112              		.loc 1 196 9 is_stmt 0 view .LVU33
+ 113 005a 02A8     		add	r0, sp, #8
+ 114 005c FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 115              	.LVL1:
+ 197:Src/main.c    ****   if(ret != HAL_OK)
+ 116              		.loc 1 197 3 is_stmt 1 view .LVU34
+ 117              		.loc 1 197 5 is_stmt 0 view .LVU35
+ 118 0060 00B1     		cbz	r0, .L2
+ 119              	.L3:
+ 198:Src/main.c    ****   {
+ 199:Src/main.c    ****     while(1) { ; }
+ 120              		.loc 1 199 5 is_stmt 1 discriminator 1 view .LVU36
+ 121              		.loc 1 199 16 discriminator 1 view .LVU37
+ 122 0062 FEE7     		b	.L3
+ 123              	.L2:
+ 200:Src/main.c    ****   }
+ 201:Src/main.c    ****   
+ 202:Src/main.c    ****   /* Activate the OverDrive to reach the 180 MHz Frequency */  
+ 203:Src/main.c    ****   ret = HAL_PWREx_EnableOverDrive();
+ 124              		.loc 1 203 3 view .LVU38
+ 125              		.loc 1 203 9 is_stmt 0 view .LVU39
+ 126 0064 FFF7FEFF 		bl	HAL_PWREx_EnableOverDrive
+ 127              	.LVL2:
+ 204:Src/main.c    ****   if(ret != HAL_OK)
+ 128              		.loc 1 204 3 is_stmt 1 view .LVU40
+ 129              		.loc 1 204 5 is_stmt 0 view .LVU41
+ 130 0068 00B1     		cbz	r0, .L4
+ 131              	.L5:
+ 205:Src/main.c    ****   {
+ 206:Src/main.c    ****     while(1) { ; }
+ 132              		.loc 1 206 5 is_stmt 1 discriminator 2 view .LVU42
+ 133              		.loc 1 206 16 discriminator 2 view .LVU43
+ 134 006a FEE7     		b	.L5
+ 135              	.L4:
+ 207:Src/main.c    ****   }
+ 208:Src/main.c    ****   
+ARM GAS  /tmp/cckd31i3.s 			page 7
+
+
+ 209:Src/main.c    ****   /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 clocks dividers */
+ 210:Src/main.c    ****   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | 
+ 136              		.loc 1 210 3 view .LVU44
+ 137              		.loc 1 210 31 is_stmt 0 view .LVU45
+ 138 006c 0F23     		movs	r3, #15
+ 139 006e 0F93     		str	r3, [sp, #60]
+ 211:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 140              		.loc 1 211 3 is_stmt 1 view .LVU46
+ 141              		.loc 1 211 34 is_stmt 0 view .LVU47
+ 142 0070 0223     		movs	r3, #2
+ 143 0072 1093     		str	r3, [sp, #64]
+ 212:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 144              		.loc 1 212 3 is_stmt 1 view .LVU48
+ 145              		.loc 1 212 35 is_stmt 0 view .LVU49
+ 146 0074 0023     		movs	r3, #0
+ 147 0076 1193     		str	r3, [sp, #68]
+ 213:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
+ 148              		.loc 1 213 3 is_stmt 1 view .LVU50
+ 149              		.loc 1 213 36 is_stmt 0 view .LVU51
+ 150 0078 4FF4A053 		mov	r3, #5120
+ 151 007c 1293     		str	r3, [sp, #72]
+ 214:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
+ 152              		.loc 1 214 3 is_stmt 1 view .LVU52
+ 153              		.loc 1 214 36 is_stmt 0 view .LVU53
+ 154 007e 4FF48053 		mov	r3, #4096
+ 155 0082 1393     		str	r3, [sp, #76]
+ 215:Src/main.c    ****   
+ 216:Src/main.c    ****   ret = HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5);
+ 156              		.loc 1 216 3 is_stmt 1 view .LVU54
+ 157              		.loc 1 216 9 is_stmt 0 view .LVU55
+ 158 0084 0521     		movs	r1, #5
+ 159 0086 0FA8     		add	r0, sp, #60
+ 160              	.LVL3:
+ 161              		.loc 1 216 9 view .LVU56
+ 162 0088 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 163              	.LVL4:
+ 217:Src/main.c    ****   if(ret != HAL_OK)
+ 164              		.loc 1 217 3 is_stmt 1 view .LVU57
+ 165              		.loc 1 217 5 is_stmt 0 view .LVU58
+ 166 008c 00B1     		cbz	r0, .L1
+ 167              	.L7:
+ 218:Src/main.c    ****   {
+ 219:Src/main.c    ****     while(1) { ; }
+ 168              		.loc 1 219 5 is_stmt 1 discriminator 3 view .LVU59
+ 169              		.loc 1 219 16 discriminator 3 view .LVU60
+ 170 008e FEE7     		b	.L7
+ 171              	.L1:
+ 220:Src/main.c    ****   }
+ 221:Src/main.c    **** }
+ 172              		.loc 1 221 1 is_stmt 0 view .LVU61
+ 173 0090 15B0     		add	sp, sp, #84
+ 174              	.LCFI2:
+ 175              		.cfi_def_cfa_offset 4
+ 176              		@ sp needed
+ 177 0092 5DF804FB 		ldr	pc, [sp], #4
+ 178              	.L10:
+ 179 0096 00BF     		.align	2
+ARM GAS  /tmp/cckd31i3.s 			page 8
+
+
+ 180              	.L9:
+ 181 0098 00380240 		.word	1073887232
+ 182 009c 00700040 		.word	1073770496
+ 183              		.cfi_endproc
+ 184              	.LFE127:
+ 186              		.section	.text.Error_Handler,"ax",%progbits
+ 187              		.align	1
+ 188              		.syntax unified
+ 189              		.thumb
+ 190              		.thumb_func
+ 191              		.fpu fpv4-sp-d16
+ 193              	Error_Handler:
+ 194              	.LFB128:
+ 222:Src/main.c    **** 
+ 223:Src/main.c    **** /**
+ 224:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 225:Src/main.c    ****   * @param  None
+ 226:Src/main.c    ****   * @retval None
+ 227:Src/main.c    ****   */
+ 228:Src/main.c    **** static void Error_Handler(void)
+ 229:Src/main.c    **** {
+ 195              		.loc 1 229 1 is_stmt 1 view -0
+ 196              		.cfi_startproc
+ 197              		@ Volatile: function does not return.
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 200 0000 08B5     		push	{r3, lr}
+ 201              	.LCFI3:
+ 202              		.cfi_def_cfa_offset 8
+ 203              		.cfi_offset 3, -8
+ 204              		.cfi_offset 14, -4
+ 230:Src/main.c    ****   /* Turn LED3 on */
+ 231:Src/main.c    ****   BSP_LED_On(LED3);
+ 205              		.loc 1 231 3 view .LVU63
+ 206 0002 0220     		movs	r0, #2
+ 207 0004 FFF7FEFF 		bl	BSP_LED_On
+ 208              	.LVL5:
+ 209              	.L12:
+ 232:Src/main.c    ****   while (1)
+ 210              		.loc 1 232 3 discriminator 1 view .LVU64
+ 233:Src/main.c    ****   {
+ 234:Src/main.c    ****   }
+ 211              		.loc 1 234 3 discriminator 1 view .LVU65
+ 212 0008 FEE7     		b	.L12
+ 213              		.cfi_endproc
+ 214              	.LFE128:
+ 216              		.section	.text.main,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	main
+ 219              		.syntax unified
+ 220              		.thumb
+ 221              		.thumb_func
+ 222              		.fpu fpv4-sp-d16
+ 224              	main:
+ 225              	.LFB126:
+  70:Src/main.c    ****   ADC_ChannelConfTypeDef sConfig;
+ 226              		.loc 1 70 1 view -0
+ARM GAS  /tmp/cckd31i3.s 			page 9
+
+
+ 227              		.cfi_startproc
+ 228              		@ Volatile: function does not return.
+ 229              		@ args = 0, pretend = 0, frame = 16
+ 230              		@ frame_needed = 0, uses_anonymous_args = 0
+ 231 0000 00B5     		push	{lr}
+ 232              	.LCFI4:
+ 233              		.cfi_def_cfa_offset 4
+ 234              		.cfi_offset 14, -4
+ 235 0002 85B0     		sub	sp, sp, #20
+ 236              	.LCFI5:
+ 237              		.cfi_def_cfa_offset 24
+  71:Src/main.c    **** 
+ 238              		.loc 1 71 3 view .LVU67
+  84:Src/main.c    **** 
+ 239              		.loc 1 84 3 view .LVU68
+ 240 0004 FFF7FEFF 		bl	HAL_Init
+ 241              	.LVL6:
+  87:Src/main.c    **** 
+ 242              		.loc 1 87 3 view .LVU69
+ 243 0008 FFF7FEFF 		bl	SystemClock_Config
+ 244              	.LVL7:
+  90:Src/main.c    ****   BSP_LED_Init(LED3);
+ 245              		.loc 1 90 3 view .LVU70
+ 246 000c 0020     		movs	r0, #0
+ 247 000e FFF7FEFF 		bl	BSP_LED_Init
+ 248              	.LVL8:
+  91:Src/main.c    **** 
+ 249              		.loc 1 91 3 view .LVU71
+ 250 0012 0220     		movs	r0, #2
+ 251 0014 FFF7FEFF 		bl	BSP_LED_Init
+ 252              	.LVL9:
+  95:Src/main.c    ****   
+ 253              		.loc 1 95 3 view .LVU72
+  95:Src/main.c    ****   
+ 254              		.loc 1 95 31 is_stmt 0 view .LVU73
+ 255 0018 1748     		ldr	r0, .L20
+ 256 001a 184B     		ldr	r3, .L20+4
+ 257 001c 0360     		str	r3, [r0]
+  97:Src/main.c    ****   AdcHandle.Init.Resolution            = ADC_RESOLUTION_12B;
+ 258              		.loc 1 97 3 is_stmt 1 view .LVU74
+  97:Src/main.c    ****   AdcHandle.Init.Resolution            = ADC_RESOLUTION_12B;
+ 259              		.loc 1 97 40 is_stmt 0 view .LVU75
+ 260 001e 4FF48033 		mov	r3, #65536
+ 261 0022 4360     		str	r3, [r0, #4]
+  98:Src/main.c    ****   AdcHandle.Init.ScanConvMode          = DISABLE;                       /* Sequencer disabled (ADC 
+ 262              		.loc 1 98 3 is_stmt 1 view .LVU76
+  98:Src/main.c    ****   AdcHandle.Init.ScanConvMode          = DISABLE;                       /* Sequencer disabled (ADC 
+ 263              		.loc 1 98 40 is_stmt 0 view .LVU77
+ 264 0024 0023     		movs	r3, #0
+ 265 0026 8360     		str	r3, [r0, #8]
+  99:Src/main.c    ****   AdcHandle.Init.ContinuousConvMode    = ENABLE;                        /* Continuous mode disabled
+ 266              		.loc 1 99 3 is_stmt 1 view .LVU78
+  99:Src/main.c    ****   AdcHandle.Init.ContinuousConvMode    = ENABLE;                        /* Continuous mode disabled
+ 267              		.loc 1 99 40 is_stmt 0 view .LVU79
+ 268 0028 0361     		str	r3, [r0, #16]
+ 100:Src/main.c    ****   AdcHandle.Init.DiscontinuousConvMode = DISABLE;                       /* Parameter discarded beca
+ 269              		.loc 1 100 3 is_stmt 1 view .LVU80
+ARM GAS  /tmp/cckd31i3.s 			page 10
+
+
+ 100:Src/main.c    ****   AdcHandle.Init.DiscontinuousConvMode = DISABLE;                       /* Parameter discarded beca
+ 270              		.loc 1 100 40 is_stmt 0 view .LVU81
+ 271 002a 0122     		movs	r2, #1
+ 272 002c 8261     		str	r2, [r0, #24]
+ 101:Src/main.c    ****   AdcHandle.Init.NbrOfDiscConversion   = 0;
+ 273              		.loc 1 101 3 is_stmt 1 view .LVU82
+ 101:Src/main.c    ****   AdcHandle.Init.NbrOfDiscConversion   = 0;
+ 274              		.loc 1 101 40 is_stmt 0 view .LVU83
+ 275 002e 0362     		str	r3, [r0, #32]
+ 102:Src/main.c    ****   AdcHandle.Init.ExternalTrigConvEdge  = ADC_EXTERNALTRIGCONVEDGE_NONE;        /* Conversion start 
+ 276              		.loc 1 102 3 is_stmt 1 view .LVU84
+ 102:Src/main.c    ****   AdcHandle.Init.ExternalTrigConvEdge  = ADC_EXTERNALTRIGCONVEDGE_NONE;        /* Conversion start 
+ 277              		.loc 1 102 40 is_stmt 0 view .LVU85
+ 278 0030 4362     		str	r3, [r0, #36]
+ 103:Src/main.c    ****   AdcHandle.Init.ExternalTrigConv      = ADC_EXTERNALTRIGCONV_T1_CC1;
+ 279              		.loc 1 103 3 is_stmt 1 view .LVU86
+ 103:Src/main.c    ****   AdcHandle.Init.ExternalTrigConv      = ADC_EXTERNALTRIGCONV_T1_CC1;
+ 280              		.loc 1 103 40 is_stmt 0 view .LVU87
+ 281 0032 C362     		str	r3, [r0, #44]
+ 104:Src/main.c    ****   AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
+ 282              		.loc 1 104 3 is_stmt 1 view .LVU88
+ 104:Src/main.c    ****   AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
+ 283              		.loc 1 104 40 is_stmt 0 view .LVU89
+ 284 0034 8362     		str	r3, [r0, #40]
+ 105:Src/main.c    ****   AdcHandle.Init.NbrOfConversion       = 1;
+ 285              		.loc 1 105 3 is_stmt 1 view .LVU90
+ 105:Src/main.c    ****   AdcHandle.Init.NbrOfConversion       = 1;
+ 286              		.loc 1 105 40 is_stmt 0 view .LVU91
+ 287 0036 C360     		str	r3, [r0, #12]
+ 106:Src/main.c    ****   AdcHandle.Init.DMAContinuousRequests = ENABLE;
+ 288              		.loc 1 106 3 is_stmt 1 view .LVU92
+ 106:Src/main.c    ****   AdcHandle.Init.DMAContinuousRequests = ENABLE;
+ 289              		.loc 1 106 40 is_stmt 0 view .LVU93
+ 290 0038 C261     		str	r2, [r0, #28]
+ 107:Src/main.c    ****   AdcHandle.Init.EOCSelection          = DISABLE;
+ 291              		.loc 1 107 3 is_stmt 1 view .LVU94
+ 107:Src/main.c    ****   AdcHandle.Init.EOCSelection          = DISABLE;
+ 292              		.loc 1 107 40 is_stmt 0 view .LVU95
+ 293 003a 0263     		str	r2, [r0, #48]
+ 108:Src/main.c    **** 
+ 294              		.loc 1 108 3 is_stmt 1 view .LVU96
+ 108:Src/main.c    **** 
+ 295              		.loc 1 108 40 is_stmt 0 view .LVU97
+ 296 003c 4361     		str	r3, [r0, #20]
+ 110:Src/main.c    ****   {
+ 297              		.loc 1 110 3 is_stmt 1 view .LVU98
+ 110:Src/main.c    ****   {
+ 298              		.loc 1 110 7 is_stmt 0 view .LVU99
+ 299 003e FFF7FEFF 		bl	HAL_ADC_Init
+ 300              	.LVL10:
+ 110:Src/main.c    ****   {
+ 301              		.loc 1 110 6 view .LVU100
+ 302 0042 08B1     		cbz	r0, .L15
+ 113:Src/main.c    ****   }
+ 303              		.loc 1 113 5 is_stmt 1 view .LVU101
+ 304 0044 FFF7FEFF 		bl	Error_Handler
+ 305              	.LVL11:
+ARM GAS  /tmp/cckd31i3.s 			page 11
+
+
+ 306              	.L15:
+ 117:Src/main.c    ****   sConfig.Rank         = 1;
+ 307              		.loc 1 117 3 view .LVU102
+ 117:Src/main.c    ****   sConfig.Rank         = 1;
+ 308              		.loc 1 117 24 is_stmt 0 view .LVU103
+ 309 0048 0523     		movs	r3, #5
+ 310 004a 0093     		str	r3, [sp]
+ 118:Src/main.c    ****   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+ 311              		.loc 1 118 3 is_stmt 1 view .LVU104
+ 118:Src/main.c    ****   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+ 312              		.loc 1 118 24 is_stmt 0 view .LVU105
+ 313 004c 0123     		movs	r3, #1
+ 314 004e 0193     		str	r3, [sp, #4]
+ 119:Src/main.c    ****   sConfig.Offset       = 0;
+ 315              		.loc 1 119 3 is_stmt 1 view .LVU106
+ 119:Src/main.c    ****   sConfig.Offset       = 0;
+ 316              		.loc 1 119 24 is_stmt 0 view .LVU107
+ 317 0050 0023     		movs	r3, #0
+ 318 0052 0293     		str	r3, [sp, #8]
+ 120:Src/main.c    **** 
+ 319              		.loc 1 120 3 is_stmt 1 view .LVU108
+ 120:Src/main.c    **** 
+ 320              		.loc 1 120 24 is_stmt 0 view .LVU109
+ 321 0054 0393     		str	r3, [sp, #12]
+ 122:Src/main.c    ****   {
+ 322              		.loc 1 122 3 is_stmt 1 view .LVU110
+ 122:Src/main.c    ****   {
+ 323              		.loc 1 122 7 is_stmt 0 view .LVU111
+ 324 0056 6946     		mov	r1, sp
+ 325 0058 0748     		ldr	r0, .L20
+ 326 005a FFF7FEFF 		bl	HAL_ADC_ConfigChannel
+ 327              	.LVL12:
+ 122:Src/main.c    ****   {
+ 328              		.loc 1 122 6 view .LVU112
+ 329 005e 08B1     		cbz	r0, .L16
+ 125:Src/main.c    ****   }
+ 330              		.loc 1 125 5 is_stmt 1 view .LVU113
+ 331 0060 FFF7FEFF 		bl	Error_Handler
+ 332              	.LVL13:
+ 333              	.L16:
+ 134:Src/main.c    ****   {
+ 334              		.loc 1 134 3 view .LVU114
+ 134:Src/main.c    ****   {
+ 335              		.loc 1 134 6 is_stmt 0 view .LVU115
+ 336 0064 0122     		movs	r2, #1
+ 337 0066 0649     		ldr	r1, .L20+8
+ 338 0068 0348     		ldr	r0, .L20
+ 339 006a FFF7FEFF 		bl	HAL_ADC_Start_DMA
+ 340              	.LVL14:
+ 134:Src/main.c    ****   {
+ 341              		.loc 1 134 5 view .LVU116
+ 342 006e 00B9     		cbnz	r0, .L19
+ 343              	.L17:
+ 141:Src/main.c    ****   {
+ 344              		.loc 1 141 3 is_stmt 1 discriminator 1 view .LVU117
+ 143:Src/main.c    **** }
+ 345              		.loc 1 143 3 discriminator 1 view .LVU118
+ARM GAS  /tmp/cckd31i3.s 			page 12
+
+
+ 346 0070 FEE7     		b	.L17
+ 347              	.L19:
+ 137:Src/main.c    ****   }
+ 348              		.loc 1 137 5 view .LVU119
+ 349 0072 FFF7FEFF 		bl	Error_Handler
+ 350              	.LVL15:
+ 351              	.L21:
+ 352 0076 00BF     		.align	2
+ 353              	.L20:
+ 354 0078 00000000 		.word	AdcHandle
+ 355 007c 00210140 		.word	1073815808
+ 356 0080 00000000 		.word	.LANCHOR0
+ 357              		.cfi_endproc
+ 358              	.LFE126:
+ 360              		.section	.text.HAL_ADC_ConvCpltCallback,"ax",%progbits
+ 361              		.align	1
+ 362              		.global	HAL_ADC_ConvCpltCallback
+ 363              		.syntax unified
+ 364              		.thumb
+ 365              		.thumb_func
+ 366              		.fpu fpv4-sp-d16
+ 368              	HAL_ADC_ConvCpltCallback:
+ 369              	.LVL16:
+ 370              	.LFB129:
+ 235:Src/main.c    **** }
+ 236:Src/main.c    **** 
+ 237:Src/main.c    **** /**
+ 238:Src/main.c    ****   * @brief  Conversion complete callback in non blocking mode
+ 239:Src/main.c    ****   * @param  AdcHandle : AdcHandle handle
+ 240:Src/main.c    ****   * @note   This example shows a simple way to report end of conversion, and
+ 241:Src/main.c    ****   *         you can add your own implementation.
+ 242:Src/main.c    ****   * @retval None
+ 243:Src/main.c    ****   */
+ 244:Src/main.c    **** void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
+ 245:Src/main.c    **** {
+ 371              		.loc 1 245 1 view -0
+ 372              		.cfi_startproc
+ 373              		@ args = 0, pretend = 0, frame = 0
+ 374              		@ frame_needed = 0, uses_anonymous_args = 0
+ 375              		.loc 1 245 1 is_stmt 0 view .LVU121
+ 376 0000 08B5     		push	{r3, lr}
+ 377              	.LCFI6:
+ 378              		.cfi_def_cfa_offset 8
+ 379              		.cfi_offset 3, -8
+ 380              		.cfi_offset 14, -4
+ 246:Src/main.c    ****   /* Turn LED1 on: Transfer process is correct */
+ 247:Src/main.c    ****   BSP_LED_On(LED1);
+ 381              		.loc 1 247 3 is_stmt 1 view .LVU122
+ 382 0002 0020     		movs	r0, #0
+ 383              	.LVL17:
+ 384              		.loc 1 247 3 is_stmt 0 view .LVU123
+ 385 0004 FFF7FEFF 		bl	BSP_LED_On
+ 386              	.LVL18:
+ 248:Src/main.c    **** }
+ 387              		.loc 1 248 1 view .LVU124
+ 388 0008 08BD     		pop	{r3, pc}
+ 389              		.cfi_endproc
+ARM GAS  /tmp/cckd31i3.s 			page 13
+
+
+ 390              	.LFE129:
+ 392              		.global	uhADCxConvertedValue
+ 393              		.comm	AdcHandle,72,4
+ 394              		.section	.bss.uhADCxConvertedValue,"aw",%nobits
+ 395              		.align	1
+ 396              		.set	.LANCHOR0,. + 0
+ 399              	uhADCxConvertedValue:
+ 400 0000 0000     		.space	2
+ 401              		.text
+ 402              	.Letext0:
+ 403              		.file 2 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_default_t
+ 404              		.file 3 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 405              		.file 4 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Include/core_cm4.h"
+ 406              		.file 5 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+ 407              		.file 6 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+ 408              		.file 7 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h"
+ 409              		.file 8 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h"
+ 410              		.file 9 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdd
+ 411              		.file 10 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h"
+ 412              		.file 11 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ 413              		.file 12 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 414              		.file 13 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 415              		.file 14 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 416              		.file 15 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 417              		.file 16 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 418              		.file 17 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/BSP/STM32469I-Discovery/stm32469i
+ 419              		.file 18 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 420              		.file 19 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ARM GAS  /tmp/cckd31i3.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/cckd31i3.s:18     .text.SystemClock_Config:0000000000000000 $t
+     /tmp/cckd31i3.s:25     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/cckd31i3.s:181    .text.SystemClock_Config:0000000000000098 $d
+     /tmp/cckd31i3.s:187    .text.Error_Handler:0000000000000000 $t
+     /tmp/cckd31i3.s:193    .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/cckd31i3.s:217    .text.main:0000000000000000 $t
+     /tmp/cckd31i3.s:224    .text.main:0000000000000000 main
+     /tmp/cckd31i3.s:354    .text.main:0000000000000078 $d
+                            *COM*:0000000000000048 AdcHandle
+     /tmp/cckd31i3.s:361    .text.HAL_ADC_ConvCpltCallback:0000000000000000 $t
+     /tmp/cckd31i3.s:368    .text.HAL_ADC_ConvCpltCallback:0000000000000000 HAL_ADC_ConvCpltCallback
+     /tmp/cckd31i3.s:399    .bss.uhADCxConvertedValue:0000000000000000 uhADCxConvertedValue
+     /tmp/cckd31i3.s:395    .bss.uhADCxConvertedValue:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_RCC_OscConfig
+HAL_PWREx_EnableOverDrive
+HAL_RCC_ClockConfig
+BSP_LED_On
+HAL_Init
+BSP_LED_Init
+HAL_ADC_Init
+HAL_ADC_ConfigChannel
+HAL_ADC_Start_DMA

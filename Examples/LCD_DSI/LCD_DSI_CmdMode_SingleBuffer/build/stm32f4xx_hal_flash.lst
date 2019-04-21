@@ -1,0 +1,2374 @@
+ARM GAS  /tmp/ccjvrcjF.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_flash.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.FLASH_Program_DoubleWord,"ax",%progbits
+  18              		.align	1
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	FLASH_Program_DoubleWord:
+  26              	.LVL0:
+  27              	.LFB138:
+  28              		.file 1 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx
+   1:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+   2:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   ******************************************************************************
+   3:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @file    stm32f4xx_hal_flash.c
+   4:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @author  MCD Application Team
+   5:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief   FLASH HAL module driver.
+   6:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *          This file provides firmware functions to manage the following 
+   7:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *          functionalities of the internal FLASH memory:
+   8:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *           + Program operations functions
+   9:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *           + Memory Control functions 
+  10:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *           + Peripheral Errors functions
+  11:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *         
+  12:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   @verbatim
+  13:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   ==============================================================================
+  14:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                         ##### FLASH peripheral features #####
+  15:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   ==============================================================================
+  16:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****            
+  17:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   [..] The Flash memory interface manages CPU AHB I-Code and D-Code accesses 
+  18:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****        to the Flash memory. It implements the erase and program Flash memory operations 
+  19:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****        and the read and write protection mechanisms.
+  20:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       
+  21:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   [..] The Flash memory interface accelerates code execution with a system of instruction
+  22:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****        prefetch and cache lines. 
+  23:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+  24:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   [..] The FLASH main features are:
+  25:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (+) Flash memory read operations
+  26:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (+) Flash memory program/erase operations
+  27:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (+) Read / write protections
+  28:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (+) Prefetch on I-Code
+  29:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (+) 64 cache lines of 128 bits on I-Code
+  30:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (+) 8 cache lines of 128 bits on D-Code
+ARM GAS  /tmp/ccjvrcjF.s 			page 2
+
+
+  31:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       
+  32:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       
+  33:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                      ##### How to use this driver #####
+  34:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   ==============================================================================
+  35:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     [..]                             
+  36:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       This driver provides functions and macros to configure and program the FLASH 
+  37:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       memory of all STM32F4xx devices.
+  38:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+  39:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (#) FLASH Memory IO Programming functions: 
+  40:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****            (++) Lock and Unlock the FLASH interface using HAL_FLASH_Unlock() and 
+  41:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                 HAL_FLASH_Lock() functions
+  42:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****            (++) Program functions: byte, half word, word and double word
+  43:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****            (++) There Two modes of programming :
+  44:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****             (+++) Polling mode using HAL_FLASH_Program() function
+  45:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****             (+++) Interrupt mode using HAL_FLASH_Program_IT() function
+  46:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+  47:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       (#) Interrupts and flags management functions : 
+  48:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****            (++) Handle FLASH interrupts by calling HAL_FLASH_IRQHandler()
+  49:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****            (++) Wait for last FLASH operation according to its status
+  50:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****            (++) Get error flag status by calling HAL_SetErrorCode()          
+  51:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+  52:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     [..] 
+  53:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       In addition to these functions, this driver includes a set of macros allowing
+  54:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       to handle the following operations:
+  55:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****        (+) Set the latency
+  56:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****        (+) Enable/Disable the prefetch buffer
+  57:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****        (+) Enable/Disable the Instruction cache and the Data cache
+  58:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****        (+) Reset the Instruction cache and the Data cache
+  59:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****        (+) Enable/Disable the FLASH interrupts
+  60:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****        (+) Monitor the FLASH flags status
+  61:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****           
+  62:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   @endverbatim
+  63:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   ******************************************************************************
+  64:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @attention
+  65:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *
+  66:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  67:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *
+  68:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  69:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * are permitted provided that the following conditions are met:
+  70:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  71:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *      this list of conditions and the following disclaimer.
+  72:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  73:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *      this list of conditions and the following disclaimer in the documentation
+  74:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *      and/or other materials provided with the distribution.
+  75:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  76:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *      may be used to endorse or promote products derived from this software
+  77:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *      without specific prior written permission.
+  78:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *
+  79:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  80:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  81:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  82:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  83:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  84:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  85:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  86:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  87:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ARM GAS  /tmp/ccjvrcjF.s 			page 3
+
+
+  88:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  89:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *
+  90:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   ******************************************************************************
+  91:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */ 
+  92:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+  93:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /* Includes ------------------------------------------------------------------*/
+  94:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #include "stm32f4xx_hal.h"
+  95:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+  96:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /** @addtogroup STM32F4xx_HAL_Driver
+  97:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
+  98:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+  99:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 100:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /** @defgroup FLASH FLASH
+ 101:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief FLASH HAL module driver
+ 102:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
+ 103:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 104:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 105:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #ifdef HAL_FLASH_MODULE_ENABLED
+ 106:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 107:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /* Private typedef -----------------------------------------------------------*/
+ 108:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /* Private define ------------------------------------------------------------*/
+ 109:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /** @addtogroup FLASH_Private_Constants
+ 110:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
+ 111:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 112:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #define FLASH_TIMEOUT_VALUE       50000U /* 50 s */
+ 113:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 114:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @}
+ 115:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */         
+ 116:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /* Private macro -------------------------------------------------------------*/
+ 117:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /* Private variables ---------------------------------------------------------*/
+ 118:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /** @addtogroup FLASH_Private_Variables
+ 119:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
+ 120:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 121:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /* Variable used for Erase sectors under interruption */
+ 122:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** FLASH_ProcessTypeDef pFlash;
+ 123:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 124:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @}
+ 125:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 126:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 127:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /* Private function prototypes -----------------------------------------------*/
+ 128:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /** @addtogroup FLASH_Private_Functions
+ 129:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
+ 130:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 131:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /* Program operations */
+ 132:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void   FLASH_Program_DoubleWord(uint32_t Address, uint64_t Data);
+ 133:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void   FLASH_Program_Word(uint32_t Address, uint32_t Data);
+ 134:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void   FLASH_Program_HalfWord(uint32_t Address, uint16_t Data);
+ 135:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void   FLASH_Program_Byte(uint32_t Address, uint8_t Data);
+ 136:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void   FLASH_SetErrorCode(void);
+ 137:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 138:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** HAL_StatusTypeDef FLASH_WaitForLastOperation(uint32_t Timeout);
+ 139:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 140:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @}
+ 141:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 142:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 143:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /* Exported functions --------------------------------------------------------*/
+ 144:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /** @defgroup FLASH_Exported_Functions FLASH Exported Functions
+ARM GAS  /tmp/ccjvrcjF.s 			page 4
+
+
+ 145:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
+ 146:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 147:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 148:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /** @defgroup FLASH_Exported_Functions_Group1 Programming operation functions 
+ 149:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  *  @brief   Programming operation functions 
+ 150:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  *
+ 151:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** @verbatim   
+ 152:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  ===============================================================================
+ 153:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                   ##### Programming operation functions #####
+ 154:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  ===============================================================================  
+ 155:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     [..]
+ 156:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     This subsection provides a set of functions allowing to manage the FLASH 
+ 157:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     program operations.
+ 158:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 159:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** @endverbatim
+ 160:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
+ 161:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 162:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 163:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 164:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Program byte, halfword, word or double word at a specified address
+ 165:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  TypeProgram  Indicate the way to program at a specified address.
+ 166:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *                           This parameter can be a value of @ref FLASH_Type_Program
+ 167:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Address  specifies the address to be programmed.
+ 168:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Data specifies the data to be programmed
+ 169:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * 
+ 170:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL_StatusTypeDef HAL Status
+ 171:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 172:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint64_t Data)
+ 173:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 174:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_ERROR;
+ 175:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 176:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Process Locked */
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   __HAL_LOCK(&pFlash);
+ 178:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 179:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check the parameters */
+ 180:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
+ 181:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 182:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Wait for last operation to be completed */
+ 183:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   status = FLASH_WaitForLastOperation((uint32_t)FLASH_TIMEOUT_VALUE);
+ 184:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 185:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(status == HAL_OK)
+ 186:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 187:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     if(TypeProgram == FLASH_TYPEPROGRAM_BYTE)
+ 188:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 189:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       /*Program byte (8-bit) at a specified address.*/
+ 190:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       FLASH_Program_Byte(Address, (uint8_t) Data);
+ 191:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 192:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     else if(TypeProgram == FLASH_TYPEPROGRAM_HALFWORD)
+ 193:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 194:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       /*Program halfword (16-bit) at a specified address.*/
+ 195:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       FLASH_Program_HalfWord(Address, (uint16_t) Data);
+ 196:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 197:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     else if(TypeProgram == FLASH_TYPEPROGRAM_WORD)
+ 198:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 199:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       /*Program word (32-bit) at a specified address.*/
+ 200:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       FLASH_Program_Word(Address, (uint32_t) Data);
+ 201:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ARM GAS  /tmp/ccjvrcjF.s 			page 5
+
+
+ 202:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     else
+ 203:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 204:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       /*Program double word (64-bit) at a specified address.*/
+ 205:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       FLASH_Program_DoubleWord(Address, Data);
+ 206:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 207:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 208:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Wait for last operation to be completed */
+ 209:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     status = FLASH_WaitForLastOperation((uint32_t)FLASH_TIMEOUT_VALUE);
+ 210:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 211:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* If the program operation is completed, disable the PG Bit */
+ 212:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH->CR &= (~FLASH_CR_PG);  
+ 213:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 214:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 215:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Process Unlocked */
+ 216:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   __HAL_UNLOCK(&pFlash);
+ 217:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 218:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   return status;
+ 219:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 220:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 221:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 222:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief   Program byte, halfword, word or double word at a specified address  with interrupt ena
+ 223:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  TypeProgram  Indicate the way to program at a specified address.
+ 224:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *                           This parameter can be a value of @ref FLASH_Type_Program
+ 225:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Address  specifies the address to be programmed.
+ 226:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Data specifies the data to be programmed
+ 227:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * 
+ 228:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL Status
+ 229:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 230:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_Program_IT(uint32_t TypeProgram, uint32_t Address, uint64_t Data)
+ 231:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 232:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 233:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 234:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Process Locked */
+ 235:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   __HAL_LOCK(&pFlash);
+ 236:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 237:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check the parameters */
+ 238:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
+ 239:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 240:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Enable End of FLASH Operation interrupt */
+ 241:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   __HAL_FLASH_ENABLE_IT(FLASH_IT_EOP);
+ 242:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 243:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Enable Error source interrupt */
+ 244:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   __HAL_FLASH_ENABLE_IT(FLASH_IT_ERR);
+ 245:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 246:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   pFlash.ProcedureOnGoing = FLASH_PROC_PROGRAM;
+ 247:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   pFlash.Address = Address;
+ 248:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 249:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(TypeProgram == FLASH_TYPEPROGRAM_BYTE)
+ 250:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 251:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /*Program byte (8-bit) at a specified address.*/
+ 252:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       FLASH_Program_Byte(Address, (uint8_t) Data);
+ 253:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 254:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   else if(TypeProgram == FLASH_TYPEPROGRAM_HALFWORD)
+ 255:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 256:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /*Program halfword (16-bit) at a specified address.*/
+ 257:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_Program_HalfWord(Address, (uint16_t) Data);
+ 258:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ARM GAS  /tmp/ccjvrcjF.s 			page 6
+
+
+ 259:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   else if(TypeProgram == FLASH_TYPEPROGRAM_WORD)
+ 260:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 261:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /*Program word (32-bit) at a specified address.*/
+ 262:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_Program_Word(Address, (uint32_t) Data);
+ 263:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 264:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   else
+ 265:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 266:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /*Program double word (64-bit) at a specified address.*/
+ 267:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_Program_DoubleWord(Address, Data);
+ 268:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 269:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 270:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   return status;
+ 271:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 272:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 273:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 274:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief This function handles FLASH interrupt request.
+ 275:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval None
+ 276:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 277:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** void HAL_FLASH_IRQHandler(void)
+ 278:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 279:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   uint32_t addresstmp = 0U;
+ 280:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 281:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check FLASH operation error flags */
+ 282:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #if defined(FLASH_SR_RDERR) 
+ 283:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG((FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | \
+ 284:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR | FLASH_FLAG_RDERR)) != RESET)
+ 285:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #else
+ 286:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG((FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | \
+ 287:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR)) != RESET)
+ 288:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #endif /* FLASH_SR_RDERR */
+ 289:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 290:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     if(pFlash.ProcedureOnGoing == FLASH_PROC_SECTERASE)
+ 291:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 292:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       /*return the faulty sector*/
+ 293:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       addresstmp = pFlash.Sector;
+ 294:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       pFlash.Sector = 0xFFFFFFFFU;
+ 295:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 296:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     else if(pFlash.ProcedureOnGoing == FLASH_PROC_MASSERASE)
+ 297:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 298:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       /*return the faulty bank*/
+ 299:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       addresstmp = pFlash.Bank;
+ 300:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 301:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     else
+ 302:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 303:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       /*return the faulty address*/
+ 304:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       addresstmp = pFlash.Address;
+ 305:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 306:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 307:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /*Save the Error code*/
+ 308:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_SetErrorCode();
+ 309:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 310:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* FLASH error interrupt user callback */
+ 311:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     HAL_FLASH_OperationErrorCallback(addresstmp);
+ 312:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 313:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /*Stop the procedure ongoing*/
+ 314:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 315:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ARM GAS  /tmp/ccjvrcjF.s 			page 7
+
+
+ 316:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 317:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check FLASH End of Operation flag  */
+ 318:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_EOP) != RESET)
+ 319:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 320:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Clear FLASH End of Operation pending bit */
+ 321:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP);
+ 322:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 323:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     if(pFlash.ProcedureOnGoing == FLASH_PROC_SECTERASE)
+ 324:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 325:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       /*Nb of sector to erased can be decreased*/
+ 326:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       pFlash.NbSectorsToErase--;
+ 327:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       
+ 328:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       /* Check if there are still sectors to erase*/
+ 329:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       if(pFlash.NbSectorsToErase != 0U)
+ 330:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 331:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         addresstmp = pFlash.Sector;
+ 332:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /*Indicate user which sector has been erased*/
+ 333:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         HAL_FLASH_EndOfOperationCallback(addresstmp);
+ 334:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         
+ 335:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /*Increment sector number*/
+ 336:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         pFlash.Sector++;
+ 337:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         addresstmp = pFlash.Sector;
+ 338:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         FLASH_Erase_Sector(addresstmp, pFlash.VoltageForErase);
+ 339:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 340:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       else
+ 341:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 342:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /*No more sectors to Erase, user callback can be called.*/
+ 343:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /*Reset Sector and stop Erase sectors procedure*/
+ 344:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         pFlash.Sector = addresstmp = 0xFFFFFFFFU;
+ 345:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 346:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         
+ 347:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /* Flush the caches to be sure of the data consistency */
+ 348:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         FLASH_FlushCaches() ;
+ 349:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                 
+ 350:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /* FLASH EOP interrupt user callback */
+ 351:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         HAL_FLASH_EndOfOperationCallback(addresstmp);
+ 352:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 353:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 354:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     else 
+ 355:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 356:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       if(pFlash.ProcedureOnGoing == FLASH_PROC_MASSERASE) 
+ 357:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 358:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /* MassErase ended. Return the selected bank */
+ 359:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /* Flush the caches to be sure of the data consistency */
+ 360:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         FLASH_FlushCaches() ;
+ 361:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 362:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /* FLASH EOP interrupt user callback */
+ 363:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         HAL_FLASH_EndOfOperationCallback(pFlash.Bank);
+ 364:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 365:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       else
+ 366:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 367:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /*Program ended. Return the selected address*/
+ 368:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /* FLASH EOP interrupt user callback */
+ 369:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         HAL_FLASH_EndOfOperationCallback(pFlash.Address);
+ 370:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 371:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 372:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ARM GAS  /tmp/ccjvrcjF.s 			page 8
+
+
+ 373:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 374:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 375:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(pFlash.ProcedureOnGoing == FLASH_PROC_NONE)
+ 376:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 377:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Operation is completed, disable the PG, SER, SNB and MER Bits */
+ 378:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     CLEAR_BIT(FLASH->CR, (FLASH_CR_PG | FLASH_CR_SER | FLASH_CR_SNB | FLASH_MER_BIT));
+ 379:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 380:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Disable End of FLASH Operation interrupt */
+ 381:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_FLASH_DISABLE_IT(FLASH_IT_EOP);
+ 382:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 383:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Disable Error source interrupt */
+ 384:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_FLASH_DISABLE_IT(FLASH_IT_ERR);
+ 385:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 386:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Process Unlocked */
+ 387:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_UNLOCK(&pFlash);
+ 388:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 389:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 390:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 391:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 392:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  FLASH end of operation interrupt callback
+ 393:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  ReturnValue The value saved in this parameter depends on the ongoing procedure
+ 394:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *                  Mass Erase: Bank number which has been requested to erase
+ 395:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *                  Sectors Erase: Sector which has been erased 
+ 396:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *                    (if 0xFFFFFFFFU, it means that all the selected sectors have been erased)
+ 397:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *                  Program: Address which was selected for data program
+ 398:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval None
+ 399:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 400:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** __weak void HAL_FLASH_EndOfOperationCallback(uint32_t ReturnValue)
+ 401:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 402:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
+ 403:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   UNUSED(ReturnValue);
+ 404:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* NOTE : This function Should not be modified, when the callback is needed,
+ 405:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****             the HAL_FLASH_EndOfOperationCallback could be implemented in the user file
+ 406:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    */ 
+ 407:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 408:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 409:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 410:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  FLASH operation error interrupt callback
+ 411:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  ReturnValue The value saved in this parameter depends on the ongoing procedure
+ 412:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *                 Mass Erase: Bank number which has been requested to erase
+ 413:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *                 Sectors Erase: Sector number which returned an error
+ 414:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *                 Program: Address which was selected for data program
+ 415:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval None
+ 416:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 417:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** __weak void HAL_FLASH_OperationErrorCallback(uint32_t ReturnValue)
+ 418:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 419:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
+ 420:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   UNUSED(ReturnValue);
+ 421:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* NOTE : This function Should not be modified, when the callback is needed,
+ 422:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****             the HAL_FLASH_OperationErrorCallback could be implemented in the user file
+ 423:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    */ 
+ 424:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 425:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 426:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 427:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @}
+ 428:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 429:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ARM GAS  /tmp/ccjvrcjF.s 			page 9
+
+
+ 430:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /** @defgroup FLASH_Exported_Functions_Group2 Peripheral Control functions 
+ 431:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  *  @brief   management functions 
+ 432:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  *
+ 433:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** @verbatim   
+ 434:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  ===============================================================================
+ 435:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                       ##### Peripheral Control functions #####
+ 436:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  ===============================================================================  
+ 437:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     [..]
+ 438:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     This subsection provides a set of functions allowing to control the FLASH 
+ 439:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     memory operations.
+ 440:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 441:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** @endverbatim
+ 442:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
+ 443:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 444:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 445:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 446:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Unlock the FLASH control register access
+ 447:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL Status
+ 448:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 449:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_Unlock(void)
+ 450:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 451:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 452:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 453:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(READ_BIT(FLASH->CR, FLASH_CR_LOCK) != RESET)
+ 454:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 455:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Authorize the FLASH Registers access */
+ 456:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     WRITE_REG(FLASH->KEYR, FLASH_KEY1);
+ 457:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     WRITE_REG(FLASH->KEYR, FLASH_KEY2);
+ 458:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 459:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Verify Flash is unlocked */
+ 460:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     if(READ_BIT(FLASH->CR, FLASH_CR_LOCK) != RESET)
+ 461:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 462:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       status = HAL_ERROR;
+ 463:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 464:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 465:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 466:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   return status;
+ 467:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 468:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 469:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 470:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Locks the FLASH control register access
+ 471:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL Status
+ 472:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 473:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_Lock(void)
+ 474:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 475:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Set the LOCK Bit to lock the FLASH Registers access */
+ 476:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_CR_LOCK;
+ 477:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 478:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   return HAL_OK;  
+ 479:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 480:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 481:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 482:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Unlock the FLASH Option Control Registers access.
+ 483:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL Status
+ 484:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 485:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_OB_Unlock(void)
+ 486:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ARM GAS  /tmp/ccjvrcjF.s 			page 10
+
+
+ 487:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if((FLASH->OPTCR & FLASH_OPTCR_OPTLOCK) != RESET)
+ 488:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 489:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Authorizes the Option Byte register programming */
+ 490:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH->OPTKEYR = FLASH_OPT_KEY1;
+ 491:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH->OPTKEYR = FLASH_OPT_KEY2;
+ 492:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 493:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   else
+ 494:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 495:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     return HAL_ERROR;
+ 496:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }  
+ 497:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 498:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   return HAL_OK;  
+ 499:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 500:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 501:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 502:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Lock the FLASH Option Control Registers access.
+ 503:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL Status 
+ 504:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 505:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_OB_Lock(void)
+ 506:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 507:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Set the OPTLOCK Bit to lock the FLASH Option Byte Registers access */
+ 508:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->OPTCR |= FLASH_OPTCR_OPTLOCK;
+ 509:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 510:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   return HAL_OK;  
+ 511:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 512:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 513:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 514:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Launch the option byte loading.
+ 515:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL Status
+ 516:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 517:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_OB_Launch(void)
+ 518:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 519:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Set the OPTSTRT bit in OPTCR register */
+ 520:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *(__IO uint8_t *)OPTCR_BYTE0_ADDRESS |= FLASH_OPTCR_OPTSTRT;
+ 521:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 522:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Wait for last operation to be completed */
+ 523:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   return(FLASH_WaitForLastOperation((uint32_t)FLASH_TIMEOUT_VALUE)); 
+ 524:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 525:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 526:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 527:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @}
+ 528:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 529:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 530:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /** @defgroup FLASH_Exported_Functions_Group3 Peripheral State and Errors functions 
+ 531:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  *  @brief   Peripheral Errors functions 
+ 532:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  *
+ 533:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** @verbatim   
+ 534:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  ===============================================================================
+ 535:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                 ##### Peripheral Errors functions #####
+ 536:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****  ===============================================================================  
+ 537:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     [..]
+ 538:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     This subsection permits to get in run-time Errors of the FLASH peripheral.
+ 539:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 540:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** @endverbatim
+ 541:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @{
+ 542:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 543:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ARM GAS  /tmp/ccjvrcjF.s 			page 11
+
+
+ 544:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 545:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Get the specific FLASH error flag.
+ 546:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval FLASH_ErrorCode: The returned value can be a combination of:
+ 547:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *            @arg HAL_FLASH_ERROR_RD: FLASH Read Protection error flag (PCROP)
+ 548:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *            @arg HAL_FLASH_ERROR_PGS: FLASH Programming Sequence error flag 
+ 549:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *            @arg HAL_FLASH_ERROR_PGP: FLASH Programming Parallelism error flag  
+ 550:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *            @arg HAL_FLASH_ERROR_PGA: FLASH Programming Alignment error flag
+ 551:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *            @arg HAL_FLASH_ERROR_WRP: FLASH Write protected error flag
+ 552:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *            @arg HAL_FLASH_ERROR_OPERATION: FLASH operation Error flag 
+ 553:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 554:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** uint32_t HAL_FLASH_GetError(void)
+ 555:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** { 
+ 556:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    return pFlash.ErrorCode;
+ 557:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }  
+ 558:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 559:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 560:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @}
+ 561:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */    
+ 562:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 563:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 564:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Wait for a FLASH operation to complete.
+ 565:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Timeout maximum flash operationtimeout
+ 566:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval HAL Status
+ 567:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 568:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** HAL_StatusTypeDef FLASH_WaitForLastOperation(uint32_t Timeout)
+ 569:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** { 
+ 570:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   uint32_t tickstart = 0U;
+ 571:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 572:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Clear Error Code */
+ 573:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
+ 574:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 575:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Wait for the FLASH operation to complete by polling on BUSY flag to be reset.
+ 576:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****      Even if the FLASH operation fails, the BUSY flag will be reset and an error
+ 577:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****      flag will be set */
+ 578:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Get tick */
+ 579:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   tickstart = HAL_GetTick();
+ 580:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 581:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   while(__HAL_FLASH_GET_FLAG(FLASH_FLAG_BSY) != RESET) 
+ 582:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   { 
+ 583:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     if(Timeout != HAL_MAX_DELAY)
+ 584:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 585:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       if((Timeout == 0U)||((HAL_GetTick() - tickstart ) > Timeout))
+ 586:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 587:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         return HAL_TIMEOUT;
+ 588:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 589:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     } 
+ 590:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 591:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 592:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check FLASH End of Operation flag  */
+ 593:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if (__HAL_FLASH_GET_FLAG(FLASH_FLAG_EOP) != RESET)
+ 594:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 595:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Clear FLASH End of Operation pending bit */
+ 596:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP);
+ 597:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 598:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #if defined(FLASH_SR_RDERR)  
+ 599:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG((FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | \
+ 600:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                            FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR | FLASH_FLAG_RDERR)) != RESET)
+ARM GAS  /tmp/ccjvrcjF.s 			page 12
+
+
+ 601:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #else
+ 602:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG((FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | \
+ 603:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                            FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR)) != RESET)
+ 604:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #endif /* FLASH_SR_RDERR */
+ 605:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 606:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /*Save the error code*/
+ 607:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_SetErrorCode();
+ 608:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     return HAL_ERROR;
+ 609:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 610:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 611:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* If there is no error flag set */
+ 612:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   return HAL_OK;
+ 613:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 614:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }  
+ 615:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 616:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 617:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Program a double word (64-bit) at a specified address.
+ 618:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @note   This function must be used when the device voltage range is from
+ 619:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *         2.7V to 3.6V and Vpp in the range 7V to 9V.
+ 620:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *
+ 621:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @note   If an erase and a program operations are requested simultaneously,    
+ 622:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *         the erase operation is performed before the program one.
+ 623:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *  
+ 624:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Address specifies the address to be programmed.
+ 625:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Data specifies the data to be programmed.
+ 626:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval None
+ 627:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 628:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void FLASH_Program_DoubleWord(uint32_t Address, uint64_t Data)
+ 629:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+  29              		.loc 1 629 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              		.loc 1 629 1 is_stmt 0 view .LVU1
+  35 0000 10B4     		push	{r4}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 4
+  38              		.cfi_offset 4, -4
+ 630:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check the parameters */
+ 631:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   assert_param(IS_FLASH_ADDRESS(Address));
+  39              		.loc 1 631 3 is_stmt 1 view .LVU2
+ 632:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 633:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* If the previous operation is completed, proceed to program the new data */
+ 634:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   CLEAR_BIT(FLASH->CR, FLASH_CR_PSIZE);
+  40              		.loc 1 634 3 view .LVU3
+  41 0002 0949     		ldr	r1, .L3
+  42 0004 0C69     		ldr	r4, [r1, #16]
+  43 0006 24F44074 		bic	r4, r4, #768
+  44 000a 0C61     		str	r4, [r1, #16]
+ 635:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_PSIZE_DOUBLE_WORD;
+  45              		.loc 1 635 3 view .LVU4
+  46              		.loc 1 635 13 is_stmt 0 view .LVU5
+  47 000c 0C69     		ldr	r4, [r1, #16]
+  48 000e 44F44074 		orr	r4, r4, #768
+  49 0012 0C61     		str	r4, [r1, #16]
+ 636:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_CR_PG;
+ARM GAS  /tmp/ccjvrcjF.s 			page 13
+
+
+  50              		.loc 1 636 3 is_stmt 1 view .LVU6
+  51              		.loc 1 636 13 is_stmt 0 view .LVU7
+  52 0014 0C69     		ldr	r4, [r1, #16]
+  53 0016 44F00104 		orr	r4, r4, #1
+  54 001a 0C61     		str	r4, [r1, #16]
+ 637:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 638:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Program the double-word */
+ 639:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *(__IO uint32_t*)Address = (uint32_t)Data;
+  55              		.loc 1 639 3 is_stmt 1 view .LVU8
+  56              		.loc 1 639 28 is_stmt 0 view .LVU9
+  57 001c 0260     		str	r2, [r0]
+ 640:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *(__IO uint32_t*)(Address+4) = (uint32_t)(Data >> 32);
+  58              		.loc 1 640 3 is_stmt 1 view .LVU10
+  59              		.loc 1 640 32 is_stmt 0 view .LVU11
+  60 001e 4360     		str	r3, [r0, #4]
+ 641:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+  61              		.loc 1 641 1 view .LVU12
+  62 0020 5DF8044B 		ldr	r4, [sp], #4
+  63              	.LCFI1:
+  64              		.cfi_restore 4
+  65              		.cfi_def_cfa_offset 0
+  66 0024 7047     		bx	lr
+  67              	.L4:
+  68 0026 00BF     		.align	2
+  69              	.L3:
+  70 0028 003C0240 		.word	1073888256
+  71              		.cfi_endproc
+  72              	.LFE138:
+  74              		.section	.text.FLASH_Program_Word,"ax",%progbits
+  75              		.align	1
+  76              		.syntax unified
+  77              		.thumb
+  78              		.thumb_func
+  79              		.fpu fpv4-sp-d16
+  81              	FLASH_Program_Word:
+  82              	.LVL1:
+  83              	.LFB139:
+ 642:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 643:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 644:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 645:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Program word (32-bit) at a specified address.
+ 646:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @note   This function must be used when the device voltage range is from
+ 647:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *         2.7V to 3.6V.
+ 648:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *
+ 649:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @note   If an erase and a program operations are requested simultaneously,    
+ 650:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *         the erase operation is performed before the program one.
+ 651:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *  
+ 652:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Address specifies the address to be programmed.
+ 653:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Data specifies the data to be programmed.
+ 654:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval None
+ 655:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 656:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void FLASH_Program_Word(uint32_t Address, uint32_t Data)
+ 657:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+  84              		.loc 1 657 1 is_stmt 1 view -0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccjvrcjF.s 			page 14
+
+
+  88              		@ link register save eliminated.
+ 658:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check the parameters */
+ 659:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   assert_param(IS_FLASH_ADDRESS(Address));
+  89              		.loc 1 659 3 view .LVU14
+ 660:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 661:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* If the previous operation is completed, proceed to program the new data */
+ 662:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   CLEAR_BIT(FLASH->CR, FLASH_CR_PSIZE);
+  90              		.loc 1 662 3 view .LVU15
+  91 0000 074B     		ldr	r3, .L6
+  92 0002 1A69     		ldr	r2, [r3, #16]
+  93 0004 22F44072 		bic	r2, r2, #768
+  94 0008 1A61     		str	r2, [r3, #16]
+ 663:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_PSIZE_WORD;
+  95              		.loc 1 663 3 view .LVU16
+  96              		.loc 1 663 13 is_stmt 0 view .LVU17
+  97 000a 1A69     		ldr	r2, [r3, #16]
+  98 000c 42F40072 		orr	r2, r2, #512
+  99 0010 1A61     		str	r2, [r3, #16]
+ 664:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_CR_PG;
+ 100              		.loc 1 664 3 is_stmt 1 view .LVU18
+ 101              		.loc 1 664 13 is_stmt 0 view .LVU19
+ 102 0012 1A69     		ldr	r2, [r3, #16]
+ 103 0014 42F00102 		orr	r2, r2, #1
+ 104 0018 1A61     		str	r2, [r3, #16]
+ 665:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 666:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *(__IO uint32_t*)Address = Data;
+ 105              		.loc 1 666 3 is_stmt 1 view .LVU20
+ 106              		.loc 1 666 28 is_stmt 0 view .LVU21
+ 107 001a 0160     		str	r1, [r0]
+ 667:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 108              		.loc 1 667 1 view .LVU22
+ 109 001c 7047     		bx	lr
+ 110              	.L7:
+ 111 001e 00BF     		.align	2
+ 112              	.L6:
+ 113 0020 003C0240 		.word	1073888256
+ 114              		.cfi_endproc
+ 115              	.LFE139:
+ 117              		.section	.text.FLASH_Program_HalfWord,"ax",%progbits
+ 118              		.align	1
+ 119              		.syntax unified
+ 120              		.thumb
+ 121              		.thumb_func
+ 122              		.fpu fpv4-sp-d16
+ 124              	FLASH_Program_HalfWord:
+ 125              	.LVL2:
+ 126              	.LFB140:
+ 668:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 669:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 670:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Program a half-word (16-bit) at a specified address.
+ 671:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @note   This function must be used when the device voltage range is from
+ 672:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *         2.1V to 3.6V.
+ 673:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *
+ 674:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @note   If an erase and a program operations are requested simultaneously,    
+ 675:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *         the erase operation is performed before the program one.
+ 676:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *  
+ 677:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Address specifies the address to be programmed.
+ARM GAS  /tmp/ccjvrcjF.s 			page 15
+
+
+ 678:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Data specifies the data to be programmed.
+ 679:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval None
+ 680:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 681:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void FLASH_Program_HalfWord(uint32_t Address, uint16_t Data)
+ 682:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 127              		.loc 1 682 1 is_stmt 1 view -0
+ 128              		.cfi_startproc
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 0, uses_anonymous_args = 0
+ 131              		@ link register save eliminated.
+ 683:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check the parameters */
+ 684:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   assert_param(IS_FLASH_ADDRESS(Address));
+ 132              		.loc 1 684 3 view .LVU24
+ 685:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 686:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* If the previous operation is completed, proceed to program the new data */
+ 687:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   CLEAR_BIT(FLASH->CR, FLASH_CR_PSIZE);
+ 133              		.loc 1 687 3 view .LVU25
+ 134 0000 074B     		ldr	r3, .L9
+ 135 0002 1A69     		ldr	r2, [r3, #16]
+ 136 0004 22F44072 		bic	r2, r2, #768
+ 137 0008 1A61     		str	r2, [r3, #16]
+ 688:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_PSIZE_HALF_WORD;
+ 138              		.loc 1 688 3 view .LVU26
+ 139              		.loc 1 688 13 is_stmt 0 view .LVU27
+ 140 000a 1A69     		ldr	r2, [r3, #16]
+ 141 000c 42F48072 		orr	r2, r2, #256
+ 142 0010 1A61     		str	r2, [r3, #16]
+ 689:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_CR_PG;
+ 143              		.loc 1 689 3 is_stmt 1 view .LVU28
+ 144              		.loc 1 689 13 is_stmt 0 view .LVU29
+ 145 0012 1A69     		ldr	r2, [r3, #16]
+ 146 0014 42F00102 		orr	r2, r2, #1
+ 147 0018 1A61     		str	r2, [r3, #16]
+ 690:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 691:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *(__IO uint16_t*)Address = Data;
+ 148              		.loc 1 691 3 is_stmt 1 view .LVU30
+ 149              		.loc 1 691 28 is_stmt 0 view .LVU31
+ 150 001a 0180     		strh	r1, [r0]	@ movhi
+ 692:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 151              		.loc 1 692 1 view .LVU32
+ 152 001c 7047     		bx	lr
+ 153              	.L10:
+ 154 001e 00BF     		.align	2
+ 155              	.L9:
+ 156 0020 003C0240 		.word	1073888256
+ 157              		.cfi_endproc
+ 158              	.LFE140:
+ 160              		.section	.text.FLASH_Program_Byte,"ax",%progbits
+ 161              		.align	1
+ 162              		.syntax unified
+ 163              		.thumb
+ 164              		.thumb_func
+ 165              		.fpu fpv4-sp-d16
+ 167              	FLASH_Program_Byte:
+ 168              	.LVL3:
+ 169              	.LFB141:
+ 693:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ARM GAS  /tmp/ccjvrcjF.s 			page 16
+
+
+ 694:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 695:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Program byte (8-bit) at a specified address.
+ 696:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @note   This function must be used when the device voltage range is from
+ 697:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *         1.8V to 3.6V.
+ 698:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *
+ 699:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @note   If an erase and a program operations are requested simultaneously,    
+ 700:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *         the erase operation is performed before the program one.
+ 701:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *  
+ 702:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Address specifies the address to be programmed.
+ 703:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @param  Data specifies the data to be programmed.
+ 704:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval None
+ 705:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 706:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void FLASH_Program_Byte(uint32_t Address, uint8_t Data)
+ 707:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** {
+ 170              		.loc 1 707 1 is_stmt 1 view -0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		@ link register save eliminated.
+ 708:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Check the parameters */
+ 709:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   assert_param(IS_FLASH_ADDRESS(Address));
+ 175              		.loc 1 709 3 view .LVU34
+ 710:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 711:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* If the previous operation is completed, proceed to program the new data */
+ 712:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   CLEAR_BIT(FLASH->CR, FLASH_CR_PSIZE);
+ 176              		.loc 1 712 3 view .LVU35
+ 177 0000 064B     		ldr	r3, .L12
+ 178 0002 1A69     		ldr	r2, [r3, #16]
+ 179 0004 22F44072 		bic	r2, r2, #768
+ 180 0008 1A61     		str	r2, [r3, #16]
+ 713:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_PSIZE_BYTE;
+ 181              		.loc 1 713 3 view .LVU36
+ 182              		.loc 1 713 13 is_stmt 0 view .LVU37
+ 183 000a 1A69     		ldr	r2, [r3, #16]
+ 184 000c 1A61     		str	r2, [r3, #16]
+ 714:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   FLASH->CR |= FLASH_CR_PG;
+ 185              		.loc 1 714 3 is_stmt 1 view .LVU38
+ 186              		.loc 1 714 13 is_stmt 0 view .LVU39
+ 187 000e 1A69     		ldr	r2, [r3, #16]
+ 188 0010 42F00102 		orr	r2, r2, #1
+ 189 0014 1A61     		str	r2, [r3, #16]
+ 715:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 716:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   *(__IO uint8_t*)Address = Data;
+ 190              		.loc 1 716 3 is_stmt 1 view .LVU40
+ 191              		.loc 1 716 27 is_stmt 0 view .LVU41
+ 192 0016 0170     		strb	r1, [r0]
+ 717:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 193              		.loc 1 717 1 view .LVU42
+ 194 0018 7047     		bx	lr
+ 195              	.L13:
+ 196 001a 00BF     		.align	2
+ 197              	.L12:
+ 198 001c 003C0240 		.word	1073888256
+ 199              		.cfi_endproc
+ 200              	.LFE141:
+ 202              		.section	.text.FLASH_SetErrorCode,"ax",%progbits
+ 203              		.align	1
+ARM GAS  /tmp/ccjvrcjF.s 			page 17
+
+
+ 204              		.syntax unified
+ 205              		.thumb
+ 206              		.thumb_func
+ 207              		.fpu fpv4-sp-d16
+ 209              	FLASH_SetErrorCode:
+ 210              	.LFB142:
+ 718:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 719:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** /**
+ 720:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @brief  Set the specific FLASH error flag.
+ 721:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   * @retval None
+ 722:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   */
+ 723:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** static void FLASH_SetErrorCode(void)
+ 724:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** { 
+ 211              		.loc 1 724 1 is_stmt 1 view -0
+ 212              		.cfi_startproc
+ 213              		@ args = 0, pretend = 0, frame = 0
+ 214              		@ frame_needed = 0, uses_anonymous_args = 0
+ 215              		@ link register save eliminated.
+ 725:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_WRPERR) != RESET)
+ 216              		.loc 1 725 3 view .LVU44
+ 217              		.loc 1 725 6 is_stmt 0 view .LVU45
+ 218 0000 274B     		ldr	r3, .L21
+ 219 0002 DB68     		ldr	r3, [r3, #12]
+ 220              		.loc 1 725 5 view .LVU46
+ 221 0004 13F0100F 		tst	r3, #16
+ 222 0008 07D0     		beq	.L15
+ 726:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 727:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    pFlash.ErrorCode |= HAL_FLASH_ERROR_WRP;
+ 223              		.loc 1 727 4 is_stmt 1 view .LVU47
+ 224              		.loc 1 727 21 is_stmt 0 view .LVU48
+ 225 000a 264A     		ldr	r2, .L21+4
+ 226 000c D369     		ldr	r3, [r2, #28]
+ 227 000e 43F01003 		orr	r3, r3, #16
+ 228 0012 D361     		str	r3, [r2, #28]
+ 728:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    
+ 729:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    /* Clear FLASH write protection error pending bit */
+ 730:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_WRPERR);
+ 229              		.loc 1 730 4 is_stmt 1 view .LVU49
+ 230 0014 224B     		ldr	r3, .L21
+ 231 0016 1022     		movs	r2, #16
+ 232 0018 DA60     		str	r2, [r3, #12]
+ 233              	.L15:
+ 731:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 732:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 733:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_PGAERR) != RESET)
+ 234              		.loc 1 733 3 view .LVU50
+ 235              		.loc 1 733 6 is_stmt 0 view .LVU51
+ 236 001a 214B     		ldr	r3, .L21
+ 237 001c DB68     		ldr	r3, [r3, #12]
+ 238              		.loc 1 733 5 view .LVU52
+ 239 001e 13F0200F 		tst	r3, #32
+ 240 0022 07D0     		beq	.L16
+ 734:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 735:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    pFlash.ErrorCode |= HAL_FLASH_ERROR_PGA;
+ 241              		.loc 1 735 4 is_stmt 1 view .LVU53
+ 242              		.loc 1 735 21 is_stmt 0 view .LVU54
+ 243 0024 1F4A     		ldr	r2, .L21+4
+ARM GAS  /tmp/ccjvrcjF.s 			page 18
+
+
+ 244 0026 D369     		ldr	r3, [r2, #28]
+ 245 0028 43F00803 		orr	r3, r3, #8
+ 246 002c D361     		str	r3, [r2, #28]
+ 736:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    
+ 737:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    /* Clear FLASH Programming alignment error pending bit */
+ 738:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGAERR);
+ 247              		.loc 1 738 4 is_stmt 1 view .LVU55
+ 248 002e 1C4B     		ldr	r3, .L21
+ 249 0030 2022     		movs	r2, #32
+ 250 0032 DA60     		str	r2, [r3, #12]
+ 251              	.L16:
+ 739:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 740:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 741:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_PGPERR) != RESET)
+ 252              		.loc 1 741 3 view .LVU56
+ 253              		.loc 1 741 6 is_stmt 0 view .LVU57
+ 254 0034 1A4B     		ldr	r3, .L21
+ 255 0036 DB68     		ldr	r3, [r3, #12]
+ 256              		.loc 1 741 5 view .LVU58
+ 257 0038 13F0400F 		tst	r3, #64
+ 258 003c 07D0     		beq	.L17
+ 742:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 743:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_PGP;
+ 259              		.loc 1 743 5 is_stmt 1 view .LVU59
+ 260              		.loc 1 743 22 is_stmt 0 view .LVU60
+ 261 003e 194A     		ldr	r2, .L21+4
+ 262 0040 D369     		ldr	r3, [r2, #28]
+ 263 0042 43F00403 		orr	r3, r3, #4
+ 264 0046 D361     		str	r3, [r2, #28]
+ 744:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 745:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Clear FLASH Programming parallelism error pending bit */
+ 746:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGPERR);
+ 265              		.loc 1 746 5 is_stmt 1 view .LVU61
+ 266 0048 154B     		ldr	r3, .L21
+ 267 004a 4022     		movs	r2, #64
+ 268 004c DA60     		str	r2, [r3, #12]
+ 269              	.L17:
+ 747:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 748:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 749:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_PGSERR) != RESET)
+ 270              		.loc 1 749 3 view .LVU62
+ 271              		.loc 1 749 6 is_stmt 0 view .LVU63
+ 272 004e 144B     		ldr	r3, .L21
+ 273 0050 DB68     		ldr	r3, [r3, #12]
+ 274              		.loc 1 749 5 view .LVU64
+ 275 0052 13F0800F 		tst	r3, #128
+ 276 0056 07D0     		beq	.L18
+ 750:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 751:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_PGS;
+ 277              		.loc 1 751 5 is_stmt 1 view .LVU65
+ 278              		.loc 1 751 22 is_stmt 0 view .LVU66
+ 279 0058 124A     		ldr	r2, .L21+4
+ 280 005a D369     		ldr	r3, [r2, #28]
+ 281 005c 43F00203 		orr	r3, r3, #2
+ 282 0060 D361     		str	r3, [r2, #28]
+ 752:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 753:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Clear FLASH Programming sequence error pending bit */
+ARM GAS  /tmp/ccjvrcjF.s 			page 19
+
+
+ 754:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_PGSERR);
+ 283              		.loc 1 754 5 is_stmt 1 view .LVU67
+ 284 0062 0F4B     		ldr	r3, .L21
+ 285 0064 8022     		movs	r2, #128
+ 286 0066 DA60     		str	r2, [r3, #12]
+ 287              	.L18:
+ 755:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 756:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #if defined(FLASH_SR_RDERR) 
+ 757:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_RDERR) != RESET)
+ 288              		.loc 1 757 3 view .LVU68
+ 289              		.loc 1 757 6 is_stmt 0 view .LVU69
+ 290 0068 0D4B     		ldr	r3, .L21
+ 291 006a DB68     		ldr	r3, [r3, #12]
+ 292              		.loc 1 757 5 view .LVU70
+ 293 006c 13F4807F 		tst	r3, #256
+ 294 0070 08D0     		beq	.L19
+ 758:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 759:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_RD;
+ 295              		.loc 1 759 5 is_stmt 1 view .LVU71
+ 296              		.loc 1 759 22 is_stmt 0 view .LVU72
+ 297 0072 0C4A     		ldr	r2, .L21+4
+ 298 0074 D369     		ldr	r3, [r2, #28]
+ 299 0076 43F00103 		orr	r3, r3, #1
+ 300 007a D361     		str	r3, [r2, #28]
+ 760:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 761:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Clear FLASH Proprietary readout protection error pending bit */
+ 762:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_RDERR);
+ 301              		.loc 1 762 5 is_stmt 1 view .LVU73
+ 302 007c 084B     		ldr	r3, .L21
+ 303 007e 4FF48072 		mov	r2, #256
+ 304 0082 DA60     		str	r2, [r3, #12]
+ 305              	.L19:
+ 763:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 764:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** #endif /* FLASH_SR_RDERR */  
+ 765:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_OPERR) != RESET)
+ 306              		.loc 1 765 3 view .LVU74
+ 307              		.loc 1 765 6 is_stmt 0 view .LVU75
+ 308 0084 064B     		ldr	r3, .L21
+ 309 0086 DB68     		ldr	r3, [r3, #12]
+ 310              		.loc 1 765 5 view .LVU76
+ 311 0088 13F0020F 		tst	r3, #2
+ 312 008c 07D0     		beq	.L14
+ 766:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 767:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_OPERATION;
+ 313              		.loc 1 767 5 is_stmt 1 view .LVU77
+ 314              		.loc 1 767 22 is_stmt 0 view .LVU78
+ 315 008e 054A     		ldr	r2, .L21+4
+ 316 0090 D369     		ldr	r3, [r2, #28]
+ 317 0092 43F02003 		orr	r3, r3, #32
+ 318 0096 D361     		str	r3, [r2, #28]
+ 768:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 769:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     /* Clear FLASH Operation error pending bit */
+ 770:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_OPERR);
+ 319              		.loc 1 770 5 is_stmt 1 view .LVU79
+ 320 0098 014B     		ldr	r3, .L21
+ 321 009a 0222     		movs	r2, #2
+ 322 009c DA60     		str	r2, [r3, #12]
+ARM GAS  /tmp/ccjvrcjF.s 			page 20
+
+
+ 323              	.L14:
+ 771:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 772:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 324              		.loc 1 772 1 is_stmt 0 view .LVU80
+ 325 009e 7047     		bx	lr
+ 326              	.L22:
+ 327              		.align	2
+ 328              	.L21:
+ 329 00a0 003C0240 		.word	1073888256
+ 330 00a4 00000000 		.word	pFlash
+ 331              		.cfi_endproc
+ 332              	.LFE142:
+ 334              		.section	.text.HAL_FLASH_Program_IT,"ax",%progbits
+ 335              		.align	1
+ 336              		.global	HAL_FLASH_Program_IT
+ 337              		.syntax unified
+ 338              		.thumb
+ 339              		.thumb_func
+ 340              		.fpu fpv4-sp-d16
+ 342              	HAL_FLASH_Program_IT:
+ 343              	.LVL4:
+ 344              	.LFB127:
+ 231:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 345              		.loc 1 231 1 is_stmt 1 view -0
+ 346              		.cfi_startproc
+ 347              		@ args = 0, pretend = 0, frame = 0
+ 348              		@ frame_needed = 0, uses_anonymous_args = 0
+ 231:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 349              		.loc 1 231 1 is_stmt 0 view .LVU82
+ 350 0000 70B5     		push	{r4, r5, r6, lr}
+ 351              	.LCFI2:
+ 352              		.cfi_def_cfa_offset 16
+ 353              		.cfi_offset 4, -16
+ 354              		.cfi_offset 5, -12
+ 355              		.cfi_offset 6, -8
+ 356              		.cfi_offset 14, -4
+ 232:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 357              		.loc 1 232 3 is_stmt 1 view .LVU83
+ 358              	.LVL5:
+ 235:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 359              		.loc 1 235 3 view .LVU84
+ 235:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 360              		.loc 1 235 3 view .LVU85
+ 361 0002 174D     		ldr	r5, .L33
+ 362 0004 2D7E     		ldrb	r5, [r5, #24]	@ zero_extendqisi2
+ 363 0006 012D     		cmp	r5, #1
+ 364 0008 28D0     		beq	.L28
+ 365 000a 0446     		mov	r4, r0
+ 366 000c 0846     		mov	r0, r1
+ 367              	.LVL6:
+ 235:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 368              		.loc 1 235 3 discriminator 2 view .LVU86
+ 369 000e 1449     		ldr	r1, .L33
+ 370              	.LVL7:
+ 235:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 371              		.loc 1 235 3 is_stmt 0 discriminator 2 view .LVU87
+ 372 0010 0125     		movs	r5, #1
+ARM GAS  /tmp/ccjvrcjF.s 			page 21
+
+
+ 373 0012 0D76     		strb	r5, [r1, #24]
+ 238:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 374              		.loc 1 238 3 is_stmt 1 discriminator 2 view .LVU88
+ 241:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 375              		.loc 1 241 3 discriminator 2 view .LVU89
+ 376 0014 134D     		ldr	r5, .L33+4
+ 377 0016 2E69     		ldr	r6, [r5, #16]
+ 378 0018 46F08076 		orr	r6, r6, #16777216
+ 379 001c 2E61     		str	r6, [r5, #16]
+ 244:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 380              		.loc 1 244 3 discriminator 2 view .LVU90
+ 381 001e 2E69     		ldr	r6, [r5, #16]
+ 382 0020 46F00076 		orr	r6, r6, #33554432
+ 383 0024 2E61     		str	r6, [r5, #16]
+ 246:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   pFlash.Address = Address;
+ 384              		.loc 1 246 3 discriminator 2 view .LVU91
+ 246:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   pFlash.Address = Address;
+ 385              		.loc 1 246 27 is_stmt 0 discriminator 2 view .LVU92
+ 386 0026 0325     		movs	r5, #3
+ 387 0028 0D70     		strb	r5, [r1]
+ 247:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 388              		.loc 1 247 3 is_stmt 1 discriminator 2 view .LVU93
+ 247:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 389              		.loc 1 247 18 is_stmt 0 discriminator 2 view .LVU94
+ 390 002a 4861     		str	r0, [r1, #20]
+ 249:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 391              		.loc 1 249 3 is_stmt 1 discriminator 2 view .LVU95
+ 249:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 392              		.loc 1 249 5 is_stmt 0 discriminator 2 view .LVU96
+ 393 002c 3CB1     		cbz	r4, .L30
+ 254:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 394              		.loc 1 254 8 is_stmt 1 view .LVU97
+ 254:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 395              		.loc 1 254 10 is_stmt 0 view .LVU98
+ 396 002e 012C     		cmp	r4, #1
+ 397 0030 0AD0     		beq	.L31
+ 259:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 398              		.loc 1 259 8 is_stmt 1 view .LVU99
+ 259:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 399              		.loc 1 259 10 is_stmt 0 view .LVU100
+ 400 0032 022C     		cmp	r4, #2
+ 401 0034 0DD0     		beq	.L32
+ 267:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 402              		.loc 1 267 5 is_stmt 1 view .LVU101
+ 403 0036 FFF7FEFF 		bl	FLASH_Program_DoubleWord
+ 404              	.LVL8:
+ 270:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 405              		.loc 1 270 10 is_stmt 0 view .LVU102
+ 406 003a 0020     		movs	r0, #0
+ 407              	.LVL9:
+ 408              	.L24:
+ 271:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 409              		.loc 1 271 1 view .LVU103
+ 410 003c 70BD     		pop	{r4, r5, r6, pc}
+ 411              	.LVL10:
+ 412              	.L30:
+ 252:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ARM GAS  /tmp/ccjvrcjF.s 			page 22
+
+
+ 413              		.loc 1 252 7 is_stmt 1 view .LVU104
+ 414 003e D1B2     		uxtb	r1, r2
+ 415 0040 FFF7FEFF 		bl	FLASH_Program_Byte
+ 416              	.LVL11:
+ 270:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 417              		.loc 1 270 10 is_stmt 0 view .LVU105
+ 418 0044 0020     		movs	r0, #0
+ 419 0046 F9E7     		b	.L24
+ 420              	.LVL12:
+ 421              	.L31:
+ 257:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 422              		.loc 1 257 5 is_stmt 1 view .LVU106
+ 423 0048 91B2     		uxth	r1, r2
+ 424 004a FFF7FEFF 		bl	FLASH_Program_HalfWord
+ 425              	.LVL13:
+ 270:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 426              		.loc 1 270 10 is_stmt 0 view .LVU107
+ 427 004e 0020     		movs	r0, #0
+ 428 0050 F4E7     		b	.L24
+ 429              	.LVL14:
+ 430              	.L32:
+ 262:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 431              		.loc 1 262 5 is_stmt 1 view .LVU108
+ 432 0052 1146     		mov	r1, r2
+ 433 0054 FFF7FEFF 		bl	FLASH_Program_Word
+ 434              	.LVL15:
+ 270:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 435              		.loc 1 270 10 is_stmt 0 view .LVU109
+ 436 0058 0020     		movs	r0, #0
+ 437 005a EFE7     		b	.L24
+ 438              	.LVL16:
+ 439              	.L28:
+ 235:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 440              		.loc 1 235 3 view .LVU110
+ 441 005c 0220     		movs	r0, #2
+ 442              	.LVL17:
+ 235:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 443              		.loc 1 235 3 view .LVU111
+ 444 005e EDE7     		b	.L24
+ 445              	.L34:
+ 446              		.align	2
+ 447              	.L33:
+ 448 0060 00000000 		.word	pFlash
+ 449 0064 003C0240 		.word	1073888256
+ 450              		.cfi_endproc
+ 451              	.LFE127:
+ 453              		.section	.text.HAL_FLASH_EndOfOperationCallback,"ax",%progbits
+ 454              		.align	1
+ 455              		.weak	HAL_FLASH_EndOfOperationCallback
+ 456              		.syntax unified
+ 457              		.thumb
+ 458              		.thumb_func
+ 459              		.fpu fpv4-sp-d16
+ 461              	HAL_FLASH_EndOfOperationCallback:
+ 462              	.LVL18:
+ 463              	.LFB129:
+ 401:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
+ARM GAS  /tmp/ccjvrcjF.s 			page 23
+
+
+ 464              		.loc 1 401 1 is_stmt 1 view -0
+ 465              		.cfi_startproc
+ 466              		@ args = 0, pretend = 0, frame = 0
+ 467              		@ frame_needed = 0, uses_anonymous_args = 0
+ 468              		@ link register save eliminated.
+ 403:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* NOTE : This function Should not be modified, when the callback is needed,
+ 469              		.loc 1 403 3 view .LVU113
+ 407:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 470              		.loc 1 407 1 is_stmt 0 view .LVU114
+ 471 0000 7047     		bx	lr
+ 472              		.cfi_endproc
+ 473              	.LFE129:
+ 475              		.section	.text.HAL_FLASH_OperationErrorCallback,"ax",%progbits
+ 476              		.align	1
+ 477              		.weak	HAL_FLASH_OperationErrorCallback
+ 478              		.syntax unified
+ 479              		.thumb
+ 480              		.thumb_func
+ 481              		.fpu fpv4-sp-d16
+ 483              	HAL_FLASH_OperationErrorCallback:
+ 484              	.LVL19:
+ 485              	.LFB130:
+ 418:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
+ 486              		.loc 1 418 1 is_stmt 1 view -0
+ 487              		.cfi_startproc
+ 488              		@ args = 0, pretend = 0, frame = 0
+ 489              		@ frame_needed = 0, uses_anonymous_args = 0
+ 490              		@ link register save eliminated.
+ 420:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* NOTE : This function Should not be modified, when the callback is needed,
+ 491              		.loc 1 420 3 view .LVU116
+ 424:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 492              		.loc 1 424 1 is_stmt 0 view .LVU117
+ 493 0000 7047     		bx	lr
+ 494              		.cfi_endproc
+ 495              	.LFE130:
+ 497              		.section	.text.HAL_FLASH_IRQHandler,"ax",%progbits
+ 498              		.align	1
+ 499              		.global	HAL_FLASH_IRQHandler
+ 500              		.syntax unified
+ 501              		.thumb
+ 502              		.thumb_func
+ 503              		.fpu fpv4-sp-d16
+ 505              	HAL_FLASH_IRQHandler:
+ 506              	.LFB128:
+ 278:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   uint32_t addresstmp = 0U;
+ 507              		.loc 1 278 1 is_stmt 1 view -0
+ 508              		.cfi_startproc
+ 509              		@ args = 0, pretend = 0, frame = 0
+ 510              		@ frame_needed = 0, uses_anonymous_args = 0
+ 511 0000 10B5     		push	{r4, lr}
+ 512              	.LCFI3:
+ 513              		.cfi_def_cfa_offset 8
+ 514              		.cfi_offset 4, -8
+ 515              		.cfi_offset 14, -4
+ 279:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 516              		.loc 1 279 3 view .LVU119
+ 517              	.LVL20:
+ARM GAS  /tmp/ccjvrcjF.s 			page 24
+
+
+ 283:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR | FLASH_FLAG_RDERR)) != RESET)
+ 518              		.loc 1 283 3 view .LVU120
+ 283:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR | FLASH_FLAG_RDERR)) != RESET)
+ 519              		.loc 1 283 6 is_stmt 0 view .LVU121
+ 520 0002 3B4B     		ldr	r3, .L53
+ 521 0004 DB68     		ldr	r3, [r3, #12]
+ 283:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR | FLASH_FLAG_RDERR)) != RESET)
+ 522              		.loc 1 283 5 view .LVU122
+ 523 0006 13F4F97F 		tst	r3, #498
+ 524 000a 13D0     		beq	.L38
+ 290:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 525              		.loc 1 290 5 is_stmt 1 view .LVU123
+ 290:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 526              		.loc 1 290 14 is_stmt 0 view .LVU124
+ 527 000c 394B     		ldr	r3, .L53+4
+ 528 000e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 529 0010 DBB2     		uxtb	r3, r3
+ 290:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 530              		.loc 1 290 7 view .LVU125
+ 531 0012 012B     		cmp	r3, #1
+ 532 0014 3DD0     		beq	.L49
+ 296:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 533              		.loc 1 296 10 is_stmt 1 view .LVU126
+ 296:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 534              		.loc 1 296 19 is_stmt 0 view .LVU127
+ 535 0016 374B     		ldr	r3, .L53+4
+ 536 0018 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 537 001a DBB2     		uxtb	r3, r3
+ 296:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 538              		.loc 1 296 12 view .LVU128
+ 539 001c 022B     		cmp	r3, #2
+ 540 001e 3ED0     		beq	.L50
+ 304:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 541              		.loc 1 304 7 is_stmt 1 view .LVU129
+ 304:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 542              		.loc 1 304 18 is_stmt 0 view .LVU130
+ 543 0020 344B     		ldr	r3, .L53+4
+ 544 0022 5C69     		ldr	r4, [r3, #20]
+ 545              	.LVL21:
+ 546              	.L40:
+ 308:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 547              		.loc 1 308 5 is_stmt 1 view .LVU131
+ 548 0024 FFF7FEFF 		bl	FLASH_SetErrorCode
+ 549              	.LVL22:
+ 311:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 550              		.loc 1 311 5 view .LVU132
+ 551 0028 2046     		mov	r0, r4
+ 552 002a FFF7FEFF 		bl	HAL_FLASH_OperationErrorCallback
+ 553              	.LVL23:
+ 314:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 554              		.loc 1 314 5 view .LVU133
+ 314:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 555              		.loc 1 314 29 is_stmt 0 view .LVU134
+ 556 002e 314B     		ldr	r3, .L53+4
+ 557 0030 0022     		movs	r2, #0
+ 558 0032 1A70     		strb	r2, [r3]
+ 559              	.LVL24:
+ARM GAS  /tmp/ccjvrcjF.s 			page 25
+
+
+ 560              	.L38:
+ 318:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 561              		.loc 1 318 3 is_stmt 1 view .LVU135
+ 318:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 562              		.loc 1 318 6 is_stmt 0 view .LVU136
+ 563 0034 2E4B     		ldr	r3, .L53
+ 564 0036 DB68     		ldr	r3, [r3, #12]
+ 318:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 565              		.loc 1 318 5 view .LVU137
+ 566 0038 13F0010F 		tst	r3, #1
+ 567 003c 13D0     		beq	.L42
+ 321:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 568              		.loc 1 321 5 is_stmt 1 view .LVU138
+ 569 003e 2C4B     		ldr	r3, .L53
+ 570 0040 0122     		movs	r2, #1
+ 571 0042 DA60     		str	r2, [r3, #12]
+ 323:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 572              		.loc 1 323 5 view .LVU139
+ 323:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 573              		.loc 1 323 14 is_stmt 0 view .LVU140
+ 574 0044 2B4B     		ldr	r3, .L53+4
+ 575 0046 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 576 0048 DBB2     		uxtb	r3, r3
+ 323:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 577              		.loc 1 323 7 view .LVU141
+ 578 004a 9342     		cmp	r3, r2
+ 579 004c 2AD0     		beq	.L51
+ 356:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 580              		.loc 1 356 7 is_stmt 1 view .LVU142
+ 356:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 581              		.loc 1 356 16 is_stmt 0 view .LVU143
+ 582 004e 294B     		ldr	r3, .L53+4
+ 583 0050 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 584 0052 DBB2     		uxtb	r3, r3
+ 356:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 585              		.loc 1 356 9 view .LVU144
+ 586 0054 022B     		cmp	r3, #2
+ 587 0056 43D0     		beq	.L52
+ 369:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 588              		.loc 1 369 9 is_stmt 1 view .LVU145
+ 589 0058 264B     		ldr	r3, .L53+4
+ 590 005a 5869     		ldr	r0, [r3, #20]
+ 591 005c FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 592              	.LVL25:
+ 593              	.L46:
+ 371:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 594              		.loc 1 371 7 view .LVU146
+ 371:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 595              		.loc 1 371 31 is_stmt 0 view .LVU147
+ 596 0060 244B     		ldr	r3, .L53+4
+ 597 0062 0022     		movs	r2, #0
+ 598 0064 1A70     		strb	r2, [r3]
+ 599              	.L42:
+ 375:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 600              		.loc 1 375 3 is_stmt 1 view .LVU148
+ 375:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 601              		.loc 1 375 12 is_stmt 0 view .LVU149
+ARM GAS  /tmp/ccjvrcjF.s 			page 26
+
+
+ 602 0066 234B     		ldr	r3, .L53+4
+ 603 0068 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 375:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 604              		.loc 1 375 5 view .LVU150
+ 605 006a 8BB9     		cbnz	r3, .L37
+ 378:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 606              		.loc 1 378 5 is_stmt 1 view .LVU151
+ 607 006c 204B     		ldr	r3, .L53
+ 608 006e 1A69     		ldr	r2, [r3, #16]
+ 609 0070 22F40042 		bic	r2, r2, #32768
+ 610 0074 22F0FF02 		bic	r2, r2, #255
+ 611 0078 1A61     		str	r2, [r3, #16]
+ 381:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 612              		.loc 1 381 5 view .LVU152
+ 613 007a 1A69     		ldr	r2, [r3, #16]
+ 614 007c 22F08072 		bic	r2, r2, #16777216
+ 615 0080 1A61     		str	r2, [r3, #16]
+ 384:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 616              		.loc 1 384 5 view .LVU153
+ 617 0082 1A69     		ldr	r2, [r3, #16]
+ 618 0084 22F00072 		bic	r2, r2, #33554432
+ 619 0088 1A61     		str	r2, [r3, #16]
+ 387:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 620              		.loc 1 387 5 view .LVU154
+ 387:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 621              		.loc 1 387 5 view .LVU155
+ 622 008a 1A4B     		ldr	r3, .L53+4
+ 623 008c 0022     		movs	r2, #0
+ 624 008e 1A76     		strb	r2, [r3, #24]
+ 625              	.L37:
+ 389:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 626              		.loc 1 389 1 is_stmt 0 view .LVU156
+ 627 0090 10BD     		pop	{r4, pc}
+ 628              	.LVL26:
+ 629              	.L49:
+ 293:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       pFlash.Sector = 0xFFFFFFFFU;
+ 630              		.loc 1 293 7 is_stmt 1 view .LVU157
+ 293:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       pFlash.Sector = 0xFFFFFFFFU;
+ 631              		.loc 1 293 18 is_stmt 0 view .LVU158
+ 632 0092 184B     		ldr	r3, .L53+4
+ 633 0094 DC68     		ldr	r4, [r3, #12]
+ 634              	.LVL27:
+ 294:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 635              		.loc 1 294 7 is_stmt 1 view .LVU159
+ 294:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 636              		.loc 1 294 21 is_stmt 0 view .LVU160
+ 637 0096 4FF0FF32 		mov	r2, #-1
+ 638 009a DA60     		str	r2, [r3, #12]
+ 639 009c C2E7     		b	.L40
+ 640              	.LVL28:
+ 641              	.L50:
+ 299:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 642              		.loc 1 299 7 is_stmt 1 view .LVU161
+ 299:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 643              		.loc 1 299 18 is_stmt 0 view .LVU162
+ 644 009e 154B     		ldr	r3, .L53+4
+ 645 00a0 1C69     		ldr	r4, [r3, #16]
+ARM GAS  /tmp/ccjvrcjF.s 			page 27
+
+
+ 646              	.LVL29:
+ 299:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 647              		.loc 1 299 18 view .LVU163
+ 648 00a2 BFE7     		b	.L40
+ 649              	.LVL30:
+ 650              	.L51:
+ 326:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       
+ 651              		.loc 1 326 7 is_stmt 1 view .LVU164
+ 326:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       
+ 652              		.loc 1 326 13 is_stmt 0 view .LVU165
+ 653 00a4 134B     		ldr	r3, .L53+4
+ 654 00a6 5A68     		ldr	r2, [r3, #4]
+ 326:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       
+ 655              		.loc 1 326 30 view .LVU166
+ 656 00a8 013A     		subs	r2, r2, #1
+ 657 00aa 5A60     		str	r2, [r3, #4]
+ 329:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 658              		.loc 1 329 7 is_stmt 1 view .LVU167
+ 329:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 659              		.loc 1 329 16 is_stmt 0 view .LVU168
+ 660 00ac 5B68     		ldr	r3, [r3, #4]
+ 329:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 661              		.loc 1 329 9 view .LVU169
+ 662 00ae 5BB1     		cbz	r3, .L44
+ 331:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /*Indicate user which sector has been erased*/
+ 663              		.loc 1 331 9 is_stmt 1 view .LVU170
+ 331:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         /*Indicate user which sector has been erased*/
+ 664              		.loc 1 331 20 is_stmt 0 view .LVU171
+ 665 00b0 104C     		ldr	r4, .L53+4
+ 666 00b2 E068     		ldr	r0, [r4, #12]
+ 667              	.LVL31:
+ 333:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         
+ 668              		.loc 1 333 9 is_stmt 1 view .LVU172
+ 669 00b4 FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 670              	.LVL32:
+ 336:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         addresstmp = pFlash.Sector;
+ 671              		.loc 1 336 9 view .LVU173
+ 336:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         addresstmp = pFlash.Sector;
+ 672              		.loc 1 336 15 is_stmt 0 view .LVU174
+ 673 00b8 E368     		ldr	r3, [r4, #12]
+ 336:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         addresstmp = pFlash.Sector;
+ 674              		.loc 1 336 22 view .LVU175
+ 675 00ba 0133     		adds	r3, r3, #1
+ 676 00bc E360     		str	r3, [r4, #12]
+ 337:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         FLASH_Erase_Sector(addresstmp, pFlash.VoltageForErase);
+ 677              		.loc 1 337 9 is_stmt 1 view .LVU176
+ 337:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         FLASH_Erase_Sector(addresstmp, pFlash.VoltageForErase);
+ 678              		.loc 1 337 20 is_stmt 0 view .LVU177
+ 679 00be E068     		ldr	r0, [r4, #12]
+ 680              	.LVL33:
+ 338:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 681              		.loc 1 338 9 is_stmt 1 view .LVU178
+ 682 00c0 217A     		ldrb	r1, [r4, #8]	@ zero_extendqisi2
+ 683 00c2 FFF7FEFF 		bl	FLASH_Erase_Sector
+ 684              	.LVL34:
+ 338:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 685              		.loc 1 338 9 is_stmt 0 view .LVU179
+ARM GAS  /tmp/ccjvrcjF.s 			page 28
+
+
+ 686 00c6 CEE7     		b	.L42
+ 687              	.L44:
+ 344:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 688              		.loc 1 344 9 is_stmt 1 view .LVU180
+ 689              	.LVL35:
+ 344:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 690              		.loc 1 344 23 is_stmt 0 view .LVU181
+ 691 00c8 0A4B     		ldr	r3, .L53+4
+ 692 00ca 4FF0FF34 		mov	r4, #-1
+ 693 00ce DC60     		str	r4, [r3, #12]
+ 345:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         
+ 694              		.loc 1 345 9 is_stmt 1 view .LVU182
+ 345:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****         
+ 695              		.loc 1 345 33 is_stmt 0 view .LVU183
+ 696 00d0 0022     		movs	r2, #0
+ 697 00d2 1A70     		strb	r2, [r3]
+ 348:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                 
+ 698              		.loc 1 348 9 is_stmt 1 view .LVU184
+ 699 00d4 FFF7FEFF 		bl	FLASH_FlushCaches
+ 700              	.LVL36:
+ 351:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 701              		.loc 1 351 9 view .LVU185
+ 702 00d8 2046     		mov	r0, r4
+ 703 00da FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 704              	.LVL37:
+ 705 00de C2E7     		b	.L42
+ 706              	.LVL38:
+ 707              	.L52:
+ 360:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 708              		.loc 1 360 9 view .LVU186
+ 709 00e0 FFF7FEFF 		bl	FLASH_FlushCaches
+ 710              	.LVL39:
+ 363:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 711              		.loc 1 363 9 view .LVU187
+ 712 00e4 034B     		ldr	r3, .L53+4
+ 713 00e6 1869     		ldr	r0, [r3, #16]
+ 714 00e8 FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 715              	.LVL40:
+ 716 00ec B8E7     		b	.L46
+ 717              	.L54:
+ 718 00ee 00BF     		.align	2
+ 719              	.L53:
+ 720 00f0 003C0240 		.word	1073888256
+ 721 00f4 00000000 		.word	pFlash
+ 722              		.cfi_endproc
+ 723              	.LFE128:
+ 725              		.section	.text.HAL_FLASH_Unlock,"ax",%progbits
+ 726              		.align	1
+ 727              		.global	HAL_FLASH_Unlock
+ 728              		.syntax unified
+ 729              		.thumb
+ 730              		.thumb_func
+ 731              		.fpu fpv4-sp-d16
+ 733              	HAL_FLASH_Unlock:
+ 734              	.LFB131:
+ 450:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 735              		.loc 1 450 1 view -0
+ARM GAS  /tmp/ccjvrcjF.s 			page 29
+
+
+ 736              		.cfi_startproc
+ 737              		@ args = 0, pretend = 0, frame = 0
+ 738              		@ frame_needed = 0, uses_anonymous_args = 0
+ 739              		@ link register save eliminated.
+ 451:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 740              		.loc 1 451 3 view .LVU189
+ 741              	.LVL41:
+ 453:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 742              		.loc 1 453 3 view .LVU190
+ 453:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 743              		.loc 1 453 6 is_stmt 0 view .LVU191
+ 744 0000 094B     		ldr	r3, .L60
+ 745 0002 1B69     		ldr	r3, [r3, #16]
+ 453:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 746              		.loc 1 453 5 view .LVU192
+ 747 0004 002B     		cmp	r3, #0
+ 748 0006 01DB     		blt	.L59
+ 451:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 749              		.loc 1 451 21 view .LVU193
+ 750 0008 0020     		movs	r0, #0
+ 751 000a 7047     		bx	lr
+ 752              	.L59:
+ 456:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     WRITE_REG(FLASH->KEYR, FLASH_KEY2);
+ 753              		.loc 1 456 5 is_stmt 1 view .LVU194
+ 754 000c 064B     		ldr	r3, .L60
+ 755 000e 074A     		ldr	r2, .L60+4
+ 756 0010 5A60     		str	r2, [r3, #4]
+ 457:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 757              		.loc 1 457 5 view .LVU195
+ 758 0012 02F18832 		add	r2, r2, #-2004318072
+ 759 0016 5A60     		str	r2, [r3, #4]
+ 460:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 760              		.loc 1 460 5 view .LVU196
+ 460:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 761              		.loc 1 460 8 is_stmt 0 view .LVU197
+ 762 0018 1B69     		ldr	r3, [r3, #16]
+ 460:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 763              		.loc 1 460 7 view .LVU198
+ 764 001a 002B     		cmp	r3, #0
+ 765 001c 01DB     		blt	.L58
+ 451:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 766              		.loc 1 451 21 view .LVU199
+ 767 001e 0020     		movs	r0, #0
+ 768 0020 7047     		bx	lr
+ 769              	.L58:
+ 462:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 770              		.loc 1 462 14 view .LVU200
+ 771 0022 0120     		movs	r0, #1
+ 772              	.LVL42:
+ 466:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 773              		.loc 1 466 3 is_stmt 1 view .LVU201
+ 467:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 774              		.loc 1 467 1 is_stmt 0 view .LVU202
+ 775 0024 7047     		bx	lr
+ 776              	.L61:
+ 777 0026 00BF     		.align	2
+ 778              	.L60:
+ARM GAS  /tmp/ccjvrcjF.s 			page 30
+
+
+ 779 0028 003C0240 		.word	1073888256
+ 780 002c 23016745 		.word	1164378403
+ 781              		.cfi_endproc
+ 782              	.LFE131:
+ 784              		.section	.text.HAL_FLASH_Lock,"ax",%progbits
+ 785              		.align	1
+ 786              		.global	HAL_FLASH_Lock
+ 787              		.syntax unified
+ 788              		.thumb
+ 789              		.thumb_func
+ 790              		.fpu fpv4-sp-d16
+ 792              	HAL_FLASH_Lock:
+ 793              	.LFB132:
+ 474:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Set the LOCK Bit to lock the FLASH Registers access */
+ 794              		.loc 1 474 1 is_stmt 1 view -0
+ 795              		.cfi_startproc
+ 796              		@ args = 0, pretend = 0, frame = 0
+ 797              		@ frame_needed = 0, uses_anonymous_args = 0
+ 798              		@ link register save eliminated.
+ 476:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 799              		.loc 1 476 3 view .LVU204
+ 476:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 800              		.loc 1 476 13 is_stmt 0 view .LVU205
+ 801 0000 034A     		ldr	r2, .L63
+ 802 0002 1369     		ldr	r3, [r2, #16]
+ 803 0004 43F00043 		orr	r3, r3, #-2147483648
+ 804 0008 1361     		str	r3, [r2, #16]
+ 478:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 805              		.loc 1 478 3 is_stmt 1 view .LVU206
+ 479:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 806              		.loc 1 479 1 is_stmt 0 view .LVU207
+ 807 000a 0020     		movs	r0, #0
+ 808 000c 7047     		bx	lr
+ 809              	.L64:
+ 810 000e 00BF     		.align	2
+ 811              	.L63:
+ 812 0010 003C0240 		.word	1073888256
+ 813              		.cfi_endproc
+ 814              	.LFE132:
+ 816              		.section	.text.HAL_FLASH_OB_Unlock,"ax",%progbits
+ 817              		.align	1
+ 818              		.global	HAL_FLASH_OB_Unlock
+ 819              		.syntax unified
+ 820              		.thumb
+ 821              		.thumb_func
+ 822              		.fpu fpv4-sp-d16
+ 824              	HAL_FLASH_OB_Unlock:
+ 825              	.LFB133:
+ 486:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   if((FLASH->OPTCR & FLASH_OPTCR_OPTLOCK) != RESET)
+ 826              		.loc 1 486 1 is_stmt 1 view -0
+ 827              		.cfi_startproc
+ 828              		@ args = 0, pretend = 0, frame = 0
+ 829              		@ frame_needed = 0, uses_anonymous_args = 0
+ 830              		@ link register save eliminated.
+ 487:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 831              		.loc 1 487 3 view .LVU209
+ 487:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ARM GAS  /tmp/ccjvrcjF.s 			page 31
+
+
+ 832              		.loc 1 487 12 is_stmt 0 view .LVU210
+ 833 0000 074B     		ldr	r3, .L68
+ 834 0002 5B69     		ldr	r3, [r3, #20]
+ 487:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 835              		.loc 1 487 5 view .LVU211
+ 836 0004 13F0010F 		tst	r3, #1
+ 837 0008 07D0     		beq	.L67
+ 490:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH->OPTKEYR = FLASH_OPT_KEY2;
+ 838              		.loc 1 490 5 is_stmt 1 view .LVU212
+ 490:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     FLASH->OPTKEYR = FLASH_OPT_KEY2;
+ 839              		.loc 1 490 20 is_stmt 0 view .LVU213
+ 840 000a 054B     		ldr	r3, .L68
+ 841 000c 054A     		ldr	r2, .L68+4
+ 842 000e 9A60     		str	r2, [r3, #8]
+ 491:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 843              		.loc 1 491 5 is_stmt 1 view .LVU214
+ 491:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 844              		.loc 1 491 20 is_stmt 0 view .LVU215
+ 845 0010 02F14432 		add	r2, r2, #1145324612
+ 846 0014 9A60     		str	r2, [r3, #8]
+ 498:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 847              		.loc 1 498 3 is_stmt 1 view .LVU216
+ 498:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 848              		.loc 1 498 10 is_stmt 0 view .LVU217
+ 849 0016 0020     		movs	r0, #0
+ 850 0018 7047     		bx	lr
+ 851              	.L67:
+ 495:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }  
+ 852              		.loc 1 495 12 view .LVU218
+ 853 001a 0120     		movs	r0, #1
+ 499:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 854              		.loc 1 499 1 view .LVU219
+ 855 001c 7047     		bx	lr
+ 856              	.L69:
+ 857 001e 00BF     		.align	2
+ 858              	.L68:
+ 859 0020 003C0240 		.word	1073888256
+ 860 0024 3B2A1908 		.word	135866939
+ 861              		.cfi_endproc
+ 862              	.LFE133:
+ 864              		.section	.text.HAL_FLASH_OB_Lock,"ax",%progbits
+ 865              		.align	1
+ 866              		.global	HAL_FLASH_OB_Lock
+ 867              		.syntax unified
+ 868              		.thumb
+ 869              		.thumb_func
+ 870              		.fpu fpv4-sp-d16
+ 872              	HAL_FLASH_OB_Lock:
+ 873              	.LFB134:
+ 506:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Set the OPTLOCK Bit to lock the FLASH Option Byte Registers access */
+ 874              		.loc 1 506 1 is_stmt 1 view -0
+ 875              		.cfi_startproc
+ 876              		@ args = 0, pretend = 0, frame = 0
+ 877              		@ frame_needed = 0, uses_anonymous_args = 0
+ 878              		@ link register save eliminated.
+ 508:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 879              		.loc 1 508 3 view .LVU221
+ARM GAS  /tmp/ccjvrcjF.s 			page 32
+
+
+ 508:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 880              		.loc 1 508 16 is_stmt 0 view .LVU222
+ 881 0000 034A     		ldr	r2, .L71
+ 882 0002 5369     		ldr	r3, [r2, #20]
+ 883 0004 43F00103 		orr	r3, r3, #1
+ 884 0008 5361     		str	r3, [r2, #20]
+ 510:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 885              		.loc 1 510 3 is_stmt 1 view .LVU223
+ 511:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 886              		.loc 1 511 1 is_stmt 0 view .LVU224
+ 887 000a 0020     		movs	r0, #0
+ 888 000c 7047     		bx	lr
+ 889              	.L72:
+ 890 000e 00BF     		.align	2
+ 891              	.L71:
+ 892 0010 003C0240 		.word	1073888256
+ 893              		.cfi_endproc
+ 894              	.LFE134:
+ 896              		.section	.text.HAL_FLASH_GetError,"ax",%progbits
+ 897              		.align	1
+ 898              		.global	HAL_FLASH_GetError
+ 899              		.syntax unified
+ 900              		.thumb
+ 901              		.thumb_func
+ 902              		.fpu fpv4-sp-d16
+ 904              	HAL_FLASH_GetError:
+ 905              	.LFB136:
+ 555:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****    return pFlash.ErrorCode;
+ 906              		.loc 1 555 1 is_stmt 1 view -0
+ 907              		.cfi_startproc
+ 908              		@ args = 0, pretend = 0, frame = 0
+ 909              		@ frame_needed = 0, uses_anonymous_args = 0
+ 910              		@ link register save eliminated.
+ 556:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }  
+ 911              		.loc 1 556 4 view .LVU226
+ 556:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }  
+ 912              		.loc 1 556 17 is_stmt 0 view .LVU227
+ 913 0000 014B     		ldr	r3, .L74
+ 914 0002 D869     		ldr	r0, [r3, #28]
+ 557:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 915              		.loc 1 557 1 view .LVU228
+ 916 0004 7047     		bx	lr
+ 917              	.L75:
+ 918 0006 00BF     		.align	2
+ 919              	.L74:
+ 920 0008 00000000 		.word	pFlash
+ 921              		.cfi_endproc
+ 922              	.LFE136:
+ 924              		.section	.text.FLASH_WaitForLastOperation,"ax",%progbits
+ 925              		.align	1
+ 926              		.global	FLASH_WaitForLastOperation
+ 927              		.syntax unified
+ 928              		.thumb
+ 929              		.thumb_func
+ 930              		.fpu fpv4-sp-d16
+ 932              	FLASH_WaitForLastOperation:
+ 933              	.LVL43:
+ARM GAS  /tmp/ccjvrcjF.s 			page 33
+
+
+ 934              	.LFB137:
+ 569:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   uint32_t tickstart = 0U;
+ 935              		.loc 1 569 1 is_stmt 1 view -0
+ 936              		.cfi_startproc
+ 937              		@ args = 0, pretend = 0, frame = 0
+ 938              		@ frame_needed = 0, uses_anonymous_args = 0
+ 569:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   uint32_t tickstart = 0U;
+ 939              		.loc 1 569 1 is_stmt 0 view .LVU230
+ 940 0000 38B5     		push	{r3, r4, r5, lr}
+ 941              	.LCFI4:
+ 942              		.cfi_def_cfa_offset 16
+ 943              		.cfi_offset 3, -16
+ 944              		.cfi_offset 4, -12
+ 945              		.cfi_offset 5, -8
+ 946              		.cfi_offset 14, -4
+ 947 0002 0446     		mov	r4, r0
+ 570:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 948              		.loc 1 570 3 is_stmt 1 view .LVU231
+ 949              	.LVL44:
+ 573:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 950              		.loc 1 573 3 view .LVU232
+ 573:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 951              		.loc 1 573 20 is_stmt 0 view .LVU233
+ 952 0004 144B     		ldr	r3, .L87
+ 953 0006 0022     		movs	r2, #0
+ 954 0008 DA61     		str	r2, [r3, #28]
+ 579:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 955              		.loc 1 579 3 is_stmt 1 view .LVU234
+ 579:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 956              		.loc 1 579 15 is_stmt 0 view .LVU235
+ 957 000a FFF7FEFF 		bl	HAL_GetTick
+ 958              	.LVL45:
+ 579:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 959              		.loc 1 579 15 view .LVU236
+ 960 000e 0546     		mov	r5, r0
+ 961              	.LVL46:
+ 581:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   { 
+ 962              		.loc 1 581 3 is_stmt 1 view .LVU237
+ 963              	.L78:
+ 581:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   { 
+ 964              		.loc 1 581 9 is_stmt 0 view .LVU238
+ 965 0010 124B     		ldr	r3, .L87+4
+ 966 0012 DB68     		ldr	r3, [r3, #12]
+ 581:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   { 
+ 967              		.loc 1 581 8 view .LVU239
+ 968 0014 13F4803F 		tst	r3, #65536
+ 969 0018 0AD0     		beq	.L85
+ 583:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 970              		.loc 1 583 5 is_stmt 1 view .LVU240
+ 583:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 971              		.loc 1 583 7 is_stmt 0 view .LVU241
+ 972 001a B4F1FF3F 		cmp	r4, #-1
+ 973 001e F7D0     		beq	.L78
+ 585:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 974              		.loc 1 585 7 is_stmt 1 view .LVU242
+ 585:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 975              		.loc 1 585 9 is_stmt 0 view .LVU243
+ARM GAS  /tmp/ccjvrcjF.s 			page 34
+
+
+ 976 0020 24B1     		cbz	r4, .L79
+ 585:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 977              		.loc 1 585 29 discriminator 1 view .LVU244
+ 978 0022 FFF7FEFF 		bl	HAL_GetTick
+ 979              	.LVL47:
+ 585:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 980              		.loc 1 585 43 discriminator 1 view .LVU245
+ 981 0026 401B     		subs	r0, r0, r5
+ 585:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       {
+ 982              		.loc 1 585 25 discriminator 1 view .LVU246
+ 983 0028 A042     		cmp	r0, r4
+ 984 002a F1D9     		bls	.L78
+ 985              	.L79:
+ 587:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 986              		.loc 1 587 9 is_stmt 1 view .LVU247
+ 587:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****       }
+ 987              		.loc 1 587 16 is_stmt 0 view .LVU248
+ 988 002c 0320     		movs	r0, #3
+ 989 002e 0DE0     		b	.L80
+ 990              	.L85:
+ 593:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 991              		.loc 1 593 3 is_stmt 1 view .LVU249
+ 593:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 992              		.loc 1 593 7 is_stmt 0 view .LVU250
+ 993 0030 0A4B     		ldr	r3, .L87+4
+ 994 0032 DB68     		ldr	r3, [r3, #12]
+ 593:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 995              		.loc 1 593 6 view .LVU251
+ 996 0034 13F0010F 		tst	r3, #1
+ 997 0038 02D0     		beq	.L82
+ 596:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 998              		.loc 1 596 5 is_stmt 1 view .LVU252
+ 999 003a 084B     		ldr	r3, .L87+4
+ 1000 003c 0122     		movs	r2, #1
+ 1001 003e DA60     		str	r2, [r3, #12]
+ 1002              	.L82:
+ 599:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                            FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR | FLASH_FLAG_RDERR)) != RESET)
+ 1003              		.loc 1 599 3 view .LVU253
+ 599:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                            FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR | FLASH_FLAG_RDERR)) != RESET)
+ 1004              		.loc 1 599 6 is_stmt 0 view .LVU254
+ 1005 0040 064B     		ldr	r3, .L87+4
+ 1006 0042 DB68     		ldr	r3, [r3, #12]
+ 599:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****                            FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR | FLASH_FLAG_RDERR)) != RESET)
+ 1007              		.loc 1 599 5 view .LVU255
+ 1008 0044 13F4F97F 		tst	r3, #498
+ 1009 0048 01D1     		bne	.L86
+ 612:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1010              		.loc 1 612 10 view .LVU256
+ 1011 004a 0020     		movs	r0, #0
+ 1012              	.L80:
+ 614:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 1013              		.loc 1 614 1 view .LVU257
+ 1014 004c 38BD     		pop	{r3, r4, r5, pc}
+ 1015              	.LVL48:
+ 1016              	.L86:
+ 607:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     return HAL_ERROR;
+ 1017              		.loc 1 607 5 is_stmt 1 view .LVU258
+ARM GAS  /tmp/ccjvrcjF.s 			page 35
+
+
+ 1018 004e FFF7FEFF 		bl	FLASH_SetErrorCode
+ 1019              	.LVL49:
+ 608:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 1020              		.loc 1 608 5 view .LVU259
+ 608:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 1021              		.loc 1 608 12 is_stmt 0 view .LVU260
+ 1022 0052 0120     		movs	r0, #1
+ 1023 0054 FAE7     		b	.L80
+ 1024              	.L88:
+ 1025 0056 00BF     		.align	2
+ 1026              	.L87:
+ 1027 0058 00000000 		.word	pFlash
+ 1028 005c 003C0240 		.word	1073888256
+ 1029              		.cfi_endproc
+ 1030              	.LFE137:
+ 1032              		.section	.text.HAL_FLASH_Program,"ax",%progbits
+ 1033              		.align	1
+ 1034              		.global	HAL_FLASH_Program
+ 1035              		.syntax unified
+ 1036              		.thumb
+ 1037              		.thumb_func
+ 1038              		.fpu fpv4-sp-d16
+ 1040              	HAL_FLASH_Program:
+ 1041              	.LVL50:
+ 1042              	.LFB126:
+ 173:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_ERROR;
+ 1043              		.loc 1 173 1 is_stmt 1 view -0
+ 1044              		.cfi_startproc
+ 1045              		@ args = 0, pretend = 0, frame = 0
+ 1046              		@ frame_needed = 0, uses_anonymous_args = 0
+ 173:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_ERROR;
+ 1047              		.loc 1 173 1 is_stmt 0 view .LVU262
+ 1048 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1049              	.LCFI5:
+ 1050              		.cfi_def_cfa_offset 24
+ 1051              		.cfi_offset 3, -24
+ 1052              		.cfi_offset 4, -20
+ 1053              		.cfi_offset 5, -16
+ 1054              		.cfi_offset 6, -12
+ 1055              		.cfi_offset 7, -8
+ 1056              		.cfi_offset 14, -4
+ 174:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1057              		.loc 1 174 3 is_stmt 1 view .LVU263
+ 1058              	.LVL51:
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1059              		.loc 1 177 3 view .LVU264
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1060              		.loc 1 177 3 view .LVU265
+ 1061 0002 1D4C     		ldr	r4, .L101
+ 1062 0004 247E     		ldrb	r4, [r4, #24]	@ zero_extendqisi2
+ 1063 0006 012C     		cmp	r4, #1
+ 1064 0008 34D0     		beq	.L96
+ 1065 000a 1F46     		mov	r7, r3
+ 1066 000c 1646     		mov	r6, r2
+ 1067 000e 0D46     		mov	r5, r1
+ 1068 0010 0446     		mov	r4, r0
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ARM GAS  /tmp/ccjvrcjF.s 			page 36
+
+
+ 1069              		.loc 1 177 3 discriminator 2 view .LVU266
+ 1070 0012 194B     		ldr	r3, .L101
+ 1071 0014 0122     		movs	r2, #1
+ 1072              	.LVL52:
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1073              		.loc 1 177 3 is_stmt 0 discriminator 2 view .LVU267
+ 1074 0016 1A76     		strb	r2, [r3, #24]
+ 180:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1075              		.loc 1 180 3 is_stmt 1 discriminator 2 view .LVU268
+ 183:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1076              		.loc 1 183 3 discriminator 2 view .LVU269
+ 183:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1077              		.loc 1 183 12 is_stmt 0 discriminator 2 view .LVU270
+ 1078 0018 4CF25030 		movw	r0, #50000
+ 1079              	.LVL53:
+ 183:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1080              		.loc 1 183 12 discriminator 2 view .LVU271
+ 1081 001c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1082              	.LVL54:
+ 185:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 1083              		.loc 1 185 3 is_stmt 1 discriminator 2 view .LVU272
+ 185:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   {
+ 1084              		.loc 1 185 5 is_stmt 0 discriminator 2 view .LVU273
+ 1085 0020 0146     		mov	r1, r0
+ 1086 0022 98B9     		cbnz	r0, .L91
+ 187:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 1087              		.loc 1 187 5 is_stmt 1 view .LVU274
+ 187:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 1088              		.loc 1 187 7 is_stmt 0 view .LVU275
+ 1089 0024 BCB1     		cbz	r4, .L98
+ 192:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 1090              		.loc 1 192 10 is_stmt 1 view .LVU276
+ 192:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 1091              		.loc 1 192 12 is_stmt 0 view .LVU277
+ 1092 0026 012C     		cmp	r4, #1
+ 1093 0028 1AD0     		beq	.L99
+ 197:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 1094              		.loc 1 197 10 is_stmt 1 view .LVU278
+ 197:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     {
+ 1095              		.loc 1 197 12 is_stmt 0 view .LVU279
+ 1096 002a 022C     		cmp	r4, #2
+ 1097 002c 1DD0     		beq	.L100
+ 205:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 1098              		.loc 1 205 7 is_stmt 1 view .LVU280
+ 1099 002e 3246     		mov	r2, r6
+ 1100 0030 3B46     		mov	r3, r7
+ 1101 0032 2846     		mov	r0, r5
+ 1102              	.LVL55:
+ 205:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 1103              		.loc 1 205 7 is_stmt 0 view .LVU281
+ 1104 0034 FFF7FEFF 		bl	FLASH_Program_DoubleWord
+ 1105              	.LVL56:
+ 1106              	.L93:
+ 209:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 1107              		.loc 1 209 5 is_stmt 1 view .LVU282
+ 209:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     
+ 1108              		.loc 1 209 14 is_stmt 0 view .LVU283
+ARM GAS  /tmp/ccjvrcjF.s 			page 37
+
+
+ 1109 0038 4CF25030 		movw	r0, #50000
+ 1110 003c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1111              	.LVL57:
+ 1112 0040 0146     		mov	r1, r0
+ 1113              	.LVL58:
+ 212:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 1114              		.loc 1 212 5 is_stmt 1 view .LVU284
+ 212:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   }
+ 1115              		.loc 1 212 15 is_stmt 0 view .LVU285
+ 1116 0042 0E4A     		ldr	r2, .L101+4
+ 1117 0044 1369     		ldr	r3, [r2, #16]
+ 1118 0046 23F00103 		bic	r3, r3, #1
+ 1119 004a 1361     		str	r3, [r2, #16]
+ 1120              	.LVL59:
+ 1121              	.L91:
+ 216:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1122              		.loc 1 216 3 is_stmt 1 view .LVU286
+ 216:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1123              		.loc 1 216 3 view .LVU287
+ 1124 004c 0A4B     		ldr	r3, .L101
+ 1125 004e 0022     		movs	r2, #0
+ 1126 0050 1A76     		strb	r2, [r3, #24]
+ 218:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 1127              		.loc 1 218 3 view .LVU288
+ 1128              	.LVL60:
+ 1129              	.L90:
+ 219:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 1130              		.loc 1 219 1 is_stmt 0 view .LVU289
+ 1131 0052 0846     		mov	r0, r1
+ 1132 0054 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1133              	.LVL61:
+ 1134              	.L98:
+ 190:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 1135              		.loc 1 190 7 is_stmt 1 view .LVU290
+ 1136 0056 F1B2     		uxtb	r1, r6
+ 1137 0058 2846     		mov	r0, r5
+ 1138              	.LVL62:
+ 190:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 1139              		.loc 1 190 7 is_stmt 0 view .LVU291
+ 1140 005a FFF7FEFF 		bl	FLASH_Program_Byte
+ 1141              	.LVL63:
+ 1142 005e EBE7     		b	.L93
+ 1143              	.LVL64:
+ 1144              	.L99:
+ 195:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 1145              		.loc 1 195 7 is_stmt 1 view .LVU292
+ 1146 0060 B1B2     		uxth	r1, r6
+ 1147 0062 2846     		mov	r0, r5
+ 1148              	.LVL65:
+ 195:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 1149              		.loc 1 195 7 is_stmt 0 view .LVU293
+ 1150 0064 FFF7FEFF 		bl	FLASH_Program_HalfWord
+ 1151              	.LVL66:
+ 1152 0068 E6E7     		b	.L93
+ 1153              	.LVL67:
+ 1154              	.L100:
+ 200:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ARM GAS  /tmp/ccjvrcjF.s 			page 38
+
+
+ 1155              		.loc 1 200 7 is_stmt 1 view .LVU294
+ 1156 006a 3146     		mov	r1, r6
+ 1157 006c 2846     		mov	r0, r5
+ 1158              	.LVL68:
+ 200:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****     }
+ 1159              		.loc 1 200 7 is_stmt 0 view .LVU295
+ 1160 006e FFF7FEFF 		bl	FLASH_Program_Word
+ 1161              	.LVL69:
+ 1162 0072 E1E7     		b	.L93
+ 1163              	.LVL70:
+ 1164              	.L96:
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1165              		.loc 1 177 3 view .LVU296
+ 1166 0074 0221     		movs	r1, #2
+ 1167              	.LVL71:
+ 177:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   
+ 1168              		.loc 1 177 3 view .LVU297
+ 1169 0076 ECE7     		b	.L90
+ 1170              	.L102:
+ 1171              		.align	2
+ 1172              	.L101:
+ 1173 0078 00000000 		.word	pFlash
+ 1174 007c 003C0240 		.word	1073888256
+ 1175              		.cfi_endproc
+ 1176              	.LFE126:
+ 1178              		.section	.text.HAL_FLASH_OB_Launch,"ax",%progbits
+ 1179              		.align	1
+ 1180              		.global	HAL_FLASH_OB_Launch
+ 1181              		.syntax unified
+ 1182              		.thumb
+ 1183              		.thumb_func
+ 1184              		.fpu fpv4-sp-d16
+ 1186              	HAL_FLASH_OB_Launch:
+ 1187              	.LFB135:
+ 518:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c ****   /* Set the OPTSTRT bit in OPTCR register */
+ 1188              		.loc 1 518 1 is_stmt 1 view -0
+ 1189              		.cfi_startproc
+ 1190              		@ args = 0, pretend = 0, frame = 0
+ 1191              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1192 0000 08B5     		push	{r3, lr}
+ 1193              	.LCFI6:
+ 1194              		.cfi_def_cfa_offset 8
+ 1195              		.cfi_offset 3, -8
+ 1196              		.cfi_offset 14, -4
+ 520:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 1197              		.loc 1 520 3 view .LVU299
+ 520:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 1198              		.loc 1 520 40 is_stmt 0 view .LVU300
+ 1199 0002 054A     		ldr	r2, .L105
+ 1200 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1201 0006 43F00203 		orr	r3, r3, #2
+ 1202 000a 1370     		strb	r3, [r2]
+ 523:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 1203              		.loc 1 523 3 is_stmt 1 view .LVU301
+ 523:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** }
+ 1204              		.loc 1 523 10 is_stmt 0 view .LVU302
+ 1205 000c 4CF25030 		movw	r0, #50000
+ARM GAS  /tmp/ccjvrcjF.s 			page 39
+
+
+ 1206 0010 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1207              	.LVL72:
+ 524:/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c **** 
+ 1208              		.loc 1 524 1 view .LVU303
+ 1209 0014 08BD     		pop	{r3, pc}
+ 1210              	.L106:
+ 1211 0016 00BF     		.align	2
+ 1212              	.L105:
+ 1213 0018 143C0240 		.word	1073888276
+ 1214              		.cfi_endproc
+ 1215              	.LFE135:
+ 1217              		.comm	pFlash,32,4
+ 1218              		.text
+ 1219              	.Letext0:
+ 1220              		.file 2 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_default_t
+ 1221              		.file 3 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 1222              		.file 4 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Include/core_cm4.h"
+ 1223              		.file 5 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+ 1224              		.file 6 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include/
+ 1225              		.file 7 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h"
+ 1226              		.file 8 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h"
+ 1227              		.file 9 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdd
+ 1228              		.file 10 "/usr/local/bin/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h"
+ 1229              		.file 11 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+ 1230              		.file 12 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 1231              		.file 13 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 1232              		.file 14 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ 1233              		.file 15 "/home/paulo/Alexandria/STM32Cube_FW_F4_V1.23.0/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
+ARM GAS  /tmp/ccjvrcjF.s 			page 40
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_hal_flash.c
+     /tmp/ccjvrcjF.s:18     .text.FLASH_Program_DoubleWord:0000000000000000 $t
+     /tmp/ccjvrcjF.s:25     .text.FLASH_Program_DoubleWord:0000000000000000 FLASH_Program_DoubleWord
+     /tmp/ccjvrcjF.s:70     .text.FLASH_Program_DoubleWord:0000000000000028 $d
+     /tmp/ccjvrcjF.s:75     .text.FLASH_Program_Word:0000000000000000 $t
+     /tmp/ccjvrcjF.s:81     .text.FLASH_Program_Word:0000000000000000 FLASH_Program_Word
+     /tmp/ccjvrcjF.s:113    .text.FLASH_Program_Word:0000000000000020 $d
+     /tmp/ccjvrcjF.s:118    .text.FLASH_Program_HalfWord:0000000000000000 $t
+     /tmp/ccjvrcjF.s:124    .text.FLASH_Program_HalfWord:0000000000000000 FLASH_Program_HalfWord
+     /tmp/ccjvrcjF.s:156    .text.FLASH_Program_HalfWord:0000000000000020 $d
+     /tmp/ccjvrcjF.s:161    .text.FLASH_Program_Byte:0000000000000000 $t
+     /tmp/ccjvrcjF.s:167    .text.FLASH_Program_Byte:0000000000000000 FLASH_Program_Byte
+     /tmp/ccjvrcjF.s:198    .text.FLASH_Program_Byte:000000000000001c $d
+     /tmp/ccjvrcjF.s:203    .text.FLASH_SetErrorCode:0000000000000000 $t
+     /tmp/ccjvrcjF.s:209    .text.FLASH_SetErrorCode:0000000000000000 FLASH_SetErrorCode
+     /tmp/ccjvrcjF.s:329    .text.FLASH_SetErrorCode:00000000000000a0 $d
+                            *COM*:0000000000000020 pFlash
+     /tmp/ccjvrcjF.s:335    .text.HAL_FLASH_Program_IT:0000000000000000 $t
+     /tmp/ccjvrcjF.s:342    .text.HAL_FLASH_Program_IT:0000000000000000 HAL_FLASH_Program_IT
+     /tmp/ccjvrcjF.s:448    .text.HAL_FLASH_Program_IT:0000000000000060 $d
+     /tmp/ccjvrcjF.s:454    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 $t
+     /tmp/ccjvrcjF.s:461    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 HAL_FLASH_EndOfOperationCallback
+     /tmp/ccjvrcjF.s:476    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 $t
+     /tmp/ccjvrcjF.s:483    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 HAL_FLASH_OperationErrorCallback
+     /tmp/ccjvrcjF.s:498    .text.HAL_FLASH_IRQHandler:0000000000000000 $t
+     /tmp/ccjvrcjF.s:505    .text.HAL_FLASH_IRQHandler:0000000000000000 HAL_FLASH_IRQHandler
+     /tmp/ccjvrcjF.s:720    .text.HAL_FLASH_IRQHandler:00000000000000f0 $d
+     /tmp/ccjvrcjF.s:726    .text.HAL_FLASH_Unlock:0000000000000000 $t
+     /tmp/ccjvrcjF.s:733    .text.HAL_FLASH_Unlock:0000000000000000 HAL_FLASH_Unlock
+     /tmp/ccjvrcjF.s:779    .text.HAL_FLASH_Unlock:0000000000000028 $d
+     /tmp/ccjvrcjF.s:785    .text.HAL_FLASH_Lock:0000000000000000 $t
+     /tmp/ccjvrcjF.s:792    .text.HAL_FLASH_Lock:0000000000000000 HAL_FLASH_Lock
+     /tmp/ccjvrcjF.s:812    .text.HAL_FLASH_Lock:0000000000000010 $d
+     /tmp/ccjvrcjF.s:817    .text.HAL_FLASH_OB_Unlock:0000000000000000 $t
+     /tmp/ccjvrcjF.s:824    .text.HAL_FLASH_OB_Unlock:0000000000000000 HAL_FLASH_OB_Unlock
+     /tmp/ccjvrcjF.s:859    .text.HAL_FLASH_OB_Unlock:0000000000000020 $d
+     /tmp/ccjvrcjF.s:865    .text.HAL_FLASH_OB_Lock:0000000000000000 $t
+     /tmp/ccjvrcjF.s:872    .text.HAL_FLASH_OB_Lock:0000000000000000 HAL_FLASH_OB_Lock
+     /tmp/ccjvrcjF.s:892    .text.HAL_FLASH_OB_Lock:0000000000000010 $d
+     /tmp/ccjvrcjF.s:897    .text.HAL_FLASH_GetError:0000000000000000 $t
+     /tmp/ccjvrcjF.s:904    .text.HAL_FLASH_GetError:0000000000000000 HAL_FLASH_GetError
+     /tmp/ccjvrcjF.s:920    .text.HAL_FLASH_GetError:0000000000000008 $d
+     /tmp/ccjvrcjF.s:925    .text.FLASH_WaitForLastOperation:0000000000000000 $t
+     /tmp/ccjvrcjF.s:932    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
+     /tmp/ccjvrcjF.s:1027   .text.FLASH_WaitForLastOperation:0000000000000058 $d
+     /tmp/ccjvrcjF.s:1033   .text.HAL_FLASH_Program:0000000000000000 $t
+     /tmp/ccjvrcjF.s:1040   .text.HAL_FLASH_Program:0000000000000000 HAL_FLASH_Program
+     /tmp/ccjvrcjF.s:1173   .text.HAL_FLASH_Program:0000000000000078 $d
+     /tmp/ccjvrcjF.s:1179   .text.HAL_FLASH_OB_Launch:0000000000000000 $t
+     /tmp/ccjvrcjF.s:1186   .text.HAL_FLASH_OB_Launch:0000000000000000 HAL_FLASH_OB_Launch
+     /tmp/ccjvrcjF.s:1213   .text.HAL_FLASH_OB_Launch:0000000000000018 $d
+
+UNDEFINED SYMBOLS
+FLASH_Erase_Sector
+FLASH_FlushCaches
+HAL_GetTick
+ARM GAS  /tmp/ccjvrcjF.s 			page 41
+
+
