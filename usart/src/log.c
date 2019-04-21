@@ -67,20 +67,15 @@ static void unlock(void) {
   }
 }
 
-void log_init(log_writeFn fn)
+void log_init(log_writeFn fn, log_LockFn lfn)
 {
     m_write_func = fn;
+    L.lock = lfn;
 }
 
 void log_set_udata(void *udata) {
   L.udata = udata;
 }
-
-
-void log_set_lock(log_LockFn fn) {
-  L.lock = fn;
-}
-
 
 void log_set_fp(FILE *fp) {
   L.fp = fp;
