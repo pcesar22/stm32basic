@@ -41,6 +41,8 @@
 #include "stm32f4xx_hal.h"
 #include "stm32469i_discovery.h"
 
+#include "log.h"
+
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* User can use this section to tailor USARTx/UARTx instance used and associated 

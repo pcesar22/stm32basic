@@ -8,8 +8,8 @@
 
 #include "stm32f4xx_hal.h"
 
+#include "main.h"
 #include "console.h"
-#include "log.h"
 
 /* Size of Trasmission buffer */
 #define TXBUFFERSIZE                      256
@@ -101,6 +101,11 @@ int console_Init(Led_TypeDef uartStatusLed)
 
 }
 
+void console_Process()
+{
+    /* log_init("Console started!"); */
+}
+
 /**
  * @brief  Tx Transfer completed callback
  * @param  UartHandle: UART handle.
@@ -132,6 +137,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
     {
         console_ErrorHandler();
     }
+    // Echo back the received char
     if (HAL_UART_Transmit_DMA(UartHandle, &byte_received, 1) != HAL_OK)
     {
         console_ErrorHandler();

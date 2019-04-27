@@ -14,13 +14,9 @@
 #define USARTx_RELEASE_RESET()           __HAL_RCC_USART3_RELEASE_RESET()
 
 /* Definition for USARTx Pins */
-/* #define USARTx_TX_PIN                    GPIO_PIN_6 */
-/* #define USARTx_TX_GPIO_PORT              GPIOC */
 #define USARTx_TX_PIN                    GPIO_PIN_10
 #define USARTx_TX_GPIO_PORT              GPIOB
 #define USARTx_TX_AF                     GPIO_AF7_USART3
-/* #define USARTx_RX_PIN                    GPIO_PIN_7 */
-/* #define USARTx_RX_GPIO_PORT              GPIOC */
 #define USARTx_RX_PIN                    GPIO_PIN_11
 #define USARTx_RX_GPIO_PORT              GPIOB
 #define USARTx_RX_AF                     GPIO_AF7_USART3
@@ -43,6 +39,7 @@
 #define USARTx_IRQHandler                USART3_IRQHandler
 
 int console_Init(Led_TypeDef uartStatusLed);
+void console_Process(void);
 
 /* Exported macro ------------------------------------------------------------*/
 #define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
