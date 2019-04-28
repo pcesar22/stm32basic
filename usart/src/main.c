@@ -22,22 +22,28 @@ int main(void)
     console_Init(LED1);
 
     /* Configure User push-button in Interrupt mode */
-    BSP_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI);
+    /* BSP_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI); */
 
-    log_info("Push button to initialize program");
-    while(UserButtonStatus == 0)
-    {
-        /* Toggle LED2*/
-        BSP_LED_Toggle(LED2);
-        HAL_Delay(100);
-    }
-    BSP_LED_Off(LED2);
+    /* log_info("Pressione o botao para acalmar a LOML"); */
 
-    log_info("Main program routine");
+    /* while(UserButtonStatus == 0) */
+    /* { */
+    /*     /\* Toggle LED2*\/ */
+    /*     BSP_LED_Toggle(LED2); */
+    /*     HAL_Delay(100); */
+    /* } */
+    /* UserButtonStatus = 1; */
+    /* BSP_LED_Off(LED2); */
+
+    log_info("Main program started.");
+
+
+    // Start recurring timer with interrupt
 
     while (1)
     {
         console_Process();
+        /* HAL_Delay(400); */
     }
 }
 

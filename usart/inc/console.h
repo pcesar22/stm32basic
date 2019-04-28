@@ -38,7 +38,7 @@
 #define USARTx_IRQn                      USART3_IRQn
 #define USARTx_IRQHandler                USART3_IRQHandler
 
-int console_Init(Led_TypeDef uartStatusLed);
+void console_Init(Led_TypeDef uartStatusLed);
 void console_Process(void);
 
 /* Exported macro ------------------------------------------------------------*/
