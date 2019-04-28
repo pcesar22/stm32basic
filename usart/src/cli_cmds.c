@@ -21,15 +21,22 @@ int hello_world(shell_cmd_args *args)
 
 int cmd_help(shell_cmd_args *args);
 
-const shell_cmd dummyCommand =
-{.cmd = "name", .desc = DESC_HELLO_WORLD, .func = hello_world};
+/* const shell_cmd dummyCommand = */
+/* {.cmd = "name", .desc = DESC_HELLO_WORLD, .func = hello_world}; */
 
-const shell_cmd helpCommand =
-{.cmd = "help", .desc = "Print this message and exit", .func = cmd_help};
+/* const shell_cmd helpCommand = */
+/* {.cmd = "help", .desc = "Print this message and exit", .func = cmd_help}; */
+
+// WHY DO I NEED THIS HACK
+#define COMMANDS_AVAILABLE {                                            \
+        {.cmd = "name", .desc = DESC_HELLO_WORLD, .func = hello_world}, \
+        {.cmd = "help", .desc = "Print this message and exit", .func = cmd_help} \
+    }
+const shell_cmd commands_Available [] = COMMANDS_AVAILABLE;
 
 const shell_cmds console_CommandRegistry = {
-    .count = (char)2,
-    .cmds = {dummyCommand, helpCommand}
+    .count = sizeof(commands_Available)/sizeof(shell_cmd),
+    .cmds = COMMANDS_AVAILABLE
 };
 
 int cmd_help(shell_cmd_args *args)

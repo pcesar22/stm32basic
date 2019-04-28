@@ -130,7 +130,6 @@ void console_Init(Led_TypeDef uartStatusLed)
     {
         console_ErrorHandler();
     }
-
 }
 
 static void printChar(char c)
