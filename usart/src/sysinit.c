@@ -91,6 +91,7 @@ static void SystemClock_Config(void)
 void sysinit_InitAll()
 {
     HAL_Init();
+
     /* Configure the system clock to 180 MHz */
     SystemClock_Config();
 

@@ -41,6 +41,7 @@
 #include "stm32f4xx_hal.h"
 #include "stm32469i_discovery.h"
 
+#include "pwm.h"
 #include "console.h"
 #include "log.h"
 

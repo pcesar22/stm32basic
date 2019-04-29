@@ -15,11 +15,13 @@ __IO uint32_t UserButtonStatus = 0;  /* set to 1 after User Button interrupt  */
 
 int main(void)
 {
+
     // Initialize clock and main peripherals
     sysinit_InitAll();
 
     // Logger is also initialized within the console module
     console_Init(LED1);
+    PWM_Init(LED2);
 
     /* Configure User push-button in Interrupt mode */
     /* BSP_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI); */
@@ -36,6 +38,7 @@ int main(void)
     /* BSP_LED_Off(LED2); */
 
     log_info("Main program started.");
+    log_debug("System core clock: %d", SystemCoreClock);
 
 
     // Start recurring timer with interrupt

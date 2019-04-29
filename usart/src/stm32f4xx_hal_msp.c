@@ -193,6 +193,16 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef *huart)
   HAL_NVIC_DisableIRQ(USARTx_DMA_RX_IRQn);
 }
 
+void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
+{
+    TIMx_CLK_ENABLE();
+}
+
+void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef *htim)
+{
+    TIMx_CLK_DISABLE();
+}
+
 /**
   * @}
   */
