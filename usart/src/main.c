@@ -13,6 +13,13 @@
 
 __IO uint32_t UserButtonStatus = 0;  /* set to 1 after User Button interrupt  */
 
+
+ADC_HandleTypeDef AdcHandle;
+
+__IO uint16_t uhADCxConvertedValue = 0;
+
+static bool flag_received = false;
+
 int main(void)
 {
 
@@ -23,31 +30,52 @@ int main(void)
     console_Init(LED1);
     PWM_Init(LED2);
 
-    /* Configure User push-button in Interrupt mode */
-    /* BSP_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI); */
 
-    /* log_info("Pressione o botao para acalmar a LOML"); */
+    // ADC STuff.... pin A0 = PB1 = ADC12_IN9
+    ADC_ChannelConfTypeDef sConfig;
+    AdcHandle.Instance = ADC2;
+    AdcHandle.Init.Resolution = ADC_RESOLUTION_12B;
+    AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV4;
+    AdcHandle.Init.ScanConvMode = DISABLE;
+    AdcHandle.Init.ContinuousConvMode = ENABLE;
+    AdcHandle.Init.DiscontinuousConvMode = DISABLE;
+    AdcHandle.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+    AdcHandle.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_CC3;
+    AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+    AdcHandle.Init.NbrOfConversion = 1;
+    AdcHandle.Init.DMAContinuousRequests = ENABLE;
+    AdcHandle.Init.EOCSelection = DISABLE;
 
-    /* while(UserButtonStatus == 0) */
-    /* { */
-    /*     /\* Toggle LED2*\/ */
-    /*     BSP_LED_Toggle(LED2); */
-    /*     HAL_Delay(100); */
-    /* } */
-    /* UserButtonStatus = 1; */
-    /* BSP_LED_Off(LED2); */
+    HAL_ADC_Init(&AdcHandle);
+
+    sConfig.Channel = ADC_CHANNEL_9;
+    sConfig.Rank         = 1;
+    sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+    sConfig.Offset       = 0;
 
     log_info("Main program started.");
     log_debug("System core clock: %d", SystemCoreClock);
 
+    HAL_ADC_ConfigChannel(&AdcHandle, &sConfig);
 
-    // Start recurring timer with interrupt
+    HAL_ADC_Start_DMA(&AdcHandle, (uint32_t*)&uhADCxConvertedValue, 1);
+
+    /* while(flag_received == false); */
+    /* log_debug("Received flag! Value: %04X", uhADCxConvertedValue); */
 
     while (1)
     {
         console_Process();
-        /* HAL_Delay(400); */
     }
+}
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
+{
+    /* Turn LED1 on: Transfer process is correct */
+    /* HAL_ADC_Stop_DMA(AdcHandle); */
+    /* log_debug("readout: %04X", uhADCxConvertedValue); */
+    /* HAL_ADC_Start_DMA(AdcHandle, (uint32_t*)&uhADCxConvertedValue, 1); */
+    flag_received = true;
 }
 
 

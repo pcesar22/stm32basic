@@ -53,6 +53,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* UART handler declared in "main.c" file */
 extern UART_HandleTypeDef UartHandle;
+extern ADC_HandleTypeDef AdcHandle;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -210,6 +211,13 @@ void EXTI0_IRQHandler(void)
 {
   HAL_GPIO_EXTI_IRQHandler(USER_BUTTON_PIN);
 }
+
+// This channel corresponds to ADC2
+void DMA2_Stream3_IRQHandler(void)
+{
+    HAL_DMA_IRQHandler(AdcHandle.DMA_Handle);
+}
+
 
 /**
   * @brief  This function handles PPP interrupt request.

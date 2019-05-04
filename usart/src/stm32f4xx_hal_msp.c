@@ -203,6 +203,56 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef *htim)
     TIMx_CLK_DISABLE();
 }
 
+
+void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc)
+{
+    GPIO_InitTypeDef GPIO_InitStruct;
+    static DMA_HandleTypeDef hdma_adc;
+
+    // Init the ADC2 peripheral clock
+    __HAL_RCC_ADC2_CLK_ENABLE();
+    // Init GPIOB clock
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    // Init the DMA module clock
+    __HAL_RCC_DMA2_CLK_ENABLE();
+
+    GPIO_InitStruct.Pin = GPIO_PIN_0;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    hdma_adc.Instance = DMA2_Stream3;
+    hdma_adc.Init.Channel = DMA_CHANNEL_1;
+    hdma_adc.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    hdma_adc.Init.PeriphInc = DMA_PINC_DISABLE;
+    hdma_adc.Init.MemInc = DMA_MINC_ENABLE;
+    hdma_adc.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+    hdma_adc.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+    hdma_adc.Init.Mode = DMA_CIRCULAR;
+    hdma_adc.Init.Priority = DMA_PRIORITY_HIGH;
+    hdma_adc.Init.FIFOMode = DMA_FIFOMODE_DISABLE;
+    hdma_adc.Init.FIFOThreshold = DMA_FIFO_THRESHOLD_HALFFULL;
+    hdma_adc.Init.MemBurst = DMA_MBURST_SINGLE;
+    hdma_adc.Init.PeriphBurst = DMA_PBURST_SINGLE;
+
+    HAL_DMA_Init(&hdma_adc);
+
+    // Associate the DMA handle to the ADC handle
+    __HAL_LINKDMA(hadc, DMA_Handle, hdma_adc);
+
+    // NVIC configuration priority
+    HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
+}
+
+void HAL_ADC_MspDeInit(ADC_HandleTypeDef *hadc)
+{
+    __HAL_RCC_ADC_FORCE_RESET();
+    __HAL_RCC_ADC_RELEASE_RESET();
+    HAL_GPIO_DeInit(GPIOB, ADC_CHANNEL_9);
+}
+
 /**
   * @}
   */
